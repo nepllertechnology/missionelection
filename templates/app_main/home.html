@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+   
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Election Results 2081</h1>
+        <div class="search-box">
+            <input type="text" placeholder="Search Candidate...">
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Parties</h2>
+            <ul class="party-list">
+                <li>Party A</li>
+                <li>Party B</li>
+                <li>Party C</li>
+                <li>Party D</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Filters -->
+            <div class="filters">
+                <select>
+                    <option selected>Province</option>
+                    <option>Province 1</option>
+                    <option>Province 2</option>
+                    <option>Province 3</option>
+                </select>
+                <select>
+                    <option selected>District</option>
+                    <option>District A</option>
+                    <option>District B</option>
+                </select>
+                <select>
+                    <option selected>Municipality</option>
+                    <option>Municipality X</option>
+                    <option>Municipality Y</option>
+                </select>
+            </div>
+
+            <!-- Results Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Party</th>
+                        <th>Votes</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ram Bahadur</td>
+                        <td>Party A</td>
+                        <td>12000</td>
+                        <td>Leading</td>
+                    </tr>
+                    <tr>
+                        <td>Sita Kumari</td>
+                        <td>Party B</td>
+                        <td>11000</td>
+                        <td>Trailing</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Prasad</td>
+                        <td>Party C</td>
+                        <td>8000</td>
+                        <td>Trailing</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
