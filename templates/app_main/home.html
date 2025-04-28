@@ -23,10 +23,11 @@
         <div class="sidebar">
             <h2>Parties</h2>
             <ul class="party-list">
-                <li>Party A</li>
-                <li>Party B</li>
-                <li>Party C</li>
-                <li>Party D</li>
+                {% for party in parties %}
+                <li>{{ party.party_name }}</li>
+            {% empty %}
+                <li>No Party found.</li>
+            {% endfor %}
             </ul>
         </div>
 
@@ -34,21 +35,29 @@
         <div class="main-content">
             <!-- Filters -->
             <div class="filters">
-                <select>
-                    <option selected>Province</option>
-                    <option>Province 1</option>
-                    <option>Province 2</option>
-                    <option>Province 3</option>
+                <select id="provinceSelect" onchange="submitProvince()">
+                    <option selected disabled>Province</option>
+                    {% for prov in province %}
+                    <option value="{{ prov.province_name }}">{{ prov.province_name }}</option>
+                    {% empty %}
+                    <option>No Province Found</option>
+                    {% endfor %}
                 </select>
-                <select>
-                    <option selected>District</option>
-                    <option>District A</option>
-                    <option>District B</option>
+                <select id="districtSelect" onchange="submitDistrict()">
+                    <option selected disabled>District</option>
+                    {% for district in district_ %}
+                    <option value="{{ district.district_name }}">{{ district.district_name }}</option>
+                    {% empty %}
+                    <option>No districts found.</option>
+                    {% endfor %}
                 </select>
                 <select>
                     <option selected>Municipality</option>
-                    <option>Municipality X</option>
-                    <option>Municipality Y</option>
+                    {% for local_unit in Local_unit_ %}
+                    <option>{{ local_unit.name }}</option>
+                    {% empty %}
+                    <option>No local unit found</option>
+                    {% endfor %}
                 </select>
             </div>
 
@@ -86,5 +95,18 @@
 
         </div>
     </div>
+    <script>
+        function submitProvince() {
+            var select = document.getElementById("provinceSelect");
+            var provinceName = select.value;
+            window.location.href = "/?province=" + provinceName;
+        }
+
+        function submitDistrict() {
+            var select = document.getElementById("districtSelect");
+            var districtName = select.value;
+            window.location.href = "/?district=" + districtName;
+        }
+        </script>
 </body>
 </html>
