@@ -1,0 +1,115 @@
+.results-container {
+ margin: 20px;
+}
+
+.panel {
+ background: #fff;
+ border-radius: 8px;
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ margin-bottom: 20px;
+ padding: 20px;
+}
+
+.panel-header {
+ font-size: 20px;
+ font-weight: bold;
+ margin-bottom: 15px;
+ color: #333;
+}
+
+.panel-table table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+.panel-table th,
+.panel-table td {
+ padding: 10px;
+ text-align: left;
+ font-size: 14px;
+ border-bottom: 1px solid #eee;
+}
+
+.party-top {
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ margin-bottom: 6px;
+}
+
+.party-icon {
+ width: 24px;
+ height: 24px;
+ object-fit: contain;
+}
+
+.party-name {
+ font-weight: bold;
+ font-size: 16px;
+ color: #333;
+}
+
+.progress-bar {
+ background-color: #eee;
+ border-radius: 5px;
+ overflow: hidden;
+ height: 8px;
+ width: 100%;
+ margin-top: 5px;
+}
+
+.progress-fill {
+ height: 100%;
+ width: 0;
+ transition: width 0.5s ease;
+}
+/* Party-specific colors */
+.progress-fill[data-party="Nepali Congress"] {
+ background: green;
+}
+
+.progress-fill[data-party="CPN-UML"] {
+ background: #c00;
+}
+
+.progress-fill[data-party="CPN (Maoist Center)"] {
+ background: #e00;
+}
+
+.progress-fill[data-party="Janata Samajwadi Party"] {
+ background: #a50;
+}
+
+.progress-fill[data-party="Others"] {
+ background: #0af;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+ .party-name {
+  font-size: 14px;
+ }
+
+ .panel-table th,
+ .panel-table td {
+  padding: 8px;
+  font-size: 13px;
+ }
+}
+
+@media (max-width: 480px) {
+ .party-top {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+ }
+
+ .party-name {
+  font-size: 13px;
+ }
+
+ .panel-table th,
+ .panel-table td {
+  padding: 6px;
+  font-size: 12px;
+ }
+}

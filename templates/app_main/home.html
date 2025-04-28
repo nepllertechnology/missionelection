@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Election Results</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/results_panel.css' %}">
    
 </head>
 <body>
@@ -18,17 +19,18 @@
     </div>
 
     <!-- Main Layout -->
-    <div class="container">
+    <!-- <div class="container"> -->
         <!-- Sidebar -->
-        <div class="sidebar">
+        <!-- <div class="sidebar">
             <h2>Parties</h2>
             <ul class="party-list">
-                <li>Party A</li>
-                <li>Party B</li>
-                <li>Party C</li>
-                <li>Party D</li>
+                <li>Nepali Congress</li>
+                <li>CPN-UML</li>
+                <li>CPN (Maoist Center)</li>
+                <li>Janata Samajwadi Party</li>
+                <li>Others</li>
             </ul>
-        </div>
+        </div> --> 
 
         <!-- Main Content -->
         <div class="main-content">
@@ -39,6 +41,10 @@
                     <option>Province 1</option>
                     <option>Province 2</option>
                     <option>Province 3</option>
+                    <option>Province 4</option>
+                    <option>Province 5</option>
+                    <option>Province 6</option>
+                    <option>Province 7</option>
                 </select>
                 <select>
                     <option selected>District</option>
@@ -51,8 +57,47 @@
                     <option>Municipality Y</option>
                 </select>
             </div>
+            <div class="results-container">
+             <!-- Panel: प्रमुख / अध्यक्ष -->
+                
+                <section class="panel" aria-labelledby="chief-heading">
+                    <div id="chief-heading" class="panel-header">Mayor / Chairperson</div>
+                    <div class="panel-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Party</th>
+                                    <th>Win</th>
+                                    <th>Lead</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chief-list">
+                                <!-- Rows will be inserted dynamically from JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
 
-            <!-- Results Table -->
+                <!-- Panel: उपप्रमुख / उपाध्यक्ष -->
+                <section class="panel" aria-labelledby="deputy-heading">
+                    <div id="deputy-heading" class="panel-header">Deputy Mayor / Vice-Chairperson</div>
+                    <div class="panel-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Party</th>
+                                    <th>Win</th>
+                                    <th>Lead</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deputy-list">
+                                <!-- Rows will be inserted dynamically from JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <!-- Results Table  -->
             <table>
                 <thead>
                     <tr>
@@ -82,9 +127,13 @@
                         <td>Trailing</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>  
 
         </div>
     </div>
+<script>
+    window.ICON_BASE_URL = "{% static 'icons/' %}";
+</script>
+<script src="{% static 'js/results_panel.js' %}"></script>
 </body>
 </html>
