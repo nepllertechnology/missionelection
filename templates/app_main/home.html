@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Election Results 2081</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!--custom CSS -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-   
 </head>
 <body>
+
     <!-- Navbar -->
     <div class="navbar">
         <h1>Election Results 2081</h1>
@@ -17,7 +22,10 @@
         </div>
     </div>
 
-    <!-- Main Layout -->
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Layout Section -->
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -32,7 +40,6 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Filters -->
             <div class="filters">
                 <select>
                     <option selected>Province</option>
@@ -52,7 +59,6 @@
                 </select>
             </div>
 
-            <!-- Results Table -->
             <table>
                 <thead>
                     <tr>
@@ -86,5 +92,12 @@
 
         </div>
     </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Your custom JS -->
+    <script src="{% static 'js/home.js' %}"></script>
+
 </body>
 </html>

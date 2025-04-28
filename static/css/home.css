@@ -1,13 +1,14 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
+
 /* Navbar */
 .navbar {
     background-color: white;
@@ -27,6 +28,27 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/* Map */
+#map {
+    height: 70vh;
+    width: 80%;
+    margin: 30px auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.district-label {
+    font-size: 8px;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
 /* Layout */
 .container {
     display: flex;
