@@ -31,77 +31,28 @@
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
-            <!-- Filters -->
+            <!-- Filters Section -->
             <div class="filters">
-                <select id="provinceSelect" onchange="submitProvince()">
-                    <option selected disabled>Province</option>
-                    {% for prov in province %}
-                    <option value="{{ prov.province_name }}">{{ prov.province_name }}</option>
-                    {% empty %}
-                    <option>No Province Found</option>
-                    {% endfor %}
+                <!-- Province Dropdown -->
+                <select id="province" onchange="loadDistricts()">
+                    <option selected disabled>Choose Province</option>
+                    <!-- Provinces will be loaded here -->
                 </select>
-                <select id="districtSelect" onchange="submitDistrict()">
-                    <option selected disabled>District</option>
-                    {% for district in district_ %}
-                    <option value="{{ district.district_name }}">{{ district.district_name }}</option>
-                    {% empty %}
-                    <option>No districts found.</option>
-                    {% endfor %}
+    
+                <!-- District Dropdown -->
+                <select id="district" onchange="loadMunicipalities()">
+                    <option selected disabled>Choose District</option>
+                    <!-- Districts will be loaded here -->
                 </select>
-                <select id="localunitSelect" onchange="submitLocalunit()">
-                    <option selected disabled>Municipality</option>
-                    {% for local_unit in Local_unit_ %}
-                    <option value="{{ local_unit.name }}">{{ local_unit.name }}</option>
-                    {% empty %}
-                    <option>No local unit found</option>
-                    {% endfor %}
+    
+                <!-- Municipality Dropdown -->
+                <select id="municipality">
+                    <option selected disabled>Choose Municipality</option>
+                    <!-- Municipalities will be loaded here -->
                 </select>
             </div>
-
-            <!-- Results Table -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Candidate</th>
-                        <th>Position</th>
-                        <th>Party</th>
-                        <th>Votes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for candidate_ in candidate %}
-                    <tr>
-                        <td>{{candidate_.name}}</td>
-                        <td>{{candidate_.position}}</td>
-                        <td>{{candidate_.party}}</td>
-                        <td>{{candidate_.vote}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
         </div>
-    </div>
-    <script>
-        function submitProvince() {
-            var select = document.getElementById("provinceSelect");
-            var provinceName = select.value;
-            window.location.href = "/?province=" + provinceName;
-        }
-
-        function submitDistrict() {
-            var select = document.getElementById("districtSelect");
-            var districtName = select.value;
-            window.location.href = "/?district=" + districtName;
-        }
-        function submitLocalunit() {
-            var select = document.getElementById("localunitSelect");
-            var localunitName = select.value;
-            window.location.href = "/?localunit=" + localunitName;
-        }
-        </script>
+    <script src="{% static 'js/home.js' %}" defer></script>   
 </body>
 </html>
