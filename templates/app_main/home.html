@@ -51,10 +51,10 @@
                     <option>No districts found.</option>
                     {% endfor %}
                 </select>
-                <select>
-                    <option selected>Municipality</option>
+                <select id="localunitSelect" onchange="submitLocalunit()">
+                    <option selected disabled>Municipality</option>
                     {% for local_unit in Local_unit_ %}
-                    <option>{{ local_unit.name }}</option>
+                    <option value="{{ local_unit.name }}">{{ local_unit.name }}</option>
                     {% empty %}
                     <option>No local unit found</option>
                     {% endfor %}
@@ -66,30 +66,20 @@
                 <thead>
                     <tr>
                         <th>Candidate</th>
+                        <th>Position</th>
                         <th>Party</th>
                         <th>Votes</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for candidate_ in candidate %}
                     <tr>
-                        <td>Ram Bahadur</td>
-                        <td>Party A</td>
-                        <td>12000</td>
-                        <td>Leading</td>
+                        <td>{{candidate_.name}}</td>
+                        <td>{{candidate_.position}}</td>
+                        <td>{{candidate_.party}}</td>
+                        <td>{{candidate_.vote}}</td>
                     </tr>
-                    <tr>
-                        <td>Sita Kumari</td>
-                        <td>Party B</td>
-                        <td>11000</td>
-                        <td>Trailing</td>
-                    </tr>
-                    <tr>
-                        <td>Hari Prasad</td>
-                        <td>Party C</td>
-                        <td>8000</td>
-                        <td>Trailing</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 
@@ -106,6 +96,11 @@
             var select = document.getElementById("districtSelect");
             var districtName = select.value;
             window.location.href = "/?district=" + districtName;
+        }
+        function submitLocalunit() {
+            var select = document.getElementById("localunitSelect");
+            var localunitName = select.value;
+            window.location.href = "/?localunit=" + localunitName;
         }
         </script>
 </body>
