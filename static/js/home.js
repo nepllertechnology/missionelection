@@ -52,3 +52,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         provinceSelect.appendChild(option);
     });
 });
+
+function loadCandidates(unitId) {
+    const form = document.getElementById(`ward-form-${unitId}`);
+    const formData = new FormData(form);
+    const localUnit = formData.get("local_unit");
+    const ward = formData.get("ward");
+
+    fetch(`/candidate_list_ajax/?local_unit=${encodeURIComponent(localUnit)}&ward=${encodeURIComponent(ward)}`)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById(`candidate-results-${unitId}`);
+            container.innerHTML = ''; // Clear previous results
+
+            if (!data.candidates.length) {
+                container.innerHTML = '<p>No candidates found.</p>';
+                return;
+            }
+
+            data.candidates.forEach(candidate => {
+                const card = document.createElement('div');
+              
+                card.className = 'candidate-card';
+                card.innerHTML = `
+                    <img src="${candidate.photo}" alt="${candidate.name}">
+                    <div class="candidate-info">
+                        <h4>${candidate.name}</h4>
+                        <p><strong>Party:</strong> ${candidate.party}</p>
+                        <p><strong>Position:</strong> ${candidate.position}</p>
+                        <p><strong>Votes:</strong> ${candidate.vote}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching candidates:", error);
+        })};

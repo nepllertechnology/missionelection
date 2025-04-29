@@ -31,28 +31,110 @@
             </ul>
         </div>
 
-        <div class="main-content">
-            <!-- Filters Section -->
-            <div class="filters">
-                <!-- Province Dropdown -->
-                <select id="province" onchange="loadDistricts()">
-                    <option selected disabled>Choose Province</option>
-                    <!-- Provinces will be loaded here -->
-                </select>
-    
-                <!-- District Dropdown -->
-                <select id="district" onchange="loadMunicipalities()">
-                    <option selected disabled>Choose District</option>
-                    <!-- Districts will be loaded here -->
-                </select>
-    
-                <!-- Municipality Dropdown -->
-                <select id="municipality">
-                    <option selected disabled>Choose Municipality</option>
-                    <!-- Municipalities will be loaded here -->
-                </select>
-            </div>
+        <form id="searchForm" method="GET" action="{% url 'search_results' %}">
+            <!-- Province Dropdown -->
+            <select name="province" id="province" onchange="loadDistricts()">
+                <option disabled {% if not request.GET.province %}selected{% endif %}>Choose Province</option>
+                {% for province in provinces %}
+                    <option value="{{ province.pk }}"
+                        {% if request.GET.province == province.pk %}selected{% endif %}>
+                        {{ province.province_name }}
+                    </option>
+                {% endfor %}
+            </select>
+        
+            <!-- District Dropdown -->
+            <select name="district" id="district" onchange="loadMunicipalities()">
+                <option disabled {% if not request.GET.district %}selected{% endif %}>Choose District</option>
+                {% for district in districts %}
+                    {% if district.province.pk == request.GET.province %}
+                        <option value="{{ district.pk }}"
+                            {% if request.GET.district == district.pk %}selected{% endif %}>
+                            {{ district.district_name }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        
+            <!-- Municipality Dropdown -->
+            <select name="municipality" id="municipality">
+                <option disabled {% if not request.GET.municipality %}selected{% endif %}>Choose Municipality</option>
+                {% for muni in municipalities %}
+                    {% if muni.district.pk == request.GET.district %}
+                        <option value="{{ muni.pk }}"
+                            {% if request.GET.municipality == muni.pk %}selected{% endif %}>
+                            {{ muni.name }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        
+            <button type="submit">Search</button>
+            
+        </form>
         </div>
+<section>
+    {% if results %}
+    <h2>Search Results:</h2>
+
+    {% if result_type == 'district' %}
+        {% for district in results %}
+            <div class="district-card">
+                <h3>{{ district.district_name }}</h3>
+                <p>Province: {{ district.province.province_name }}</p>
+                <p>Total Population: {{ district.total_population }}</p>
+                <p>Male Population: {{ district.male_population }}</p>
+                <p>Female Population: {{ district.female_population }}</p>
+                <p>Local Units: {{ district.no_localunits }}</p>
+                <p>Metropolitan: {{ district.no_metropolitan }}</p>
+                <p>Municipalities: {{ district.no_municipalities }}</p>
+                <p>Village Councils: {{ district.no_villageCouncil }}</p>
+            </div>
+        {% endfor %}
+    {% elif result_type == 'local_unit' %}
+        {% for unit in results %}
+            <div class="local-unit-card">
+                <h3>{{ unit.name }} {{ unit.type }}</h3>
+                <p>District: {{ unit.district.district_name }}</p>
+                <p>Number of Wards: {{ unit.no_wards }}</p>
+                <p>Election Centers: {{ unit.no_electionCenter }}</p>
+                <p>Total Population: {{ unit.total_population }}</p>
+                <p>Male Voters: {{ unit.no_maleVoters }}</p>
+                <p>Female Voters: {{ unit.no_femaleVoters }}</p>
+                <p>Other Voters: {{ unit.no_otherVoters }}</p>
+                <p>Total Eligible Voters: {{ unit.total_eligibleVoters }}</p>
+            </div>
+            <form method="GET" id="ward-form-{{ unit.id }}">
+                <!-- Send the local unit ID -->
+                <input type="hidden" name="local_unit" value="{{ unit.name }}">
+                
+                <label for="ward-{{ unit.id }}">Select Ward:</label>
+                <select name="ward" id="ward-{{ unit.id }}" onchange="loadCandidates('{{ unit.id }}')" required>
+                    <option selected disabled>Choose Ward</option>
+                    {% for i in ""|center:unit.no_wards %}
+                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        {% endfor %}
+    {% elif result_type == 'province' %}
+        {% for province in results %}
+            <div class="province-card">
+                <h3>{{ province.province_name }}</h3>
+                <p>Headquarter: {{ province.province_headquarter }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+ 
+{% endif %}
+</section>        
+<div id="candidate-results-{{ unit.id }}" class="candidate-results"></div>
+
+
+    
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
     <script src="{% static 'js/home.js' %}" defer></script>   
 </body>
 </html>
+
