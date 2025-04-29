@@ -52,18 +52,47 @@
                     <!-- Municipalities will be loaded here -->
                 </select>
             </div>
-            <h2>Metropolitan Cities/Mayors</h2>
-            <ul>
-                {% for unit,candidates in top2_metro_mayor.items %}
-                    <h2>{{ unit }}</h2>
-                    <ul>
+            <h2>Metropolitan Cities / Top 2 Mayor Candidates</h2>
+
+            {% for unit, candidates in top2_metro_mayor.items %}
+                <h3>{{ unit }}</h3>
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Party</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {% for candidate in candidates %}
-                        <li>{{candidate.name}}-{{candidate.party}}{{candidate.vote}}</li>
+                        <tr>
+                            <td>{{ candidate.name }}</td>
+                            <td>{{ candidate.party }}</td>
+                            <td>{{ candidate.vote }}</td>
+                        </tr>
                         {% endfor %}
-                    </ul>
-                    
-                {% endfor %}
-            </ul>
+                    </tbody>
+                </table>
+            {% endfor %}
+            
+            <h2>Mayor Wins by Party</h2>
+<table>
+    <tr>
+        <th>Party</th>
+        <th>lead</th>
+    </tr>
+    {% for party, lead in party_count.items %}
+    <tr>
+        <td>{{ party }}</td>
+        <td>{{ lead }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">No data available</td>
+    </tr>
+    {% endfor %}
+</table>
         </div>
 
        
