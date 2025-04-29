@@ -8,11 +8,11 @@ from .models import *
 def home(request):
     parties=Party.objects.all()
     
-    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','vote')
-    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','vote')
+    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
+    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','party','name','vote')
 
-    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','vote')
-    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','vote')
+    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
+    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
     
     top2_metro_mayor = top2(metro_mayor_candidates)
     top2_metro_Dmayor = top2(metro_Dmayor_candidates)

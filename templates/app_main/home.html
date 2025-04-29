@@ -52,7 +52,22 @@
                     <!-- Municipalities will be loaded here -->
                 </select>
             </div>
+            <h2>Metropolitan Cities/Mayors</h2>
+            <ul>
+                {% for unit,candidates in top2_metro_mayor.items %}
+                    <h2>{{ unit }}</h2>
+                    <ul>
+                        {% for candidate in candidates %}
+                        <li>{{candidate.name}}-{{candidate.party}}{{candidate.vote}}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                {% endfor %}
+            </ul>
         </div>
+
+       
+  
     <script src="{% static 'js/home.js' %}" defer></script>   
 </body>
 </html>
