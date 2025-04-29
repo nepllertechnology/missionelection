@@ -179,4 +179,101 @@ h2 {
     font-weight: bold;            /* Make labels like 'Party' bold */
 }
 
-/* Optional: Add some space below each candidate section */
+/* Container holding all the position cards */
+.candidate-results {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    gap: 20px; /* Space between the cards */
+    justify-content: flex-start; /* Align cards to the left */
+}
+
+/* Styling for the position cards */
+.position-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(25% - 20px); /* 4 cards per row */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Position card title */
+.position-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Candidates list container */
+.candidates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual candidate item */
+.candidate-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.candidate-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Candidate image */
+.candidate-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Candidate details */
+.candidate-info {
+    text-align: left;
+}
+
+.rank {
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.candidate-info h4 {
+    margin: 0 0 5px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.candidate-info p {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .position-card {
+        width: calc(33.33% - 20px); /* 3 cards per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .position-card {
+        width: calc(50% - 20px); /* 2 cards per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .position-card {
+        width: 100%; /* 1 card per row */
+    }
+}

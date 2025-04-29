@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from collections import defaultdict
 from .models import *
 
 # Home view remains the same
@@ -59,22 +60,21 @@ def candidate_list_ajax(request):
     local_unit_name = request.GET.get('local_unit')
     ward_number = request.GET.get('ward')
 
-    # Fetch the local_unit using the name
-    local_unit = Local_unit.objects.get(name=local_unit_name)
+    try:
+        local_unit = Local_unit.objects.get(name=local_unit_name)
+    except Local_unit.DoesNotExist:
+        return JsonResponse({'error': 'Local unit not found'}, status=404)
 
-    # Filter candidates by local_unit and ward
-    candidates = Candidate.objects.filter(local_unit=local_unit, ward=ward_number)
-    print(candidates)
-    # Prepare the candidate data for rendering
-    candidate_data = []
+    candidates = Candidate.objects.filter(local_unit=local_unit, ward=ward_number).order_by('-vote')
+
+    grouped_candidates = defaultdict(list)
     for candidate in candidates:
-        candidate_data.append({
+        grouped_candidates[candidate.position].append({
             'name': candidate.name,
             'photo': candidate.photo.url,
             'party': candidate.party.party_name,
             'position': candidate.position,
-            'vote': candidate.vote
+            'vote': candidate.vote,
         })
 
-    # Return a JSON response with the candidate data
-    return JsonResponse({'candidates': candidate_data})
+    return JsonResponse({'grouped_candidates': grouped_candidates})

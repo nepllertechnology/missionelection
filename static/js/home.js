@@ -63,29 +63,46 @@ function loadCandidates(unitId) {
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById(`candidate-results-${unitId}`);
-            container.innerHTML = ''; // Clear previous results
+            container.innerHTML = '';
 
-            if (!data.candidates.length) {
+            const grouped = data.grouped_candidates;
+
+            if (Object.keys(grouped).length === 0) {
                 container.innerHTML = '<p>No candidates found.</p>';
                 return;
             }
 
-            data.candidates.forEach(candidate => {
+            // Loop through each position category
+            for (let position in grouped) {
                 const card = document.createElement('div');
-              
-                card.className = 'candidate-card';
+                card.className = 'position-card';
                 card.innerHTML = `
-                    <img src="${candidate.photo}" alt="${candidate.name}">
-                    <div class="candidate-info">
-                        <h4>${candidate.name}</h4>
-                        <p><strong>Party:</strong> ${candidate.party}</p>
-                        <p><strong>Position:</strong> ${candidate.position}</p>
-                        <p><strong>Votes:</strong> ${candidate.vote}</p>
-                    </div>
+                    <h3>${position}</h3>
+                    <div class="candidates-list"></div>
                 `;
+
+                const candidatesList = card.querySelector('.candidates-list');
+                
+                // Loop through candidates and add them to the position card
+                grouped[position].forEach((candidate, index) => {
+                    const candidateItem = document.createElement('div');
+                    candidateItem.className = 'candidate-item';
+                    candidateItem.innerHTML = `
+                        <div class="rank">#${index + 1}</div>
+                        <img src="${candidate.photo}" alt="${candidate.name}" />
+                        <div class="candidate-info">
+                            <h4>${candidate.name}</h4>
+                            <p><strong>Party:</strong> ${candidate.party}</p>
+                            <p><strong>Votes:</strong> ${candidate.vote}</p>
+                        </div>
+                    `;
+                    candidatesList.appendChild(candidateItem);
+                });
+
                 container.appendChild(card);
-            });
+            }
         })
         .catch(error => {
             console.error("Error fetching candidates:", error);
-        })};
+        });
+}
