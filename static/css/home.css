@@ -36,7 +36,7 @@ body {
 }
 
 /* Containers */
-.mapbox, .metrobox {
+.mapbox{
     border: solid 1px #cbc5c5;
     margin-left: 30px;
     margin-right: 30px;
@@ -46,6 +46,13 @@ body {
 .metrobox h3 {
     margin: 20px;
     font-weight: bolder;
+}
+.metrobox{
+
+    border: solid 1px #cbc5c5;
+    margin-left: 30px;
+    margin-right: 30px;
+    background-color: white;
 }
 
 .big {
@@ -77,6 +84,7 @@ body {
     margin: 30px auto;
     border: 2px solid #ccc;
     border-radius: 20px;
+    background-color: white;
 }
 
 .district-label {
@@ -165,6 +173,7 @@ th {
 
 /* Election Cards Grid */
 .flexbox {
+    margin-left: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;

@@ -54,9 +54,18 @@
     <!-- Map Section -->
     <div class="mapbox">
         <div id="map"></div>
-    
+    </div>
 
     <!-- Layout Section -->
+    <div class="metrobox">
+        <div class="big">
+            <h3>Metropolitan</h3>
+            <div class="small">
+                <a href=""><p>Mayor</p></a>
+                <a href=""><p>Deputy Mayor</p></a>
+                
+            </div>
+        </div>
     <div class="flexbox">
         {% for unit, candidates in top2_metro_mayor.items %}
         <div class="election-card">
@@ -70,7 +79,7 @@
                     <p>{{ candidate.party}}</p>
                     <div class="progress-bar">
                         <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                            style="width: {{ candidate.percentage }}%;"></div>
+                            style="width: 10%;"></div>
                     </div>
                 </div>
                 <div class="votes-party">
