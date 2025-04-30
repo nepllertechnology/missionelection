@@ -8,89 +8,172 @@
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    
     <!--custom CSS -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
 
+
     <!-- Navbar -->
     <div class="navbar">
         <h1>Election Results 2081</h1>
-        <div class="search-box">
-            <input type="text" placeholder="Search Candidate...">
+        <div class="box b1">
+            <select>
+                <option selected>Province</option>
+                <option>Province 1</option>
+                <option>Province 2</option>
+                <option>Province 3</option>
+                <option>Province 4</option>
+                <option>Province 5</option>
+                <option>Province 6</option>
+                <option>Province 7</option>
+            </select>
+        </div>
+        <div class="box b2">
+            <select>
+                <option selected>District</option>
+                <option>District</option>
+            </select>
+        </div>
+        <div class="box b3">
+            <select>
+                <option selected>Municipality or Rural Municipality</option>
+                <option>Municipality or Rural Municipality</option>
+            </select>
+        </div>
+        <div class="box b4">
+            <button>search</button>
         </div>
     </div>
 
+
     <!-- Map Section -->
+     <div class="mapbox">
     <div id="map"></div>
-
+    </div>
     <!-- Layout Section -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Parties</h2>
-            <ul class="party-list">
-                <li>Party A</li>
-                <li>Party B</li>
-                <li>Party C</li>
-                <li>Party D</li>
-            </ul>
-        </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="filters">
-                <select>
-                    <option selected>Province</option>
-                    <option>Province 1</option>
-                    <option>Province 2</option>
-                    <option>Province 3</option>
-                </select>
-                <select>
-                    <option selected>District</option>
-                    <option>District A</option>
-                    <option>District B</option>
-                </select>
-                <select>
-                    <option selected>Municipality</option>
-                    <option>Municipality X</option>
-                    <option>Municipality Y</option>
-                </select>
+    <div class="metrobox">
+        <div class="big">
+            <h3>Metropolitan</h3>
+            <div class="small">
+                <a href=""><p>Mayor</p></a>
+                <a href=""><p>Deputy Mayor</p></a>
+                
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Candidate</th>
-                        <th>Party</th>
-                        <th>Votes</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ram Bahadur</td>
-                        <td>Party A</td>
-                        <td>12000</td>
-                        <td>Leading</td>
-                    </tr>
-                    <tr>
-                        <td>Sita Kumari</td>
-                        <td>Party B</td>
-                        <td>11000</td>
-                        <td>Trailing</td>
-                    </tr>
-                    <tr>
-                        <td>Hari Prasad</td>
-                        <td>Party C</td>
-                        <td>8000</td>
-                        <td>Trailing</td>
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
+        <div class="flexbox">
+
+        <div class="election-card">
+            <div class="municipality-name">Kathmandu</div>
+        
+            <!-- Leading Candidate -->
+            <div class="candidate leading">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Balendra_Shah_2022.jpg/120px-Balendra_Shah_2022.jpg" alt="Balendra Shah" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Balendra Shah</strong>
+                    <p>Independent</p>
+                    <div class="progress-bar">
+                        <div class="progress blue" style="width: 62%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">61767</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Check_green_icon.svg/24px-Check_green_icon.svg.png" alt="Independent" class="party-logo">
+                </div>
+            </div>
+        
+            <!-- Second Candidate -->
+            <div class="candidate">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Female_avatar_placeholder.png/120px-Female_avatar_placeholder.png" alt="Shirjana Shrestha" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Shirjana Shrestha</strong>
+                    <p>Nepali Congress</p>
+                    <div class="progress-bar">
+                        <div class="progress green" style="width: 38%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">38341</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tree_icon.svg/24px-Tree_icon.svg.png" alt="Nepali Congress" class="party-logo">
+                </div>
+            </div>
+        </div>
+
+        <div class="election-card">
+            <div class="municipality-name">Pokhara</div>
+        
+            <!-- Leading Candidate -->
+            <div class="candidate leading">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Balendra_Shah_2022.jpg/120px-Balendra_Shah_2022.jpg" alt="Balendra Shah" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Dhana Raj Achrya</strong>
+                    <p>CPN( Unified Socialist)</p>
+                    <div class="progress-bar">
+                        <div class="progress blue" style="width: 62%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">8893</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Check_green_icon.svg/24px-Check_green_icon.svg.png" alt="Independent" class="party-logo">
+                </div>
+            </div>
+        
+            <!-- Second Candidate -->
+            <div class="candidate">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Female_avatar_placeholder.png/120px-Female_avatar_placeholder.png" alt="Shirjana Shrestha" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Krishna Bahadur Thapa</strong>
+                    <p>CPN-UML</p>
+                    <div class="progress-bar">
+                        <div class="progress green" style="width: 38%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">53848</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tree_icon.svg/24px-Tree_icon.svg.png" alt="Nepali Congress" class="party-logo">
+                </div>
+            </div>
+        </div>
+
+        <div class="election-card">
+            <div class="municipality-name">Bharatpur</div>
+        
+            <!-- Leading Candidate -->
+            <div class="candidate leading">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Balendra_Shah_2022.jpg/120px-Balendra_Shah_2022.jpg" alt="Balendra Shah" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Renu Dahal</strong>
+                    <p>Maubadi</p>
+                    <div class="progress-bar">
+                        <div class="progress blue" style="width: 62%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">52030</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Check_green_icon.svg/24px-Check_green_icon.svg.png" alt="Independent" class="party-logo">
+                </div>
+            </div>
+        
+            <!-- Second Candidate -->
+            <div class="candidate">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Female_avatar_placeholder.png/120px-Female_avatar_placeholder.png" alt="Shirjana Shrestha" class="candidate-img">
+                <div class="candidate-info">
+                    <strong>Vijay Subedi</strong>
+                    <p>CPN-UML</p>
+                    <div class="progress-bar">
+                        <div class="progress green" style="width: 40%;"></div>
+                    </div>
+                </div>
+                <div class="votes-party">
+                    <div class="votes">39581</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tree_icon.svg/24px-Tree_icon.svg.png" alt="Nepali Congress" class="party-logo">
+                </div>
+            </div>
+        </div>
+    </div>  
     </div>
 
     <!-- Leaflet JS -->
@@ -98,6 +181,8 @@
 
     <!-- Your custom JS -->
     <script src="{% static 'js/home.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 
 </body>
 </html>
