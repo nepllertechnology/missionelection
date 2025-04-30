@@ -13,13 +13,11 @@ def top2(candidates):
     return top2_per_unit
 
 def metroAndsubmetro():
-    parties=Party.objects.all()
-    
-    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
-    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','party','name','vote')
+    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','party__logo','vote','photo')
+    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','party','name','vote','photo')
 
-    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
-    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote')
+    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo')
+    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Sub Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo')
     
     top2_metro_mayor = top2(metro_mayor_candidates)
     top2_metro_Dmayor = top2(metro_Dmayor_candidates)
@@ -32,8 +30,7 @@ def metroAndsubmetro():
         'top2_metro_mayor':top2_metro_mayor,
         'top2_metro_Dmayor':top2_metro_Dmayor,
         'top2_submetro_mayor':top2_submetro_mayor,
-        'top2_submetro_Dmayor':top2_submetro_Dmayor,
-        'parties':parties
+        'top2_submetro_Dmayor':top2_submetro_Dmayor
     }
     return context
 

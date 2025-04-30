@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 70vh;    /* Half of the viewport height */
+        width: 80%;      /* 80% width of the page */
+        margin: 40px auto; /* Center the map */
+        border: 2px solid #ccc;
+        border-radius: 10px;
+      }
+    
+      .district-label {
+        font-size: 8px; /* or 9px if you prefer smaller */
+        font-weight: bold;
+        color: #333;
+        background: none;     /* REMOVE background */
+        padding: 0;           /* REMOVE padding */
+        border-radius: 0;     /* REMOVE border radius */
+        border: none;         /* REMOVE border */
+        box-shadow: none;     /* REMOVE any shadow */
+}
+
+    </style>
+    
+      
+      
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+   
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Election Results 2081</h1>
+        <div class="search-box">
+            <input type="text" placeholder="Search Candidate...">
+        </div>
+    </div>
+
+
+           <!-- Map Section -->
+           <div id="map"></div>
+
+           <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+           <script>
+           
+           // Create the map centered at Nepal with fixed zoom
+           var map = L.map('map', {
+             center: [28.3949, 84.1240], // Center of Nepal
+             zoom: 7,                   // Good zoom level for full Nepal
+             zoomControl: false,         // Disable zoom buttons (+/-)
+             dragging: false,            // Disable dragging
+             scrollWheelZoom: false,     // Disable scroll zoom
+             doubleClickZoom: false,     // Disable double-click zoom
+             boxZoom: false,             // Disable box zoom
+             keyboard: false,            // Disable keyboard zoom/move
+             attributionControl: false   // Hide attribution
+           });
+           
+           // Load GeoJSON
+           fetch("{% static 'geojson/nepal_districts_new.geojson' %}")
+             .then(response => response.json())
+             .then(data => {
+           
+               var geojsonLayer = L.geoJson(data, {
+                 style: {
+                   color: "#3388ff",
+                   weight: 1,
+                   fillOpacity: 0.4
+                 },
+                 onEachFeature: function (feature, layer) {
+                   layer.bindTooltip(feature.properties.DIST_EN, {
+                     permanent: true,
+                     direction: "center",
+                     className: "district-label"
+                   });
+                   layer.on({
+                     mouseover: function (e) {
+                       e.target.setStyle({
+                         weight: 2,
+                         color: '#FF5733',
+                         fillOpacity: 0.7
+                       });
+                     },
+                     mouseout: function (e) {
+                       geojsonLayer.resetStyle(e.target);
+                     },
+                     click: function (e) {
+                       alert("You clicked on: " + feature.properties.DIST_EN);
+                     }
+                   });
+                 }
+               }).addTo(map);
+           
+             });
+           
+           </script>
+           
+<!-- map section ends here -->
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Parties</h2>
+            <ul class="party-list">
+                <li>Party A</li>
+                <li>Party B</li>
+                <li>Party C</li>
+                <li>Party D</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Filters -->
+            <div class="filters">
+                <select>
+                    <option selected>Province</option>
+                    <option>Province 1</option>
+                    <option>Province 2</option>
+                    <option>Province 3</option>
+                </select>
+                <select>
+                    <option selected>District</option>
+                    <option>District A</option>
+                    <option>District B</option>
+                </select>
+                <select>
+                    <option selected>Municipality</option>
+                    <option>Municipality X</option>
+                    <option>Municipality Y</option>
+                </select>
+            </div>
+
+            <!-- Results Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Party</th>
+                        <th>Votes</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ram Bahadur</td>
+                        <td>Party A</td>
+                        <td>12000</td>
+                        <td>Leading</td>
+                    </tr>
+                    <tr>
+                        <td>Sita Kumari</td>
+                        <td>Party B</td>
+                        <td>11000</td>
+                        <td>Trailing</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Prasad</td>
+                        <td>Party C</td>
+                        <td>8000</td>
+                        <td>Trailing</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+CSS
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.navbar h1 {
+    font-size: 24px;
+    color: #333;
+}
+.search-box input {
+    padding: 8px 12px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Map */
+#map {
+    height: 80vh;   /* 80% of screen height */
+    width: 80vw;    /* 90% of screen width */
+    margin: 30px auto;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+}
+
+.district-label {
+    font-size: 8px;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* Layout (Sidebar etc) */
+.container {
+    display: flex;
+    margin-top: 20px;
+}
+.sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    height: calc(100vh - 80px);
+}
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+.party-list {
+    list-style: none;
+}
+.party-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+.filters {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+.filters select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+
+js
+/*
+// Create the map centered at Nepal with fixed zoom
+var map = L.map('map', {
+    center: [28.3949, 84.1240], // Center of Nepal
+    zoom: 7,                    // Good zoom level for full Nepal
+    zoomControl: true,          // Disable zoom buttons (+/-)
+    dragging: true,             // Disable dragging
+    scrollWheelZoom: false,      // Disable scroll zoom
+    doubleClickZoom: false,      // Disable double-click zoom
+    boxZoom: false,              // Disable box zoom
+    keyboard: false,             // Disable keyboard zoom/move
+    attributionControl: false    // Hide attribution
+});
+
+// Load GeoJSON
+fetch("/static/geojson/nepal_districts_new.geojson")
+    .then(response => response.json())
+    .then(data => {
+        var geojsonLayer = L.geoJson(data, {
+            style: {
+                color: "#3388ff",
+                weight: 1,
+                fillOpacity: 0.4
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.DIST_EN, {
+                    permanent: true,
+                    direction: "center",
+                    className: "district-label"
+                });
+                layer.on({
+                    mouseover: function (e) {
+                        e.target.setStyle({
+                            weight: 2,
+                            color: '#FF5733',
+                            fillOpacity: 0.7
+                        });
+                    },
+                    mouseout: function (e) {
+                        geojsonLayer.resetStyle(e.target);
+                    },
+                    click: function (e) {
+                        alert("You clicked on: " + feature.properties.DIST_EN);
+                    }
+                });
+            }
+        }).addTo(map);
+        map.fitBounds(geojsonLayer.getBounds());
+    });
+
+*/

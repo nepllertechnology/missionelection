@@ -1,54 +1,83 @@
-async function loadDistricts() {
-    const provinceSelect = document.getElementById('province');
-    const provinceName=provinceSelect.value;
-    const districtSelect = document.getElementById('district');
-    const municipalitySelect = document.getElementById('municipality');
-
-    // Clear previous options
-    districtSelect.innerHTML = '<option selected disabled>Choose District</option>';
-    municipalitySelect.innerHTML = '<option selected disabled>Choose Municipality</option>';
-
-    const response = await fetch(`/api/districts/?province_name=${encodeURIComponent(provinceName)}`);
-    const districts = await response.json();
-
-
-    districts.forEach(district => {
-        const option = document.createElement('option');
-        option.value = district.district_name;
-        option.textContent = district.district_name;
-        districtSelect.appendChild(option);
-    });
-}
-
-async function loadMunicipalities() {
-    const districtSelect = document.getElementById('district');
-    const districtName=districtSelect.value
-    const municipalitySelect = document.getElementById('municipality');
-
-    // Clear previous options
-    municipalitySelect.innerHTML = '<option selected disabled>Choose Municipality</option>';
-
-    const response = await fetch(`/api/municipalities/?district_name=${encodeURIComponent(districtName)}`);
-    const municipalities = await response.json();
-
-    municipalities.forEach(municipality => {
-        const option = document.createElement('option');
-        option.value = municipality.name;
-        option.textContent = municipality.name;
-        municipalitySelect.appendChild(option);
-    });
-}
-
-// You can also load provinces on page load
-document.addEventListener('DOMContentLoaded', async () => {
-    const provinceSelect = document.getElementById('province');
-    const response = await fetch('/api/provinces/');
-    const provinces = await response.json();
-
-    provinces.forEach(province => {
-        const option = document.createElement('option');
-        option.value = province.province_name;
-        option.textContent = province.province_name;
-        provinceSelect.appendChild(option);
-    });
+// Create the map
+var map = L.map('map', {
+    center: [28.3949, 84.1240],
+    zoom: 7,
+    zoomControl: true,
+    dragging: true,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    attributionControl: false
 });
+
+// Color palette for provinces
+var provinceColors = {
+    "1": "#ff9999",
+    "2": "#99ccff",
+    "3": "#99ff99",
+    "4": "#ffcc99",
+    "5": "#cc99ff",
+    "6": "#ffff99",
+    "7": "#ff99cc"
+};
+
+// Load Provinces First
+fetch("/static/geojson/nepal_states.geojson")
+    .then(response => response.json())
+    .then(provinceData => {
+        var provinceLayer = L.geoJson(provinceData, {
+            style: function (feature) {
+                return {
+                    color: "#333",              // Border color
+                    weight: 1,
+                    fillColor: provinceColors[feature.properties.ADM1_EN], // Province Color
+                    fillOpacity: 0.5
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.ADM1_EN, {
+                    permanent: false,
+                    direction: "top",
+                    className: "province-label"
+                });
+            }
+        }).addTo(map);
+
+        // Now load Districts
+        fetch("/static/geojson/nepal_districts_new.geojson")
+            .then(response => response.json())
+            .then(districtData => {
+                var districtLayer = L.geoJson(districtData, {
+                    style: {
+                        color: "#666",
+                        weight: 1,
+                        fillOpacity: 0  // Transparent so province color is visible
+                    },
+                    onEachFeature: function (feature, layer) {
+                        layer.bindTooltip(feature.properties.DIST_EN, {
+                            permanent: true,
+                            direction: "center",
+                            className: "district-label"
+                        });
+
+                        layer.on({
+                            mouseover: function (e) {
+                                e.target.setStyle({
+                                    weight: 2,
+                                    color: '#FF5733',
+                                    fillOpacity: 0.1
+                                });
+                            },
+                            mouseout: function (e) {
+                                districtLayer.resetStyle(e.target);
+                            },
+                            click: function (e) {
+                                alert("District: " + feature.properties.DIST_EN);
+                            }
+                        });
+                    }
+                }).addTo(map);
+            });
+    });
+
