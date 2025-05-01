@@ -1,0 +1,460 @@
+/* =============================
+   Base Reset and Typography
+============================= */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ font-family: Arial, sans-serif;
+ background-color: #f2f2f2;
+}
+
+
+/* =============================
+   Navbar
+============================= */
+.navbar {
+ background-color: white;
+ padding: 15px 30px;
+ display: flex;
+ align-items: center;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h1 {
+ font-size: 24px;
+ color: #333;
+}
+
+
+/* =============================
+   Filters & Search Box
+============================= */
+.box select {
+ height: 30px;
+ width: 300px;
+}
+
+.search-box input {
+ padding: 8px 12px;
+ width: 250px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+}
+
+.filters {
+ margin-bottom: 20px;
+ display: flex;
+ gap: 10px;
+}
+
+.filters select {
+ padding: 8px 12px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+}
+
+/* =============================
+   for the white box on which all other contents lie
+============================= */
+.page-wrapper {
+ background-color: #f2f2f2;
+ /* gray background */
+ min-height: 100vh;
+ padding: 30px 0;
+}
+
+.page-wrapper .content-wrapper {
+ background-color: #ffffff;
+ /* white content box */
+ border-radius: 12px;
+ padding: 20px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ margin: 0 auto;
+ max-width: 1200px;
+}
+
+/* =============================
+   Layout Containers
+============================= */
+.container {
+ display: flex;
+ max-width: 1200px;
+ margin: 20px auto 0;
+ padding: 0 1rem;
+ width: 100%;
+ box-sizing: border-box;
+}
+
+.sidebar {
+ width: 250px;
+ background-color: white;
+ padding: 20px;
+ box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+ height: calc(100vh - 80px);
+}
+
+.sidebar h2 {
+ font-size: 18px;
+ margin-bottom: 15px;
+ color: #333;
+}
+
+.party-list {
+ list-style: none;
+}
+
+.party-list li {
+ margin-bottom: 10px;
+ font-size: 16px;
+ color: #555;
+}
+
+.main-content {
+ flex: 1;
+ padding: 20px;
+}
+
+/* =============================
+   Election Cards
+============================= */
+.flexbox {
+ margin-left: 30px;
+ margin-bottom: 10px;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 30px;
+ justify-content: flex-start;
+}
+
+.election-card {
+ width: 31%;
+ background-color: #fff;
+ border: 1px solid #ccc;
+ border-radius: 12px;
+ padding: 16px;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+ box-sizing: border-box;
+}
+
+.municipality-name {
+ font-size: 1.2rem;
+ font-weight: bold;
+ margin-bottom: 12px;
+}
+
+.candidate {
+ display: flex;
+ align-items: center;
+ padding: 12px;
+ border-radius: 8px;
+ margin-bottom: 12px;
+}
+
+.candidate.leading {
+ background-color: #fff7da;
+}
+
+.candidate img.candidate-img {
+ width: 48px;
+ height: 48px;
+ border-radius: 50%;
+ margin-right: 12px;
+}
+
+.candidate-info {
+ flex: 1;
+}
+
+.candidate-info strong {
+ font-size: 1rem;
+ display: block;
+}
+
+.candidate-info p {
+ font-size: 0.85rem;
+ color: #555;
+ margin: 4px 0;
+}
+
+.votes-party {
+ text-align: center;
+ margin-left: 12px;
+}
+
+.votes {
+ font-weight: bold;
+ font-size: 1.1rem;
+}
+
+.party-logo {
+ width: 24px;
+ height: 24px;
+ margin-top: 4px;
+}
+
+/* =============================
+   Progress Bars
+============================= */
+.progress-bar {
+ background-color: #eee;
+ height: 6px;
+ border-radius: 3px;
+ overflow: hidden;
+ margin-top: 4px;
+}
+
+.progress {
+ height: 6px;
+}
+
+.progress.blue {
+ background-color: #4dd0e1;
+}
+
+.progress.green {
+ background-color: #43a047;
+}
+
+/* =============================
+   Map Section
+============================= */
+#map {
+ height: 90vh;
+ width: 80vw;
+ margin: 30px auto;
+ border: 2px solid #ccc;
+ border-radius: 20px;
+ background-color: white;
+}
+
+.district-label {
+ font-size: 6px;
+ font-weight: bold;
+ color: #333;
+ background: none;
+ padding: 0;
+ border: none;
+ box-shadow: none;
+}
+
+.province-label {
+ font-size: 10px;
+ font-weight: bold;
+ background: white;
+ padding: 2px 4px;
+ border-radius: 4px;
+ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================
+   Summary Cards
+============================= */
+.summary-wrapper {
+ width: 100%;
+ max-width: 1140px;
+ margin: 0 auto 30px;
+ display: flex;
+ justify-content: space-between;
+ gap: 20px;
+ padding: 0 15px;
+ box-sizing: border-box;
+}
+
+.summary-card {
+ flex: 1;
+ min-width: 300px;
+ background-color: #fafafa;
+ border-radius: 10px;
+ padding: 16px;
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+ font-size: 14px;
+ color: #333;
+}
+
+.summary-card h3 {
+ font-size: 16px;
+ font-weight: 600;
+ margin-bottom: 10px;
+ border-bottom: 1px solid #ddd;
+ padding-bottom: 6px;
+}
+
+.summary-card table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+.summary-card th,
+.summary-card td {
+ text-align: left;
+ padding: 8px 6px;
+ border-bottom: 1px solid #eee;
+ font-size: 0.9rem;
+}
+
+.bar {
+ background-color: #eee;
+ height: 6px;
+ border-radius: 3px;
+ overflow: hidden;
+ margin-top: 4px;
+}
+
+.fill.win {
+ background-color: #4dd0e1;
+ height: 6px;
+}
+
+.fill.lead {
+ background-color: #43a047;
+ height: 6px;
+}
+
+/* =============================
+   Election Summary Section
+============================= */
+.election-summary-wrapper {
+ background-color: #ffffff;
+ border-radius: 12px;
+ padding: 24px;
+ margin-bottom: 32px;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.election-summary-section {
+ background-color: white;
+ padding: 20px;
+ border-radius: 12px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ margin-bottom: 24px;
+}
+
+.section-title {
+ font-size: 24px;
+ font-weight: 600;
+ margin-bottom: 16px;
+}
+
+.election-summary-inner {
+ display: flex;
+ gap: 16px;
+ flex-wrap: wrap;
+}
+
+.election-summary-card {
+ background-color: #fafafa;
+ border-radius: 10px;
+ padding: 16px;
+ flex: 1;
+ min-width: 300px;
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.party-icon {
+ width: 20px;
+ height: 20px;
+ object-fit: contain;
+}
+
+.progress-wrapper {
+ background-color: #dfe4ea;
+ border-radius: 10px;
+ height: 8px;
+ width: 100%;
+ margin-top: 6px;
+ overflow: hidden;
+}
+
+.progress-fill {
+ height: 100%;
+ border-radius: 10px;
+}
+
+/* =============================
+   Pie Charts / Province Cards
+============================= */
+.province-container {
+ margin-left: 30px;
+ display: flex;
+ gap: 20px;
+ flex-wrap: wrap;
+}
+
+.province-card {
+ background: #fff;
+ border: 1px solid #ddd;
+ border-radius: 10px;
+ padding: 20px;
+ width: 360px;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.province-title {
+ text-align: center;
+ font-size: 1.2rem;
+ font-weight: bold;
+ margin-bottom: 10px;
+}
+
+.chart-container {
+ width: 100%;
+ max-width: 300px;
+ margin: 0 auto 15px;
+}
+
+.legend-color {
+ display: inline-block;
+ width: 12px;
+ height: 12px;
+ border-radius: 2px;
+ margin-right: 6px;
+}
+
+/* =============================
+   Table Styling
+============================= */
+table {
+ width: 100%;
+ font-size: 0.9rem;
+ border-collapse: collapse;
+ background-color: white;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+ padding: 6px 4px;
+ text-align: left;
+ border-bottom: 1px solid #eee;
+}
+
+th {
+ background-color: #f9f9f9;
+ font-weight: bold;
+ border-bottom: 1px solid #ccc;
+}
+
+/* =============================
+   Responsive Layout
+============================= */
+@media (max-width: 992px) {
+ .election-card {
+  width: calc(50% - 20px);
+ }
+}
+
+@media (max-width: 768px) {
+ .summary-card {
+  max-width: 100%;
+ }
+}
+
+@media (max-width: 600px) {
+ .election-card {
+  width: 100%;
+ }
+}

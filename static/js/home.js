@@ -80,5 +80,3 @@ fetch("/static/geojson/nepal_states.geojson")
         }).addTo(map);
       });
   });
-
-  
