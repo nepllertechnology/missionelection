@@ -128,6 +128,8 @@ body {
     padding: 20px;
 }
 
+
+
 /* =============================
    Election Cards
 ============================= */
@@ -464,7 +466,6 @@ th {
 }
 
 
-
 /* =============================
    Section Divider
 ============================= */
@@ -473,4 +474,8 @@ th {
     border-top: 1px solid #bbb;
     /* changed from #ddd to #bbb for a darker line */
     margin: 2rem 0;
+}
+/* Ensure spacing below the summary card section */
+.summary-wrapper {
+    margin-bottom: 48px !important;
 }
