@@ -12,6 +12,17 @@ body {
  background-color: #f2f2f2;
 }
 
+/* =============================
+   Layout Content Wrapper
+============================= */
+.content-wrapper {
+ background-color: white;
+ max-width: 960px;
+ margin: 16px auto;
+ padding: 16px;
+ border-radius: 12px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
 /* =============================
    Navbar
@@ -28,7 +39,6 @@ body {
  font-size: 24px;
  color: #333;
 }
-
 
 /* =============================
    Filters & Search Box
@@ -56,34 +66,37 @@ body {
  border: 1px solid #ccc;
  border-radius: 4px;
 }
-
-/* =============================
-   for the white box on which all other contents lie
-============================= */
-.page-wrapper {
- background-color: #f2f2f2;
- /* gray background */
- min-height: 100vh;
- padding: 30px 0;
+.box select,
+.filters select {
+ height: 36px;
+ /* increase from 30px */
+ line-height: 1.2;
+ /* add this */
+ padding: 0.4rem 0.75rem;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ cursor: pointer;
+ font-size: 1rem;
 }
 
-.page-wrapper .content-wrapper {
- background-color: #ffffff;
- /* white content box */
- border-radius: 12px;
- padding: 20px;
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
- margin: 0 auto;
- max-width: 1200px;
+.search-box input {
+ height: 36px;
+ /* add this */
+ line-height: 1.2;
+ /* add this */
+ padding: 0.4rem 0.75rem;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ cursor: pointer;
+ font-size: 1rem;
 }
-
 /* =============================
    Layout Containers
 ============================= */
 .container {
  display: flex;
- max-width: 1200px;
- margin: 20px auto 0;
+ max-width: 960px;
+ margin: 16px auto 0;
  padding: 0 1rem;
  width: 100%;
  box-sizing: border-box;
@@ -117,6 +130,7 @@ body {
  flex: 1;
  padding: 20px;
 }
+
 
 /* =============================
    Election Cards
@@ -222,9 +236,11 @@ body {
 /* =============================
    Map Section
 ============================= */
+
 #map {
  height: 90vh;
- width: 80vw;
+ width: 100%;
+ /* changed from 80vw */
  margin: 30px auto;
  border: 2px solid #ccc;
  border-radius: 20px;
@@ -255,14 +271,17 @@ body {
 ============================= */
 .summary-wrapper {
  width: 100%;
- max-width: 1140px;
+ max-width: 960px;
  margin: 0 auto 30px;
  display: flex;
  justify-content: space-between;
  gap: 20px;
  padding: 0 15px;
  box-sizing: border-box;
+ margin-bottom: 40px;
+ /* previously 30px, increase for better spacing */
 }
+
 
 .summary-card {
  flex: 1;
@@ -457,4 +476,11 @@ th {
  .election-card {
   width: 100%;
  }
+}
+
+
+
+/* Ensure spacing below the summary card section */
+.summary-wrapper {
+ margin-bottom: 48px !important;
 }
