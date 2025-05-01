@@ -58,40 +58,84 @@
 
     <!-- Layout Section -->
     <div class="metrobox">
+        <!-- Metropolitan -->
         <div class="big">
             <h3>Metropolitan</h3>
             <div class="small">
-                <a href=""><p>Mayor</p></a>
-                <a href=""><p>Deputy Mayor</p></a>
-                
+                <a href="">
+                    <p>Mayor</p>
+                </a>
+                <a href="">
+                    <p>Deputy Mayor</p>
+                </a>
+
             </div>
         </div>
-    <div class="flexbox">
-        {% for unit, candidates in top2_metro_mayor.items %}
-        <div class="election-card">
-            <div class="municipality-name">{{ unit }}</div>
+        <div class="flexbox">
+            {% for unit, candidates in top2_metro_mayor.items %}
+            <div class="election-card">
+                <div class="municipality-name">{{ unit }}</div>
 
-            {% for candidate in candidates %}
-            <div class="candidate {% if forloop.first %}leading{% endif %}">
-                <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                <div class="candidate-info">
-                    <strong>{{ candidate.name }}</strong>
-                    <p>{{ candidate.party}}</p>
-                    <div class="progress-bar">
-                        <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                            style="width: 10%;"></div>
+                {% for candidate in candidates %}
+                <div class="candidate {% if forloop.first %}leading{% endif %}">
+                    <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
+                    <div class="candidate-info">
+                        <strong>{{ candidate.name }}</strong>
+                        <p>{{ candidate.party}}</p>
+                        <div class="progress-bar">
+                            <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
+                                style="width: 10%;"></div>
+                        </div>
+                    </div>
+                    <div class="votes-party">
+                        <div class="votes">{{ candidate.vote }}</div>
+                        <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
                     </div>
                 </div>
-                <div class="votes-party">
-                    <div class="votes">{{ candidate.vote }}</div>
-                    <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                </div>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>
-        {% endfor %}
+
+        <!-- Submetropolitan -->
+        <div class="big">
+            <h3>Submetropolitan</h3>
+            <div class="small">
+                <a href="">
+                    <p>Mayor</p>
+                </a>
+                <a href="">
+                    <p>Deputy Mayor</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="flexbox">
+            {% for unit, candidates in top2_submetro_mayor.items %}
+            <div class="election-card">
+                <div class="municipality-name">{{ unit }}</div>
+
+                {% for candidate in candidates %}
+                <div class="candidate {% if forloop.first %}leading{% endif %}">
+                    <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
+                    <div class="candidate-info">
+                        <strong>{{ candidate.name }}</strong>
+                        <p>{{ candidate.party}}</p>
+                        <div class="progress-bar">
+                            <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
+                                style="width: 10%;"></div>
+                        </div>
+                    </div>
+                    <div class="votes-party">
+                        <div class="votes">{{ candidate.vote }}</div>
+                        <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
 
 
