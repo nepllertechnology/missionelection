@@ -1,355 +1,113 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Results 2081</title>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <!-- bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-
-    <!--custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-
-</head>
-
-<body>
-
-
-    <!-- Navbar -->
-    <div class="navbar">
-        <h1>Election Results 2081</h1>
-        <div class="box b1">
-            <select>
-                <option selected>Province</option>
-                <option>Province 1</option>
-                <option>Province 2</option>
-                <option>Province 3</option>
-                <option>Province 4</option>
-                <option>Province 5</option>
-                <option>Province 6</option>
-                <option>Province 7</option>
-            </select>
+{% block content %}
+<div class="page-wrapper">
+    <div class="content-wrapper">
+        <!-- Map Section -->
+        <div class="mapbox">
+            <div id="map"></div>
         </div>
-        <div class="box b2">
-            <select>
-                <option selected>District</option>
-                <option>District</option>
-            </select>
-        </div>
-        <div class="box b3">
-            <select>
-                <option selected>Municipality or Rural Municipality</option>
-                <option>Municipality or Rural Municipality</option>
-            </select>
-        </div>
-        <div class="box b4">
-            <button>search</button>
-        </div>
-    </div>
-    <div class="page-wrapper">
-        <div class="content-wrapper">
-            <!-- Map Section -->
-            <div class="mapbox">
-                <div id="map"></div>
-            </div>
 
-            <!-- Layout Section -->
-            <div class="metrobox">
-                <div class="big">
-                    <h3>Local Election 2079</h3>
-                    <div class="container mt-10">
-                        <!-- Mayor / Chairperson -->
-                        <div class="summary-card bg-white shadow rounded-lg p-4 w-full md:w-1/2">
-                            <h3 class="text-lg font-semibold mb-4">Mayor / Chairperson</h3>
-                            <table class="w-full text-sm">
-                                <thead>
-                                    <tr class="text-left border-b">
-                                        <th class="py-2">Party</th>
-                                        <th class="py-2">Win</th>
-                                        <th class="py-2">Lead</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="border-b">
-                                        <td class="py-2">
-                                            <div class="flex items-center space-x-2">
-                                                <img src="/static/icons/nc.png" alt="NC" class="party-icon">
-                                                <span>Nepali Congress</span>
-                                            </div>
-                                            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-                                                <div class="bg-green-600 h-2 rounded" style="width: 65%;"></div>
-                                            </div>
-                                            <div class="progress-wrapper">
-                                                <div class="progress-fill" style="width: 62%; background-color: green;">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">329</td>
-                                        <td class="py-2">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-2">
-                                            <div class="flex items-center space-x-2">
-                                                <img src="/static/icons/uml.png" alt="NC" class="party-icon">
-                                                <span>CPN-UML</span>
-                                            </div>
-                                            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-                                                <div class="bg-red-700 h-2 rounded" style="width: 50%;"></div>
-                                            </div>
-                                            <div class="progress-wrapper">
-                                                <div class="progress-fill"
-                                                    style="width: 62%; background-color: rgb(128, 0, 0);"></div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">206</td>
-                                        <td class="py-2">0</td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                        <!-- Deputy Mayor / Vice-Chairperson -->
-                        <div class="summary-card bg-white shadow rounded-lg p-4 w-full md:w-1/2">
-                            <h3 class="text-lg font-semibold mb-4">Deputy Mayor / Vice-Chairperson</h3>
-                            <table class="w-full text-sm">
-                                <thead>
-                                    <tr class="text-left border-b">
-                                        <th class="py-2">Party</th>
-                                        <th class="py-2">Win</th>
-                                        <th class="py-2">Lead</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="border-b">
-                                        <td class="py-2 flex items-center space-x-2">
+        <!-- Layout Section -->
+        <div class="metrobox">
+            <div class="big">
+                <h3>Local Election 2079</h3>
+                <div class="container mt-10">
+                    <!-- Mayor / Chairperson -->
+                    <div class="summary-card bg-white shadow rounded-lg p-4 w-full md:w-1/2">
+                        <h3 class="text-lg font-semibold mb-4">Mayor / Chairperson</h3>
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="text-left border-b">
+                                    <th class="py-2">Party</th>
+                                    <th class="py-2">Win</th>
+                                    <th class="py-2">Lead</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-2">
+                                        <div class="flex items-center space-x-2">
                                             <img src="/static/icons/nc.png" alt="NC" class="party-icon">
                                             <span>Nepali Congress</span>
-                                            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-                                                <div class="bg-green-600 h-2 rounded" style="width: 60%;"></div>
+                                        </div>
+                                        <div class="w-40 h-2 bg-gray-200 rounded mt-1">
+                                            <div class="bg-green-600 h-2 rounded" style="width: 65%;"></div>
+                                        </div>
+                                        <div class="progress-wrapper">
+                                            <div class="progress-fill" style="width: 62%; background-color: green;">
                                             </div>
-                                            <div class="progress-wrapper">
-                                                <div class="progress-fill" style="width: 62%; background-color: green;">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">301</td>
-                                        <td class="py-2">0</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="py-2 flex items-center space-x-2">
+                                        </div>
+                                    </td>
+                                    <td class="py-2">329</td>
+                                    <td class="py-2">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">
+                                        <div class="flex items-center space-x-2">
                                             <img src="/static/icons/uml.png" alt="NC" class="party-icon">
                                             <span>CPN-UML</span>
-
-                                            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-                                                <div class="bg-red-700 h-2 rounded" style="width: 55%;"></div>
-                                            </div>
-                                            <div class="progress-wrapper">
-                                                <div class="progress-fill"
-                                                    style="width: 62%; background-color: rgb(128, 0, 0);"></div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">241</td>
-                                        <td class="py-2">0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="metrobox">
-                <!-- Metropolitan -->
-                <div class="big">
-                    <h3>Metropolitan</h3>
-                    <div class="small">
-                        <a href="">
-                            <p>Mayor</p>
-                        </a>
-                        <a href="">
-                            <p>Deputy Mayor</p>
-                        </a>
-
-                    </div>
-                </div>
-
-                <div class="flexbox">
-                    {% for unit, candidates in top2_metro_mayor.items %}
-                    <div class="election-card">
-                        <div class="municipality-name">{{ unit }}</div>
-
-                        {% for candidate in candidates %}
-                        <div class="candidate {% if forloop.first %}leading{% endif %}">
-                            <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                            <div class="candidate-info">
-                                <strong>{{ candidate.name }}</strong>
-                                <p>{{ candidate.party}}</p>
-                                <div class="progress-bar">
-                                    <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                        style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="votes-party">
-                                <div class="votes">{{ candidate.vote }}</div>
-                                <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <!-- Submetropolitan -->
-                <div class="big">
-                    <h3>Submetropolitan</h3>
-                    <div class="small">
-                        <a href="">
-                            <p>Mayor</p>
-                        </a>
-                        <a href="">
-                            <p>Deputy Mayor</p>
-                        </a>
-
-                    </div>
-                </div>
-                <div class="flexbox">
-                    {% for unit, candidates in top2_submetro_mayor.items %}
-                    <div class="election-card">
-                        <div class="municipality-name">{{ unit }}</div>
-
-                        {% for candidate in candidates %}
-                        <div class="candidate {% if forloop.first %}leading{% endif %}">
-                            <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                            <div class="candidate-info">
-                                <strong>{{ candidate.name }}</strong>
-                                <p>{{ candidate.party}}</p>
-                                <div class="progress-bar">
-                                    <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                        style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="votes-party">
-                                <div class="votes">{{ candidate.vote }}</div>
-                                <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="chartbox">
-                <div class="big">
-                    <h3>Province Results</h3>
-                </div>
-
-                <div class="province-container">
-                    <!-- Province 1 Card -->
-                    <div class="province-card">
-                        <div class="province-title">Pradesh 1</div>
-                        <div class="chart-container">
-                            <canvas id="chartPradesh1"></canvas>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Party</th>
-                                    <th>Win</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
+                                        </div>
+                                        <div class="w-40 h-2 bg-gray-200 rounded mt-1">
+                                            <div class="bg-red-700 h-2 rounded" style="width: 50%;"></div>
+                                        </div>
+                                        <div class="progress-wrapper">
+                                            <div class="progress-fill"
+                                                style="width: 62%; background-color: rgb(128, 0, 0);"></div>
+                                        </div>
                                     </td>
-                                    <td>68</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#b71c1c;"></span>CPN-UML</td>
-                                    <td>47</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#e53935;"></span>Maoist Centre</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#4dd0e1;"></span>Others</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#f57c00;"></span>CPN (Unified
-                                        Socialist)</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
-                                        Party</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
-                                        Samajwadi Party</td>
-                                    <td>0</td>
+                                    <td class="py-2">206</td>
+                                    <td class="py-2">0</td>
                                 </tr>
                             </tbody>
+
                         </table>
                     </div>
 
-                    <!-- Madesh Pradesh Card -->
-                    <div class="province-card">
-                        <div class="province-title">Madhesh Pradesh</div>
-                        <div class="chart-container">
-                            <canvas id="chartMadhesh"></canvas>
-                        </div>
-                        <table>
+                    <!-- Deputy Mayor / Vice-Chairperson -->
+                    <div class="summary-card bg-white shadow rounded-lg p-4 w-full md:w-1/2">
+                        <h3 class="text-lg font-semibold mb-4">Deputy Mayor / Vice-Chairperson</h3>
+                        <table class="w-full text-sm">
                             <thead>
-                                <tr>
-                                    <th>Party</th>
-                                    <th>Win</th>
+                                <tr class="text-left border-b">
+                                    <th class="py-2">Party</th>
+                                    <th class="py-2">Win</th>
+                                    <th class="py-2">Lead</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
+                                <tr class="border-b">
+                                    <td class="py-2 flex items-center space-x-2">
+                                        <img src="/static/icons/nc.png" alt="NC" class="party-icon">
+                                        <span>Nepali Congress</span>
+                                        <div class="w-40 h-2 bg-gray-200 rounded mt-1">
+                                            <div class="bg-green-600 h-2 rounded" style="width: 60%;"></div>
+                                        </div>
+                                        <div class="progress-wrapper">
+                                            <div class="progress-fill" style="width: 62%; background-color: green;">
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>46</td>
+                                    <td class="py-2">301</td>
+                                    <td class="py-2">0</td>
+
                                 </tr>
                                 <tr>
-                                    <td><span class="legend-color" style="background:#b71c1c;"></span>CPN-UML</td>
-                                    <td>30</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
-                                        Party</td>
-                                    <td>25</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
-                                        Samajwadi Party</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#e53935;"></span>Maoist Centre</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#f57c00;"></span>CPN (Unified
-                                        Socialist)</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#4dd0e1;"></span>Others</td>
-                                    <td>6</td>
+                                    <td class="py-2 flex items-center space-x-2">
+                                        <img src="/static/icons/uml.png" alt="NC" class="party-icon">
+                                        <span>CPN-UML</span>
+
+                                        <div class="w-40 h-2 bg-gray-200 rounded mt-1">
+                                            <div class="bg-red-700 h-2 rounded" style="width: 55%;"></div>
+                                        </div>
+                                        <div class="progress-wrapper">
+                                            <div class="progress-fill"
+                                                style="width: 62%; background-color: rgb(128, 0, 0);"></div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2">241</td>
+                                    <td class="py-2">0</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -357,72 +115,270 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="metrobox">
+            <!-- Metropolitan -->
+            <div class="big">
+                <h3>Metropolitan</h3>
+                <div class="small">
+                    <a href="">
+                        <p>Mayor</p>
+                    </a>
+                    <a href="">
+                        <p>Deputy Mayor</p>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="flexbox">
+                {% for unit, candidates in top2_metro_mayor.items %}
+                <div class="election-card">
+                    <div class="municipality-name">{{ unit }}</div>
+
+                    {% for candidate in candidates %}
+                    <div class="candidate {% if forloop.first %}leading{% endif %}">
+                        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
+                        <div class="candidate-info">
+                            <strong>{{ candidate.name }}</strong>
+                            <p>{{ candidate.party}}</p>
+                            <div class="progress-bar">
+                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
+                                    style="width: 10%;"></div>
+                            </div>
+                        </div>
+                        <div class="votes-party">
+                            <div class="votes">{{ candidate.vote }}</div>
+                            <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Submetropolitan -->
+            <div class="big">
+                <h3>Submetropolitan</h3>
+                <div class="small">
+                    <a href="">
+                        <p>Mayor</p>
+                    </a>
+                    <a href="">
+                        <p>Deputy Mayor</p>
+                    </a>
+
+                </div>
+            </div>
+            <div class="flexbox">
+                {% for unit, candidates in top2_submetro_mayor.items %}
+                <div class="election-card">
+                    <div class="municipality-name">{{ unit }}</div>
+
+                    {% for candidate in candidates %}
+                    <div class="candidate {% if forloop.first %}leading{% endif %}">
+                        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
+                        <div class="candidate-info">
+                            <strong>{{ candidate.name }}</strong>
+                            <p>{{ candidate.party}}</p>
+                            <div class="progress-bar">
+                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
+                                    style="width: 10%;"></div>
+                            </div>
+                        </div>
+                        <div class="votes-party">
+                            <div class="votes">{{ candidate.vote }}</div>
+                            <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="chartbox">
+            <div class="big">
+                <h3>Province Results</h3>
+            </div>
+
+            <div class="province-container">
+                <!-- Province 1 Card -->
+                <div class="province-card">
+                    <div class="province-title">Pradesh 1</div>
+                    <div class="chart-container">
+                        <canvas id="chartPradesh1"></canvas>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Party</th>
+                                <th>Win</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
+                                </td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#b71c1c;"></span>CPN-UML</td>
+                                <td>47</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#e53935;"></span>Maoist Centre</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#4dd0e1;"></span>Others</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#f57c00;"></span>CPN (Unified
+                                    Socialist)</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
+                                    Party</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
+                                    Samajwadi Party</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Madesh Pradesh Card -->
+                <div class="province-card">
+                    <div class="province-title">Madhesh Pradesh</div>
+                    <div class="chart-container">
+                        <canvas id="chartMadhesh"></canvas>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Party</th>
+                                <th>Win</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
+                                </td>
+                                <td>46</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#b71c1c;"></span>CPN-UML</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
+                                    Party</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
+                                    Samajwadi Party</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#e53935;"></span>Maoist Centre</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#f57c00;"></span>CPN (Unified
+                                    Socialist)</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td><span class="legend-color" style="background:#4dd0e1;"></span>Others</td>
+                                <td>6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 
 
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <!--  custom JS -->
-    <script src="{% static 'js/home.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+<!--  custom JS -->
+<script src="{% static 'js/home.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
 
-    <!-- bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-        crossorigin="anonymous"></script>
+<!-- bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+    crossorigin="anonymous"></script>
 
-    <!-- Chart.js JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Chart.js JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-        const createPieChart = (id, labels, data, colors) => {
-            new Chart(document.getElementById(id), {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: colors,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw}`
-                            }
+<script>
+    const createPieChart = (id, labels, data, colors) => {
+        new Chart(document.getElementById(id), {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw}`
                         }
-                    },
-                    cutout: '60%',
-                }
-            });
-        };
+                    }
+                },
+                cutout: '60%',
+            }
+        });
+    };
 
-        // Pradesh 1
-        createPieChart('chartPradesh1',
-            ['Nepali Congress', 'CPN-UML', 'Maoist Centre', 'Others', 'CPN (Unified Socialist)', 'Janata Samajwadi Party', 'Loktantrik Samajwadi Party'],
-            [68, 47, 13, 5, 2, 2, 0],
-            ['#2e7d32', '#b71c1c', '#e53935', '#4dd0e1', '#f57c00', '#ce93d8', '#90caf9']
-        );
+    // Pradesh 1
+    createPieChart('chartPradesh1',
+        ['Nepali Congress', 'CPN-UML', 'Maoist Centre', 'Others', 'CPN (Unified Socialist)', 'Janata Samajwadi Party', 'Loktantrik Samajwadi Party'],
+        [68, 47, 13, 5, 2, 2, 0],
+        ['#2e7d32', '#b71c1c', '#e53935', '#4dd0e1', '#f57c00', '#ce93d8', '#90caf9']
+    );
 
-        // Madhesh
-        createPieChart('chartMadhesh',
-            ['Nepali Congress', 'CPN-UML', 'Janata Samajwadi Party', 'Loktantrik Samajwadi Party', 'Maoist Centre', 'CPN (Unified Socialist)', 'Others'],
-            [46, 30, 25, 14, 9, 6, 6],
-            ['#2e7d32', '#b71c1c', '#ce93d8', '#90caf9', '#e53935', '#f57c00', '#4dd0e1']
-        );
-    </script>
+    // Madhesh
+    createPieChart('chartMadhesh',
+        ['Nepali Congress', 'CPN-UML', 'Janata Samajwadi Party', 'Loktantrik Samajwadi Party', 'Maoist Centre', 'CPN (Unified Socialist)', 'Others'],
+        [46, 30, 25, 14, 9, 6, 6],
+        ['#2e7d32', '#b71c1c', '#ce93d8', '#90caf9', '#e53935', '#f57c00', '#4dd0e1']
+    );
+</script>
+{% endblock %}
 
 
 
-</body>
 
-</html>
+
+
+
+
+
+
+
+

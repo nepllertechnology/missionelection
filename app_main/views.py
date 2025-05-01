@@ -9,7 +9,7 @@ def home(request):
     context=metroAndsubmetro()
     party_count=partyResult()
     context['party_count']=party_count
-    return render(request, 'app_main/home.html',context=context)
+    return render(request, 'home.html',context=context)
 
 # View for fetching provinces
 def get_provinces(request):
