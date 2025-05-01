@@ -29,3 +29,4 @@ def get_municipalities(request):
     return JsonResponse(list(municipalities), safe=False)
 
 
+
