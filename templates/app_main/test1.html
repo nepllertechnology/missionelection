@@ -53,6 +53,7 @@
    <button>search</button>
   </div>
  </div>
+ 
  <div class="page-wrapper">
   <div class="content-wrapper">
    <!-- Map Section -->
@@ -164,20 +165,13 @@
    </div>
 
 
-   <div class="metrobox">
-    <!-- Metropolitan -->
-    <div class="big">
-     <h3>Metropolitan</h3>
-     <div class="small">
-      <a href="">
-       <p>Mayor</p>
-      </a>
-      <a href="">
-       <p>Deputy Mayor</p>
-      </a>
-
-     </div>
+   <div class="section-header">
+    <h2>Metropolitan</h2>
+    <div class="tab-toggle">
+     <a href="#" class="active">Mayor</a>
+     <a href="#">Deputy Mayor</a>
     </div>
+   </div>
 
     <div class="flexbox">
      {% for unit, candidates in top2_metro_mayor.items %}

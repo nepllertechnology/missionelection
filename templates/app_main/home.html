@@ -8,35 +8,13 @@
         <div class="mapbox">
             <div id="map"></div>
         </div>
-        <div class="box b2">
-            <select>
-                <option selected>District</option>
-                <option>District</option>
-            </select>
-        </div>
-        <div class="box b3">
-            <select>
-                <option selected>Municipality or Rural Municipality</option>
-                <option>Municipality or Rural Municipality</option>
-            </select>
-        </div>
-        <div class="box b4">
-            <button>search</button>
-        </div>
-    </div>
-    <div class="page-wrapper">
-        <div class="content-wrapper">
-            <!-- Map Section -->
-            <div class="mapbox">
-                <div id="map"></div>
-            </div>
 <hr class="section-divider">
 
         <!-- Layout Section -->
         <div class="metrobox">
             <div class="big">
                 <h3>Local Election 2079</h3>
-                <div class="container mt-10">
+                    <div class="summary-wrapper flex justify-between px-4">
                     <!-- Mayor / Chairperson -->
                     <div class="summary-card bg-white shadow rounded-lg p-4 w-full md:w-1/2">
                         <h3 class="text-lg font-semibold mb-4">Mayor / Chairperson</h3>
@@ -71,132 +49,6 @@
                                         <div class="flex items-center space-x-2">
                                             <img src="/static/icons/uml.png" alt="NC" class="party-icon">
                                             <span>CPN-UML</span>
-
-                                            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-                                                <div class="bg-red-700 h-2 rounded" style="width: 55%;"></div>
-                                            </div>
-                                            <div class="progress-wrapper">
-                                                <div class="progress-fill"
-                                                    style="width: 62%; background-color: rgb(128, 0, 0);"></div>
-                                            </div>
-                                        </td>
-                                        <td class="py-2">241</td>
-                                        <td class="py-2">0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<hr class="section-divider">
-
-
-            <div class="metrobox">
-                <!-- Metropolitan -->
-                <div class="big">
-                    <h3>Metropolitan</h3>
-                    <div class="small">
-                        <a href="">
-                            <p>Mayor</p>
-                        </a>
-                        <a href="">
-                            <p>Deputy Mayor</p>
-                        </a>
-
-                    </div>
-                </div>
-
-                <div class="flexbox">
-                    {% for unit, candidates in top2_metro_mayor.items %}
-                    <div class="election-card">
-                        <div class="municipality-name">{{ unit }}</div>
-
-                        {% for candidate in candidates %}
-                        <div class="candidate {% if forloop.first %}leading{% endif %}">
-                            <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                            <div class="candidate-info">
-                                <strong>{{ candidate.name }}</strong>
-                                <p>{{ candidate.party}}</p>
-                                <div class="progress-bar">
-                                    <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                        style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="votes-party">
-                                <div class="votes">{{ candidate.vote }}</div>
-                                <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <!-- Submetropolitan -->
-                <div class="big">
-                    <h3>Submetropolitan</h3>
-                    <div class="small">
-                        <a href="">
-                            <p>Mayor</p>
-                        </a>
-                        <a href="">
-                            <p>Deputy Mayor</p>
-                        </a>
-
-                    </div>
-                </div>
-                <div class="flexbox">
-                    {% for unit, candidates in top2_submetro_mayor.items %}
-                    <div class="election-card">
-                        <div class="municipality-name">{{ unit }}</div>
-
-                        {% for candidate in candidates %}
-                        <div class="candidate {% if forloop.first %}leading{% endif %}">
-                            <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                            <div class="candidate-info">
-                                <strong>{{ candidate.name }}</strong>
-                                <p>{{ candidate.party}}</p>
-                                <div class="progress-bar">
-                                    <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                        style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="votes-party">
-                                <div class="votes">{{ candidate.vote }}</div>
-                                <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-<hr class="section-divider">
-
-
-            <div class="chartbox">
-                <div class="big">
-                    <h3>Province Results</h3>
-                </div>
-
-                <div class="province-container">
-                    <!-- Province 1 Card -->
-                    <div class="province-card">
-                        <div class="province-title">Pradesh 1</div>
-                        <div class="chart-container">
-                            <canvas id="chartPradesh1"></canvas>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Party</th>
-                                    <th>Win</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
                                         </div>
                                         <div class="w-40 h-2 bg-gray-200 rounded mt-1">
                                             <div class="bg-red-700 h-2 rounded" style="width: 50%;"></div>
@@ -264,7 +116,7 @@
                 </div>
             </div>
         </div>
-
+<hr class="section-divider">
 
         <div class="metrobox">
             <!-- Metropolitan -->
@@ -277,15 +129,15 @@
                     <a href="">
                         <p>Deputy Mayor</p>
                     </a>
-
+        
                 </div>
             </div>
-
+        
             <div class="flexbox">
                 {% for unit, candidates in top2_metro_mayor.items %}
                 <div class="election-card">
                     <div class="municipality-name">{{ unit }}</div>
-
+        
                     {% for candidate in candidates %}
                     <div class="candidate {% if forloop.first %}leading{% endif %}">
                         <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
@@ -293,8 +145,8 @@
                             <strong>{{ candidate.name }}</strong>
                             <p>{{ candidate.party}}</p>
                             <div class="progress-bar">
-                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                    style="width: 10%;"></div>
+                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
+                                </div>
                             </div>
                         </div>
                         <div class="votes-party">
@@ -306,7 +158,7 @@
                 </div>
                 {% endfor %}
             </div>
-
+        
             <!-- Submetropolitan -->
             <div class="big">
                 <h3>Submetropolitan</h3>
@@ -317,14 +169,14 @@
                     <a href="">
                         <p>Deputy Mayor</p>
                     </a>
-
+        
                 </div>
             </div>
             <div class="flexbox">
                 {% for unit, candidates in top2_submetro_mayor.items %}
                 <div class="election-card">
                     <div class="municipality-name">{{ unit }}</div>
-
+        
                     {% for candidate in candidates %}
                     <div class="candidate {% if forloop.first %}leading{% endif %}">
                         <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
@@ -332,8 +184,8 @@
                             <strong>{{ candidate.name }}</strong>
                             <p>{{ candidate.party}}</p>
                             <div class="progress-bar">
-                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}"
-                                    style="width: 10%;"></div>
+                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
+                                </div>
                             </div>
                         </div>
                         <div class="votes-party">
@@ -346,6 +198,8 @@
                 {% endfor %}
             </div>
         </div>
+        
+<hr class="section-divider">
 
         <div class="chartbox">
             <div class="big">
@@ -368,8 +222,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
-                                </td>
+                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress</td>
                                 <td>68</td>
                             </tr>
                             <tr>
@@ -390,13 +243,13 @@
                                 <td>2</td>
                             </tr>
                             <tr>
-                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
-                                    Party</td>
+                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi Party
+                                </td>
                                 <td>2</td>
                             </tr>
                             <tr>
-                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
-                                    Samajwadi Party</td>
+                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik Samajwadi
+                                    Party</td>
                                 <td>0</td>
                             </tr>
                         </tbody>
@@ -418,8 +271,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress
-                                </td>
+                                <td><span class="legend-color" style="background:#2e7d32;"></span>Nepali Congress</td>
                                 <td>46</td>
                             </tr>
                             <tr>
@@ -427,13 +279,13 @@
                                 <td>30</td>
                             </tr>
                             <tr>
-                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi
-                                    Party</td>
+                                <td><span class="legend-color" style="background:#ce93d8;"></span>Janata Samajwadi Party
+                                </td>
                                 <td>25</td>
                             </tr>
                             <tr>
-                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik
-                                    Samajwadi Party</td>
+                                <td><span class="legend-color" style="background:#90caf9;"></span>Loktantrik Samajwadi
+                                    Party</td>
                                 <td>14</td>
                             </tr>
                             <tr>
@@ -456,8 +308,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <!-- Leaflet JS -->
