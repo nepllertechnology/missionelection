@@ -38,20 +38,20 @@ body {
 /* Containers */
 .mapbox{
     border: solid 1px #cbc5c5;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
     background-color: white;
 }
 
-.metrobox h3 {
+.big h3 {
     margin: 20px;
     font-weight: bolder;
 }
 .metrobox{
 
     border: solid 1px #cbc5c5;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
     background-color: white;
 }
 
@@ -173,10 +173,11 @@ th {
 
 /* Election Cards Grid */
 .flexbox {
-    margin-left: 50px;
+    margin-left: 30px;
+    margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: flex-start; /* force alignment to left */
 }
 
@@ -282,4 +283,64 @@ th {
     .election-card {
         width: 100%;
     }
+}
+
+
+/* pie chart */
+.province-container {
+    margin-left: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.province-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 360px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.province-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 15px;
+}
+
+table {
+    width: 100%;
+    font-size: 0.9rem;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 6px 4px;
+    text-align: left;
+}
+
+th {
+    border-bottom: 1px solid #ccc;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 6px;
+}
+.chartbox{
+    border: solid 1px #cbc5c5;
+    margin-left: 60px;
+    margin-right: 60px;
+    background-color: white;
 }
