@@ -12,18 +12,7 @@ from django.shortcuts import redirect
 def home(request):
     context=metroAndsubmetro()
     mayorparty_count=partyResult('Mayor')
-    Dmayorparty_count=partyResult('Deputy Mayor')
-    province_results=provinceResults()
-    grouped_candidates = defaultdict(list)
-
-    for candidate in province_results:
-        grouped_candidates[candidate['province']].append({
-            'province': candidate['province'],
-            'chartId': candidate['province'],
-            'results': candidate['total_party_wins'],
-        })
-
-    print(grouped_candidates)    
+    Dmayorparty_count=partyResult('Deputy Mayor')   
     context['mayor_party_count']=mayorparty_count
     context['Dmayor_party_count']=Dmayorparty_count
     return render(request, 'home.html',context=context)
