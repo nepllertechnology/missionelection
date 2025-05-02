@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from app_main.utils import metroAndsubmetro,partyResult
+from app_main.utils import metroAndsubmetro,partyResult,provinceResults
+from collections import Counter,defaultdict
+
 from .models import *
 from collections import defaultdict
 from django.shortcuts import redirect
@@ -10,9 +13,77 @@ def home(request):
     context=metroAndsubmetro()
     mayorparty_count=partyResult('Mayor')
     Dmayorparty_count=partyResult('Deputy Mayor')
+    province_results=provinceResults()
+    grouped_candidates = defaultdict(list)
+
+    for candidate in province_results:
+        grouped_candidates[candidate['province']].append({
+            'province': candidate['province'],
+            'chartId': candidate['province'],
+            'results': candidate['total_party_wins'],
+        })
+
+    print(grouped_candidates)    
     context['mayor_party_count']=mayorparty_count
     context['Dmayor_party_count']=Dmayorparty_count
     return render(request, 'home.html',context=context)
+
+def province_Result(request):
+    province_results = provinceResults()
+    
+    PARTY_COLORS = {
+        "Nepali Congress": "#2e7d32",
+        "CPN-UML": "#b71c1c",
+        "Maoist Centre": "#e53935",
+        "CPN (Unified Socialist)": "#f57c00",
+        "Janata Samajwadi Party": "#ce93d8",
+        "Loktantrik Samajwadi Party": "#90caf9",
+        "Others": "#4dd0e1"
+    }
+
+    MAIN_PARTIES = set(PARTY_COLORS.keys()) - {"Others"}
+
+    formatted_results = []
+
+    for province_data in province_results:
+        province_name = province_data['province']
+        total_wins = province_data['total_party_wins']
+
+        # Count wins per party
+        party_win_map = {entry['party']: entry['wins'] for entry in total_wins}
+
+        province_result = []
+        other_wins = 0
+
+        for party in MAIN_PARTIES:
+            win = party_win_map.get(party, 0)
+            if win > 0 or party in party_win_map:
+                province_result.append({
+                    "party": party,
+                    "win": win,
+                    "color": PARTY_COLORS[party]
+                })
+
+        for party_name, win in party_win_map.items():
+            if party_name not in MAIN_PARTIES:
+                other_wins += win
+
+        province_result.append({
+            "party": "Others",
+            "win": other_wins,
+            "color": PARTY_COLORS["Others"]
+        })
+
+        province_result.sort(key=lambda x: x["win"], reverse=True)
+
+        chart_id = "chart" + province_name.replace(" ", "")
+        formatted_results.append({
+            "province": province_name,
+            "chartId": chart_id,
+            "results": province_result
+        })
+
+    return JsonResponse(formatted_results, safe=False)
 
 # View for fetching provinces
 def get_provinces(request):

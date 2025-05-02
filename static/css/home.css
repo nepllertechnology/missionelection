@@ -4,7 +4,7 @@ body {
     padding-top: 130px; /* to make the search bar appear lower than the title at the beginning */
   }
   
-    .header-bar {
+.header-bar {
     background: linear-gradient(90deg, #0d6efd, #1a73e8);
     height: 80px;
     position: fixed;
@@ -20,7 +20,7 @@ body {
   }
   
   
-      .form-box {
+.form-box {
       background-color: #ffffff;
       border-radius: 12px; /* Slightly smaller for a cleaner look */
         padding: 24px 30px 20px 30px; /* top right bottom left */
@@ -33,7 +33,7 @@ body {
     
   }
   
-  .navbar-bar {
+.navbar-bar {
     background-color: #1565c0;
     position: fixed;
     top: 80px;
@@ -49,7 +49,7 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   
-  .navbar-bar a {
+.navbar-bar a {
     color: white;
     text-decoration: none;
     font-weight: 500;
@@ -62,7 +62,7 @@ body {
   }
   
   
-  .navbar-bar a:not(:last-child)::after {
+.navbar-bar a:not(:last-child)::after {
     content: "";
     position: absolute;
     right: 0;
@@ -72,11 +72,11 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
   }
   
-  .navbar-bar a:hover {
+.navbar-bar a:hover {
     text-decoration: underline;
   }
   
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .navbar-bar {
       flex-direction: column;
       height: auto;
@@ -95,7 +95,7 @@ body {
     }
   }
   
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     body {
       padding-top: 400px; /* Adjust based on actual nav height */
     }
