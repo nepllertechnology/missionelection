@@ -47,3 +47,6 @@ def partyResult(post):
         
 
     return dict(party_data)
+
+def provinceResults():
+    pass
