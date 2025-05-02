@@ -118,17 +118,7 @@ function loadSummaryData(jsonPath, targetTableSelector) {
     .catch((err) => console.error(`Error loading ${jsonPath}:`, err));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Load Mayor & Deputy data
-  loadSummaryData(
-    "/static/data/mayor-summary.json",
-    ".summary-card:nth-of-type(1) tbody"
-  );
-  loadSummaryData(
-    "/static/data/deputy-mayor-summary.json",
-    ".summary-card:nth-of-type(2) tbody"
-  );
-});
+
 
 //for provincial results
 function loadProvinceResults(jsonPath) {
@@ -190,14 +180,6 @@ function loadProvinceResults(jsonPath) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadSummaryData(
-    "/static/data/mayor-summary.json",
-    ".summary-card:nth-of-type(1) tbody"
-  );
-  loadSummaryData(
-    "/static/data/deputy-mayor-summary.json",
-    ".summary-card:nth-of-type(2) tbody"
-  );
   loadProvinceResults("/static/data/province-results.json");
 });
 
