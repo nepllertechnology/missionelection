@@ -103,6 +103,7 @@ body {
 /* =============================
    Layout Containers
 ============================= */
+
 .container {
     display: flex;
     max-width: 1140px;
@@ -288,55 +289,72 @@ body {
 /* =============================
    Summary Cards
 ============================= */
-.summary-wrapper {
+.card-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: space-between;
-    max-width: 960px;
-    margin: 0 auto 48px;
-    padding: 0 15px;
-    box-sizing: border-box;
-
-}
-
-.summary-card {
-    flex: 1 1 0%;
-    /* allow shrinking */
-
-    background-color: #fafafa;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    font-size: 0.875rem;
-    color: #333;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 0px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 520px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .table-header {
+    display: grid;
+    grid-template-columns: 1fr 50px 50px;
+    font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .party-row {
+    display: grid;
+    grid-template-columns: auto 1fr 50px 50px;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  
+  .party-row img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+  }
+  
+  .party-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.summary-card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 6px;
-}
-
-.summary-card table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.summary-card th,
-.summary-card td {
-    text-align: left;
-    padding: 8px 6px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
-}
-
+  }
+  
+  .party-info span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .bar {
+    height: 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    background: #ccc;
+  }
+  
+  .bar.green {
+    background: green;
+  }
 
 /* =============================
    Election Summary Section
