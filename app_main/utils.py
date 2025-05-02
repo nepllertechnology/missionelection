@@ -2,7 +2,7 @@ from django.db.models import Max,Count,F, Subquery, OuterRef
 from django.db.models import Q
 from itertools import groupby
 from operator import itemgetter
-from collections import Counter
+from collections import Counter,defaultdict
 from .models import *
 
 
@@ -34,14 +34,16 @@ def metroAndsubmetro():
     }
     return context
 
-def partyResult():
-    max_vote_subquery = Candidate.objects.filter(position='Mayor',local_unit=OuterRef('local_unit')).values('local_unit').annotate(max_vote=Max('vote')).values('max_vote')
+def partyResult(post):
+    max_vote_subquery = Candidate.objects.filter(position=post,local_unit=OuterRef('local_unit')).values('local_unit').annotate(max_vote=Max('vote')).values('max_vote')
 
-    winners = Candidate.objects.filter(position='Mayor',vote=Subquery(max_vote_subquery))
+    winners = Candidate.objects.filter(position=post,vote=Subquery(max_vote_subquery)).select_related('party')
 
-    party_count = Counter()
+    party_data = defaultdict(lambda: {'count': 0, 'logo': None})
     for winner in winners:
-        party_count[winner.party.party_name] += 1
+        party_name = winner.party.party_name
+        party_data[party_name]['count'] += 1
+        party_data[party_name]['logo'] = winner.party.logo if winner.party.logo else None
         
 
-    return dict(party_count)
+    return dict(party_data)

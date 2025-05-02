@@ -7,8 +7,10 @@ from .models import *
 # Home view remains the same
 def home(request):
     context=metroAndsubmetro()
-    party_count=partyResult()
-    context['party_count']=party_count
+    mayorparty_count=partyResult('Mayor')
+    Dmayorparty_count=partyResult('Deputy Mayor')
+    context['mayor_party_count']=mayorparty_count
+    context['Dmayor_party_count']=Dmayorparty_count
     return render(request, 'home.html',context=context)
 
 # View for fetching provinces
