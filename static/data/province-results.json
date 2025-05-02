@@ -1,0 +1,28 @@
+[
+  {
+    "province": "Pradesh 1",
+    "chartId": "chartPradesh1",
+    "results": [
+      { "party": "Nepali Congress", "win": 68, "color": "#2e7d32" },
+      { "party": "CPN-UML", "win": 47, "color": "#b71c1c" },
+      { "party": "Maoist Centre", "win": 13, "color": "#e53935" },
+      { "party": "Others", "win": 5, "color": "#4dd0e1" },
+      { "party": "CPN (Unified Socialist)", "win": 2, "color": "#f57c00" },
+      { "party": "Janata Samajwadi Party", "win": 2, "color": "#ce93d8" },
+      { "party": "Loktantrik Samajwadi Party", "win": 0, "color": "#90caf9" }
+    ]
+  },
+  {
+    "province": "Madhesh Pradesh",
+    "chartId": "chartMadhesh",
+    "results": [
+      { "party": "Nepali Congress", "win": 46, "color": "#2e7d32" },
+      { "party": "CPN-UML", "win": 30, "color": "#b71c1c" },
+      { "party": "Janata Samajwadi Party", "win": 25, "color": "#ce93d8" },
+      { "party": "Loktantrik Samajwadi Party", "win": 14, "color": "#90caf9" },
+      { "party": "Maoist Centre", "win": 9, "color": "#e53935" },
+      { "party": "CPN (Unified Socialist)", "win": 6, "color": "#f57c00" },
+      { "party": "Others", "win": 6, "color": "#4dd0e1" }
+    ]
+  }
+]
