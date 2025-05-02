@@ -1,0 +1,16 @@
+[
+  {
+    "party": "Nepali Congress",
+    "icon": "/static/icons/nc.png",
+    "win": 329,
+    "lead": "62%",
+    "barColor": "green"
+  },
+  {
+    "party": "CPN-UML",
+    "icon": "/static/icons/uml.png",
+    "win": 206,
+    "lead": "55%",
+    "barColor": "maroon"
+  }
+]

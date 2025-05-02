@@ -23,7 +23,7 @@
     body {
   background: linear-gradient(to bottom, #dfeffa, #ffffff);
   font-family: "Segoe UI", sans-serif;
-  padding-top: 100px; /* to make the search bar appear lower than the title at the beginning */
+  padding-top: 130px; /* to make the search bar appear lower than the title at the beginning */
 }
 
   .header-bar {
@@ -55,6 +55,73 @@
   
 }
 
+.navbar-bar {
+  background-color: #1565c0;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  min-height: 50px;  
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+  padding: 0;
+  line-height: 50px;
+  white-space: nowrap;
+  position: relative;
+}
+
+
+.navbar-bar a:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 12px;
+  height: 26px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-bar a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .navbar-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 8px 0;
+  }
+
+  .navbar-bar a {
+    flex: none;
+    width: 100%;
+    line-height: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-bar a:not(:last-child)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 400px; /* Adjust based on actual nav height */
+  }
+}
   .page-title {
   font-family: 'Poppins', sans-serif;
   font-size: 2.2rem;
@@ -73,6 +140,17 @@
   <div class="header-bar d-flex align-items-center justify-content-center">
     <div class="page-title">Local By-Election 2081</div>
   </div>
+
+<!-- Fixed Navigation Bar -->
+<div class="navbar-bar">
+  <a href="#">Home</a>
+  <a href="#">Party Overview</a>
+  <a href="#">Manifesto</a>
+  <a href="#">Trending</a>
+  <a href="#">All Candidates</a>
+  <a href="#">Election News</a>
+  <a href="#">Voter Education</a>
+</div>
 
 <!-- Form Section -->
 <!-- <div class="container-fluid px-5 mt-5"> -->
