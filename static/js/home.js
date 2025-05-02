@@ -2,7 +2,7 @@
 var map = L.map("map", {
   center: [28.3949, 84.124],
   zoom: 7,
-  zoomControl: true,
+  zoomControl: false,
   dragging: true,
   scrollWheelZoom: false,
   doubleClickZoom: false,
@@ -10,6 +10,7 @@ var map = L.map("map", {
   keyboard: false,
   attributionControl: false,
 });
+map.setView([28.3949, 84.1240], 7.2);
 
 // Color palette for provinces
 var provinceColors = {
