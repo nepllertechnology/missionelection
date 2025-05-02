@@ -1,4 +1,4 @@
-from django.db.models import Max,Count,F, Subquery, OuterRef
+from django.db.models import Max,Count,F, Subquery, OuterRef,Sum
 from django.db.models import Q
 from itertools import groupby
 from operator import itemgetter
@@ -49,4 +49,18 @@ def partyResult(post):
     return dict(party_data)
 
 def provinceResults():
-    pass
+    results = []
+
+    for province in Province.objects.all():
+        local_units = Local_unit.objects.filter(district__province=province)
+        candidate_scope = Candidate.objects.filter(local_unit__in=local_units)
+        max_vote_subquery = Candidate.objects.filter(local_unit=OuterRef('local_unit'),ward=OuterRef('ward'),position=OuterRef('position')).order_by('-vote').values('vote')[:1]
+        winners = candidate_scope.annotate(max_vote=Subquery(max_vote_subquery)).filter(vote=F('max_vote'))
+        total_party_wins = winners.values('party').annotate(wins=Count('id')).order_by('-wins')
+        
+        results.append({
+            'province': province.province_name,
+            'total_party_wins': list(total_party_wins)
+        })
+
+    return results

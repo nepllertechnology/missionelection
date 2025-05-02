@@ -82,47 +82,10 @@ fetch("/static/geojson/nepal_states.geojson")
       });
   });
 
-//for the local election 2079 json files
-function loadSummaryData(jsonPath, targetTableSelector) {
-  fetch(jsonPath)
-    .then((res) => res.json())
-    .then((data) => {
-      const tbody = document.querySelector(targetTableSelector);
-      if (!tbody) return;
-
-      tbody.innerHTML = ""; // Clear current content
-
-      data.forEach((entry) => {
-        const row = document.createElement("tr");
-        row.classList.add("border-b");
-
-        row.innerHTML = `
-          <td class="py-2">
-            <div class="flex items-center space-x-2">
-              <img src="${entry.icon}" alt="${entry.party}" class="party-icon">
-              <span>${entry.party}</span>
-            </div>
-            <div class="w-40 h-2 bg-gray-200 rounded mt-1">
-              <div class="h-2 rounded" style="width: ${entry.lead}; background-color: ${entry.barColor};"></div>
-            </div>
-            <div class="progress-wrapper">
-              <div class="progress-fill" style="width: ${entry.lead}; background-color: ${entry.barColor};"></div>
-            </div>
-          </td>
-          <td class="py-2">${entry.win}</td>
-          <td class="py-2">0</td>
-        `;
-        tbody.appendChild(row);
-      });
-    })
-    .catch((err) => console.error(`Error loading ${jsonPath}:`, err));
-}
-
-
 
 //for provincial results
 function loadProvinceResults(jsonPath) {
-  fetch(jsonPath)
+  fetch('/pichart')
     .then((res) => res.json())
     .then((provinces) => {
       const container = document.getElementById("province-container");
