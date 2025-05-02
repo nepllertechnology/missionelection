@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block map %}
 <div class="page-wrapper">
     <div class="content-wrapper">
         <!-- Map Section -->
@@ -24,15 +24,17 @@
                         <span>Win</span>
                         <span>Lead</span>
                       </div>
+                      {% for party, data in mayor_party_count.items %}
                       <div class="party-row">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nepali_Congress_flag.svg/40px-Nepali_Congress_flag.svg.png" alt="NC">
+                        <img src="{{data.logo}}" alt="party">
                         <div class="party-info">
-                          <span>Nepali Congress</span>
+                          <span>{{party}}</span>
                           <div class="bar green" style="width: 60%"></div>
                         </div>
-                        <span>327</span>
+                        <span>{{data.count}}</span>
                         <span>0</span>
                       </div>
+                      {% endfor %}
                       <!-- Add other parties the same way -->
                     </div>
                 
@@ -45,15 +47,17 @@
                         <span>Win</span>
                         <span>Lead</span>
                       </div>
+                      {% for party, data in Dmayor_party_count.items %}
                       <div class="party-row">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nepali_Congress_flag.svg/40px-Nepali_Congress_flag.svg.png" alt="NC">
+                        <img src="{{data.logo}}" alt="NC">
                         <div class="party-info">
-                          <span>Nepali Congress</span>
+                          <span>{{party}}</span>
                           <div class="bar green" style="width: 55%"></div>
                         </div>
-                        <span>298</span>
+                        <span>{{data.count}}</span>
                         <span>0</span>
                       </div>
+                      {% endfor %}
                     </div>
                   </div>
             </div>
