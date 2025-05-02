@@ -1,35 +1,118 @@
-/* =============================
-   Base Reset and Typography
-============================= */
-html {
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
+    background: linear-gradient(to bottom, #dfeffa, #ffffff);
+    font-family: "Segoe UI", sans-serif;
+    padding-top: 130px; /* to make the search bar appear lower than the title at the beginning */
+  }
+  
+    .header-bar {
+    background: linear-gradient(90deg, #0d6efd, #1a73e8);
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  
+      .form-box {
+      background-color: #ffffff;
+      border-radius: 12px; /* Slightly smaller for a cleaner look */
+        padding: 24px 30px 20px 30px; /* top right bottom left */
+  
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      max-width: 1140px; /* Match content-wrapper */
+      width: 100%; /* Ensure full width */
+    
+  }
+  
+  .navbar-bar {
+    background-color: #1565c0;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    min-height: 50px;  
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .navbar-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    flex: 1;
+    text-align: center;
+    padding: 0;
+    line-height: 50px;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  
+  .navbar-bar a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12px;
+    height: 26px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .navbar-bar a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-bar {
+      flex-direction: column;
+      height: auto;
+      padding: 8px 0;
+    }
+  
+    .navbar-bar a {
+      flex: none;
+      width: 100%;
+      line-height: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  
+    .navbar-bar a:not(:last-child)::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-top: 400px; /* Adjust based on actual nav height */
+    }
+  }
+    .page-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
 
 /* =============================
    Layout Content Wrapper
 ============================= */
-/* .content-wrapper {
-    background-color: white;
-    max-width: 960px;
-    margin: 16px auto;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-} */
 .content-wrapper {
     background-color: white;
     max-width: 1140px;
@@ -40,22 +123,43 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 /* =============================
-   Navbar
+   search form
 ============================= */
-.navbar {
-    background-color: white;
-    padding: 1rem 2rem;
+form {
+    background-color: #fff;
+    padding-left: 30%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px;
+    flex: 1;
     display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
-.navbar h1 {
-    font-size: 1.5rem;
-    color: #333;
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 200px;
 }
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #2471a3;
+}
+
 
 /* =============================
    Filters & Search Box
