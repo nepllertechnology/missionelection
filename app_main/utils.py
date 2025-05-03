@@ -13,11 +13,11 @@ def top2(candidates):
     return top2_per_unit
 
 def metroAndsubmetro():
-    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','party__logo','vote','photo')
-    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','party','name','vote','photo','party__logo')
+    metro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','party__logo','vote','photo','local_unit__total_eligibleVoters')
+    metro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Metropolitan').order_by('local_unit', '-vote').values('local_unit','party','name','vote','photo','party__logo','local_unit__total_eligibleVoters')
 
-    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Submetropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo','party__logo')
-    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Submetropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo','party__logo')
+    submetro_mayor_candidates=Candidate.objects.filter(position='Mayor',local_unit__type='Submetropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo','party__logo','local_unit__total_eligibleVoters')
+    submetro_Dmayor_candidates=Candidate.objects.filter(position='Deputy Mayor',local_unit__type='Submetropolitan').order_by('local_unit', '-vote').values('local_unit','name','party','vote','photo','party__logo','local_unit__total_eligibleVoters')
     
     top2_metro_mayor = top2(metro_mayor_candidates)
     top2_metro_Dmayor = top2(metro_Dmayor_candidates)

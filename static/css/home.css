@@ -651,6 +651,9 @@ th {
 }
 
 
+/* =============================
+   dynamic switching (Mayor or Deputy mayor)
+============================= */
 /* Add an underline to the active position link */
 .active-position {
     text-decoration: underline !important;

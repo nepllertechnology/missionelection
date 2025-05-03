@@ -9,7 +9,7 @@
             <strong>{{ candidate.name }}</strong>
             <p>{{ candidate.party}}</p>
             <div class="progress-bar">
-                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
+                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width:{% widthratio candidate.vote candidate.local_unit__total_eligibleVoters 100 %}%;">
                 </div>
             </div>
         </div>
