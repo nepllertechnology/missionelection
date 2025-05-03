@@ -38,7 +38,6 @@ def partyResult(post):
     max_vote_subquery = Candidate.objects.filter(position=post,local_unit=OuterRef('local_unit')).values('local_unit').annotate(max_vote=Max('vote')).values('max_vote')
 
     winners = Candidate.objects.filter(position=post,vote=Subquery(max_vote_subquery)).select_related('party')
-
     party_data = defaultdict(lambda: {'count': 0, 'logo': None})
     for winner in winners:
         party_name = winner.party.party_name

@@ -29,7 +29,7 @@
                         <img src="{{data.logo}}" alt="party">
                         <div class="party-info">
                           <span>{{party}}</span>
-                          <div class="bar green" style="width: 60%"></div>
+                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
                         </div>
                         <span>{{data.count}}</span>
                         <span>0</span>
@@ -52,7 +52,7 @@
                         <img src="{{data.logo}}" alt="NC">
                         <div class="party-info">
                           <span>{{party}}</span>
-                          <div class="bar green" style="width: 55%"></div>
+                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
                         </div>
                         <span>{{data.count}}</span>
                         <span>0</span>

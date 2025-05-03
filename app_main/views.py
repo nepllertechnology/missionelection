@@ -12,9 +12,11 @@ from django.shortcuts import redirect
 def home(request):
     context=metroAndsubmetro()
     mayorparty_count=partyResult('Mayor')
-    Dmayorparty_count=partyResult('Deputy Mayor')   
+    Dmayorparty_count=partyResult('Deputy Mayor') 
+    total_units_count = Local_unit.objects.distinct().count()  
     context['mayor_party_count']=mayorparty_count
     context['Dmayor_party_count']=Dmayorparty_count
+    context['total_units_count']=total_units_count
     return render(request, 'home.html',context=context)
 
 def metro_get_top2_candidates(request):
