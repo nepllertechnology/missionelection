@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from app_main.utils import metroAndsubmetro,partyResult
 from app_main.utils import metroAndsubmetro,partyResult,provinceResults
 from collections import Counter,defaultdict
@@ -16,6 +16,30 @@ def home(request):
     context['mayor_party_count']=mayorparty_count
     context['Dmayor_party_count']=Dmayorparty_count
     return render(request, 'home.html',context=context)
+
+def metro_get_top2_candidates(request):
+    position = request.GET.get("position")
+    context=metroAndsubmetro()
+    if position == "mayor":
+        data = context['top2_metro_mayor']
+    elif position == "dmayor":
+        data = context['top2_metro_Dmayor']
+    else:
+        return HttpResponse("Invalid position", status=400)
+
+    return render(request, "mayor_Dmayor.html", {"data": data})
+
+def submetro_get_top2_candidates(request):
+    position = request.GET.get("position")
+    context=metroAndsubmetro()
+    if position == "mayor":
+        data = context['top2_submetro_mayor']
+    elif position == "dmayor":
+        data = context['top2_submetro_Dmayor']
+    else:
+        return HttpResponse("Invalid position", status=400)
+
+    return render(request, "mayor_Dmayor.html", {"data": data})
 
 def province_Result(request):
     province_results = provinceResults()

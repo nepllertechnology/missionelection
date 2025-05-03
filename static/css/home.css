@@ -649,3 +649,10 @@ th {
 .summary-wrapper {
     margin-bottom: 48px !important;
 }
+
+
+/* Add an underline to the active position link */
+.active-position {
+    text-decoration: underline !important;
+    font-weight: bold; /* Optional: Makes the text bold */
+  }

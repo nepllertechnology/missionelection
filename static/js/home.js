@@ -174,3 +174,55 @@ function createPieChart(id, labels, data, colors) {
     },
   });
 }
+
+
+
+// js for dynamic mayor and deputy mayor
+
+document.addEventListener("DOMContentLoaded", function () {
+  function setupPositionToggles(selector, targetContainerId, endpointBaseUrl) {
+    const targetContainer = document.getElementById(targetContainerId);
+
+    document.querySelectorAll(selector).forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Log to verify if click works
+        console.log("Link clicked:", this);
+
+        // Remove the active state from all links
+        document.querySelectorAll(selector).forEach(l => {
+          l.classList.remove("active", "active-position"); // Remove previous active states
+        });
+
+        // Add the active state with the underline class to the clicked link
+        this.classList.add("active", "active-position");
+
+        const position = this.getAttribute("data-type");
+
+        fetch(`${endpointBaseUrl}?position=${position}`)
+          .then(response => response.text())
+          .then(html => {
+            targetContainer.innerHTML = html;
+          })
+          .catch(error => {
+            console.error("Error fetching data:", error);
+          });
+      });
+    });
+  }
+
+  // Setup for Metropolitan
+  setupPositionToggles(
+    ".toggle-position",
+    "metro-flexbox",
+    "/metro_get_top2_candidates/"
+  );
+
+  // Setup for Submetropolitan
+  setupPositionToggles(
+    ".sub-toggle-position",
+    "submetro-flexbox",
+    "/submetro_get_top2_candidates/"
+  );
+});

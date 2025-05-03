@@ -3,7 +3,9 @@ from django.urls import path
 from app_main import views
 urlpatterns = [
     path('', views.home, name='home'),
-     path('api/provinces/', views.get_provinces),
+    path('api/provinces/', views.get_provinces),
+    path('metro_get_top2_candidates/',views.metro_get_top2_candidates),
+    path('submetro_get_top2_candidates/',views.submetro_get_top2_candidates),
     path('pichart',views.province_Result),
     path('api/provinces/', views.get_provinces),
     path('api/districts/', views.get_districts),  # Use province_name in URL

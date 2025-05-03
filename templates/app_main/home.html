@@ -61,89 +61,38 @@
                     </div>
                   </div>
             </div>
-        </div>
+        
 <hr class="section-divider">
 
         <div class="metrobox">
             <!-- Metropolitan -->
             <div class="big-B">
-                <div>
-                <h3>Metropolitan</h3>
-            </div>
+                <div><h3>Metropolitan</h3></div>
                 <div class="small-S">
-                    <a href="">
-                        <p>Mayor</p>
-                    </a>
-                    <a href="">
-                        <p>Deputy Mayor</p>
-                    </a>
-        
+                    <a href="#" class="toggle-position active active-position" data-type="mayor">Mayor</a>
+                    <a href="#" class="toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
                 </div>
             </div>
         
-            <div class="flexbox">
-                {% for unit, candidates in top2_metro_mayor.items %}
-                <div class="election-card">
-                    <div class="municipality-name">{{ unit }}</div>
-        
-                    {% for candidate in candidates %}
-                    <div class="candidate {% if forloop.first %}leading{% endif %}">
-                        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                        <div class="candidate-info">
-                            <strong>{{ candidate.name }}</strong>
-                            <p>{{ candidate.party}}</p>
-                            <div class="progress-bar">
-                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="votes-party">
-                            <div class="votes">{{ candidate.vote }}</div>
-                            <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endfor %}
+            <div class="flexbox" id="metro-flexbox">
+                {% include 'mayor_Dmayor.html' with data=top2_metro_mayor %}
             </div>
+
+
             <hr class="section-divider">
+
+
             <!-- Submetropolitan -->
             <div class="big-B">
                 <h3>Submetropolitan</h3>
                 <div class="small-S">
-                    <a href="">
-                        <p>Mayor</p>
-                    </a>
-                    <a href="">
-                        <p>Deputy Mayor</p>
-                    </a>
-        
+                    <a href="#" class="sub-toggle-position active active-position" data-type="mayor">Mayor</a>
+                    <a href="#" class="sub-toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
                 </div>
             </div>
-            <div class="flexbox">
-                {% for unit, candidates in top2_submetro_mayor.items %}
-                <div class="election-card">
-                    <div class="municipality-name">{{ unit }}</div>
         
-                    {% for candidate in candidates %}
-                    <div class="candidate {% if forloop.first %}leading{% endif %}">
-                        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
-                        <div class="candidate-info">
-                            <strong>{{ candidate.name }}</strong>
-                            <p>{{ candidate.party}}</p>
-                            <div class="progress-bar">
-                                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="votes-party">
-                            <div class="votes">{{ candidate.vote }}</div>
-                            <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endfor %}
+            <div class="flexbox" id="submetro-flexbox">
+                {% include 'mayor_Dmayor.html' with data=top2_submetro_mayor %}
             </div>
         </div>
         
@@ -179,7 +128,7 @@
 <!-- Chart.js JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-</script>
+
 {% endblock %}
 
 

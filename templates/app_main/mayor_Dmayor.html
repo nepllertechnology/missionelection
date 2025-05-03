@@ -1,0 +1,23 @@
+{% for unit, candidates in data.items %}
+<div class="election-card">
+    <div class="municipality-name">{{ unit }}</div>
+
+    {% for candidate in candidates %}
+    <div class="candidate {% if forloop.first %}leading{% endif %}">
+        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
+        <div class="candidate-info">
+            <strong>{{ candidate.name }}</strong>
+            <p>{{ candidate.party}}</p>
+            <div class="progress-bar">
+                <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width: 10%;">
+                </div>
+            </div>
+        </div>
+        <div class="votes-party">
+            <div class="votes">{{ candidate.vote }}</div>
+            <img src="{{ candidate.party__logo }}" alt="{{ candidate.party }}" class="party-logo">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
