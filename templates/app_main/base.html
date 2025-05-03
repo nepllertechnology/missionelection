@@ -40,7 +40,9 @@
 
 <!-- Form Section -->
 <!-- <div class="container-fluid px-5 mt-5"> -->
-  <form id="searchForm" method="GET" action="{% url 'search_results' %}">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="form-box row justify-content-start align-items-center mt-3" >
+  <form id="searchForm" method="GET" action="{% url 'search_results' %}" >
     <!-- Province Dropdown -->
     <select name="province" id="province" onchange="loadDistricts()">
         <option disabled {% if not request.GET.province %}selected{% endif %}>Choose Province</option>
@@ -82,6 +84,8 @@
     <button type="submit">Search</button>
     
 </form>
+</div>
+</div>
  {% block content %}
   <!-- Landing page -->
   {% endblock %}

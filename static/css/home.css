@@ -20,19 +20,18 @@ body {
   }
   
   
-      .form-box {
-      background-color: #ffffff;
-      border-radius: 12px; /* Slightly smaller for a cleaner look */
-        padding: 24px 30px 20px 30px; /* top right bottom left */
+  .form-box {
+    background-color: #ffffff;
+    border-radius: 12px; /* Slightly smaller for a cleaner look */
+      padding: 20px 30px 20px 200px; /* top right bottom left */
+
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+    max-width: 1140px; /* Match content-wrapper */
+    width: 100%; /* Ensure full width */
   
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      position: relative;
-      z-index: 10;
-      max-width: 1140px; /* Match content-wrapper */
-      width: 100%; /* Ensure full width */
-    
-  }
-  
+}
   .navbar-bar {
     background-color: #1565c0;
     position: fixed;
@@ -543,10 +542,12 @@ button[type="submit"]:hover {
    Pie Charts / Province Cards
 ============================= */
 .province-container {
-    margin-left: 30px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1140px;
+    margin: 0 auto; /* centers it horizontally */
+    padding: 0 1rem; /* match other sections */
 }
 
 .province-card {
@@ -554,9 +555,9 @@ button[type="submit"]:hover {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    width: 360px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .province-title {

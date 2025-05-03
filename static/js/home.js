@@ -84,7 +84,7 @@ fetch("/static/geojson/nepal_states.geojson")
 
 
 //for provincial results
-function loadProvinceResults(jsonPath) {
+function loadProvinceResults() {
   fetch('/pichart')
     .then((res) => res.json())
     .then((provinces) => {
@@ -143,7 +143,7 @@ function loadProvinceResults(jsonPath) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadProvinceResults("/static/data/province-results.json");
+  loadProvinceResults();
 });
 
 //pie chart portion
