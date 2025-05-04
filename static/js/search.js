@@ -59,64 +59,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-function loadCandidates(unitId) {
-  const form = document.getElementById(`ward-form-${unitId}`);
-  const formData = new FormData(form);
-  const localUnit = formData.get("local_unit");
-  const ward = formData.get("ward");
-
-  fetch(
-    `/candidate_list_ajax/?local_unit=${encodeURIComponent(
-      localUnit
-    )}&ward=${encodeURIComponent(ward)}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const container = document.getElementById(`candidate-results-${unitId}`);
-      container.innerHTML = "";
-
-      const grouped = data.grouped_candidates;
-
-      if (Object.keys(grouped).length === 0) {
-        container.innerHTML = "<p>No candidates found.</p>";
-        return;
-      }
-
-      // Loop through each position category
-      for (let position in grouped) {
-        const card = document.createElement("div");
-        card.className = "position-card";
-        card.innerHTML = `
-                    <h3>${position}</h3>
-                    <div class="candidates-list"></div>
-                `;
-
-        const candidatesList = card.querySelector(".candidates-list");
-
-        // Loop through candidates and add them to the position card
-        grouped[position].forEach((candidate, index) => {
-          const candidateItem = document.createElement("div");
-          candidateItem.className = "candidate-item";
-          candidateItem.innerHTML = `
-                        <div class="rank">#${index + 1}</div>
-                        <img src="${candidate.photo}" alt="${candidate.name}" />
-                        <div class="candidate-info">
-                            <h4>${candidate.name}</h4>
-                            <p><strong>Party:</strong> ${candidate.party}</p>
-                            <p><strong>Votes:</strong> ${candidate.vote}</p>
-                        </div>
-                    `;
-          candidatesList.appendChild(candidateItem);
-        });
-
-        container.appendChild(card);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching candidates:", error);
-    });
-}
-
 //for the selected municipalities mayor/deputy mayor results
 async function loadMayoralResults(unitName) {
   try {
@@ -128,7 +70,10 @@ async function loadMayoralResults(unitName) {
     resultContainer.innerHTML = ""; // Clear previous results
 
     const normalizedUnitName = unitName
-      .replace(" Municipality", "")
+      .replace(
+        / (Metropolitan City|Sub-Metropolitan City|Municipality|Rural Municipality)$/i,
+        ""
+      )
       .trim()
       .toLowerCase();
 
@@ -208,40 +153,126 @@ async function loadMayoralResults(unitName) {
   }
 
   function renderCandidateGroup(title, candidates) {
-    const groupCard = document.createElement("div");
-    groupCard.className = "mayoral-position-card";
-    groupCard.innerHTML = `<h4>${title}</h4><div class="mayoral-candidates-list"></div>`;
+    const [left, right] = candidates.slice(0, 2);
+    const totalVotes = left.votes + right.votes;
 
-    const listContainer = groupCard.querySelector(".mayoral-candidates-list");
+    const card = document.createElement("div");
+    card.className = "mayorcard";
 
-    candidates.forEach((candidate) => {
-      const photoPath = candidate.photo || "/static/icons/default.png";
-      const item = document.createElement("div");
-      item.className = "mayoral-candidate-item";
-      item.innerHTML = `
-        <img src="${window.location.origin + photoPath}" alt="${
-        candidate.name
-      } - ${candidate.party}" />
-        <div class="mayoral-candidate-info">
-          <h5>${candidate.name}</h5>
-          <p><strong>Party:</strong> ${candidate.party}</p>
-          <p><strong>Votes:</strong> ${candidate.votes.toLocaleString()} (${
-        candidate.vote_percent
-      }%)</p>
-        </div>
-      `;
-      listContainer.appendChild(item);
+    // Title
+    const heading = document.createElement("h4");
+    heading.textContent = title;
+    card.appendChild(heading);
+
+    // Candidate row
+    const row = document.createElement("div");
+    row.className = "mayorcard-row";
+
+    [left, right].forEach((candidate, index) => {
+      const alignment = index === 0 ? "left" : "right";
+
+      const candidateDiv = document.createElement("div");
+      candidateDiv.className = `mayorcard-candidate ${alignment}`;
+
+      const topRow = document.createElement("div");
+      topRow.className = `mayorcard-top ${alignment}`;
+
+      const img = document.createElement("img");
+      img.className = "mayorcard-photo";
+      img.src =
+        window.location.origin +
+        (candidate.photo || "/static/icons/default.png");
+      img.alt = candidate.name;
+
+      const nameEl = document.createElement("div");
+      nameEl.className = "mayorcard-name";
+      nameEl.textContent = candidate.name;
+
+      const partyEl = document.createElement("div");
+      partyEl.className = "mayorcard-partyname";
+      partyEl.textContent = candidate.party;
+
+      const candidateInfo = document.createElement("div");
+      candidateInfo.className = "mayorcard-info";
+      candidateInfo.append(nameEl, partyEl);
+
+      if (alignment === "right") {
+        topRow.append(candidateInfo, img);
+      } else {
+        topRow.append(img, candidateInfo);
+      }
+
+      candidateDiv.appendChild(topRow);
+      row.appendChild(candidateDiv);
     });
 
-    return groupCard;
+    card.appendChild(row);
+
+    // Progress Bar (split style with dynamic widths and colors)
+    const progressSplit = document.createElement("div");
+    progressSplit.className = "mayorcard-progress-split";
+
+    const leftSegment = document.createElement("div");
+    leftSegment.className = "segment-left";
+    leftSegment.style.width = `${(left.votes / totalVotes) * 100}%`;
+    leftSegment.style.backgroundColor = left.color || "#2e86de";
+    leftSegment.textContent = left.votes.toLocaleString();
+
+    const rightSegment = document.createElement("div");
+    rightSegment.className = "segment-right";
+    rightSegment.style.width = `${(right.votes / totalVotes) * 100}%`;
+    rightSegment.style.backgroundColor = right.color || "#e74c3c";
+    rightSegment.textContent = right.votes.toLocaleString();
+
+    progressSplit.append(leftSegment, rightSegment);
+    card.appendChild(progressSplit);
+
+    // Footer Row
+    const footerRow = document.createElement("div");
+    footerRow.className = "mayorcard-bottom";
+
+    [left, right].forEach((candidate, index) => {
+      const footer = document.createElement("div");
+      footer.className = "mayorcard-footer";
+
+      const icon = document.createElement("img");
+      icon.className = "mayorcard-party-icon";
+      icon.src =
+        window.location.origin +
+        (candidate.party_icon || "/static/icons/nc.png");
+      icon.alt = candidate.party;
+
+      const votes = document.createElement("span");
+      votes.className = "mayorcard-votes";
+      votes.textContent = candidate.votes.toLocaleString();
+
+      const voteRow = document.createElement("div");
+      voteRow.className = "mayorcard-vote-row";
+      voteRow.append(icon, votes);
+
+      footer.appendChild(voteRow);
+
+      if (index === 0) {
+        const label = document.createElement("span");
+        label.className = "mayorcard-elected-label";
+        label.textContent = "Elected";
+        footer.appendChild(label);
+      }
+
+      footerRow.appendChild(footer);
+    });
+
+    card.appendChild(footerRow);
+
+    return card;
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadMayoralResults("Tarakeshwor"); //for now, only this data in mock json
+  loadMayoralResults("Kathmandu"); //for now, to fetch this data from mock json
 });
 
-//Ward section
+// Ward section
 document.addEventListener("DOMContentLoaded", () => {
   fetch("/static/data/ward_results.json")
     .then((response) => response.json())
@@ -249,21 +280,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const wardSelect = document.getElementById("ward-select");
       const container = document.getElementById("ward-results-container");
 
-      // Populate ward dropdown
-      data.wards.forEach((ward) => {
-        const option = document.createElement("option");
-        option.value = ward.ward_number;
-        option.textContent = `Ward ${ward.ward_number}`;
-        wardSelect.appendChild(option);
-      });
-      const totalWards = data.wards.length;
+      // Function to populate ward dropdown
+      function populateWardDropdown(wards) {
+        wardSelect.innerHTML = ""; // Clear previous options
+        wards.forEach((ward) => {
+          const option = document.createElement("option");
+          option.value = ward.ward_number;
+          option.textContent = `Ward ${ward.ward_number}`;
+          wardSelect.appendChild(option);
+        });
+      }
+
+      // Populate the dropdown and total ward count
+      populateWardDropdown(data.wards);
       document.getElementById(
         "total-wards"
-      ).textContent = `Total Wards: ${totalWards}`;
+      ).textContent = `Total Wards: ${data.wards.length}`;
 
-      const renderWardResults = (wardNumber) => {
+      // Function to render ward results
+      function renderWardResults(wardNumber) {
         const wardData = data.wards.find((w) => w.ward_number == wardNumber);
-        container.innerHTML = ""; // Clear previous
+        container.innerHTML = ""; // Clear previous results
 
         const row = document.createElement("div");
         row.className = "ward-results-row";
@@ -281,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = `ward-candidate-card ${
               candidate.elected ? "elected" : ""
             }`;
+
             const header = document.createElement("div");
             header.className = "ward-candidate-header";
 
@@ -311,18 +349,25 @@ document.addEventListener("DOMContentLoaded", () => {
             card.appendChild(header);
             card.appendChild(partyDiv);
             col.appendChild(card);
+            // Add "Elected" badge if applicable
+            if (candidate.elected) {
+              const badge = document.createElement("div");
+              badge.className = "mayorcard-elected-label ";
+              badge.textContent = "Elected";
+              card.appendChild(badge);
+            }
           });
 
           row.appendChild(col);
         });
 
-        container.appendChild(row); // Add row to container
-      };
+        container.appendChild(row);
+      }
 
-      // Initial load
+      // Initial load with first ward
       renderWardResults(data.wards[0].ward_number);
 
-      // On change
+      // Change handler for dropdown
       wardSelect.addEventListener("change", (e) => {
         renderWardResults(e.target.value);
       });

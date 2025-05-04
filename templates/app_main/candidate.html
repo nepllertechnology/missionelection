@@ -11,18 +11,26 @@
 
     {% if result_type == 'district' %}
         {% for district in results %}
-            <div class="district-card">
-                <h3>{{ district.district_name }}</h3>
-                <p>Province: {{ district.province.province_name }}</p>
-                <p>Total Population: {{ district.total_population }}</p>
-                <p>Male Population: {{ district.male_population }}</p>
-                <p>Female Population: {{ district.female_population }}</p>
-                <p>Local Units: {{ district.no_localunits }}</p>
-                <p>Metropolitan: {{ district.no_metropolitan }}</p>
-                <p>Municipalities: {{ district.no_municipalities }}</p>
-                <p>Village Councils: {{ district.no_villageCouncil }}</p>
+        <h3>{{ district.district_name }}</h3>
+        <div class="muni-section-flex">
+            <!-- Map Placeholder - can be styled in CSS -->
+            <div class="muni-map-placeholder">
+                <!-- You can embed map dynamically here later -->
             </div>
+        
+            <div class="local-unit-card">
+                <p><span class="label">Province:</span> <span class="value">{{ district.province.province_name }}</span></p>
+                <p><span class="label">Total Population:</span> <span class="value">{{ district.total_population }}</span></p>
+                <p><span class="label">Male Population:</span> <span class="value">{{ district.male_population }}</span></p>
+                <p><span class="label">Female Population:</span> <span class="value">{{ district.female_population }}</span></p>
+                <p><span class="label">Local Units:</span> <span class="value">{{ district.no_localunits }}</span></p>
+                <p><span class="label">Metropolitan:</span> <span class="value">{{ district.no_metropolitan }}</span></p>
+                <p><span class="label">Municipalities:</span> <span class="value">{{ district.no_municipalities }}</span></p>
+                <p><span class="label">Village Councils:</span> <span class="value">{{ district.no_villageCouncil }}</span></p>
+            </div>
+        </div>
         {% endfor %}
+
     {% elif result_type == 'local_unit' %}
     <section>
         <div class="mayoral-results-wrapper">
@@ -87,18 +95,6 @@
                 <p><span class="label">Total Eligible Voters:</span> <span class="value">{{ unit.total_eligibleVoters }}</span></p>
             </div>
         </div>
-            <!-- <form method="GET" id="ward-form-{{ unit.id }}">
-                <-- Send the local unit ID -->
-                <!-- <input type="hidden" name="local_unit" value="{{ unit.name }}">
-                
-                <label for="ward-{{ unit.id }}">Select Ward:</label>
-                <select name="ward" id="ward-{{ unit.id }}" onchange="loadCandidates('{{ unit.id }}')" required>
-                    <option selected disabled>Choose Ward</option>
-                    {% for i in ""|center:unit.no_wards %}
-                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                    {% endfor %}
-                </select>
-            </form> --> 
         {% endfor %}
 
     {% elif result_type == 'province' %}
