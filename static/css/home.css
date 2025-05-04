@@ -386,8 +386,45 @@ button[type="submit"]:hover {
         zoom: 0.5;
         /* smaller height for mobile */
     }
-
 }
+
+/* Popup box style for district info */
+.district-info-box {
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-size: 14px;
+    display: none;
+    pointer-events: none;
+}
+.district-info-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.district-info-box th, .district-info-box td {
+    padding: 4px 8px;
+    text-align: left;
+}
+.district-info-box th {
+    border-bottom: 1px solid #ccc;
+}
+.party-icon {
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+#muni-map {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+  }
+
 
 /* =============================
    Summary Cards

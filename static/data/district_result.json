@@ -1,0 +1,23 @@
+{
+    "Lamjung": {
+      "CPN-UML": { "win": 4, "lead": 0 },
+      "Nepali Congress": { "win": 4, "lead": 0 }
+    },
+    "Gorkha": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Kathmandu": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    }
+    ,
+    "Lalitpur": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Dang": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    }
+  }
