@@ -10,7 +10,7 @@ var map = L.map("map", {
   keyboard: false,
   attributionControl: false,
 });
-map.setView([28.3949, 84.1240], 7.2);
+map.setView([28.3949, 84.124], 7.2);
 
 // Color palette for provinces
 var provinceColors = {
@@ -82,10 +82,9 @@ fetch("/static/geojson/nepal_states.geojson")
       });
   });
 
-
 //for provincial results
 function loadProvinceResults(jsonPath) {
-  fetch('/pichart')
+  fetch("/pichart")
     .then((res) => res.json())
     .then((provinces) => {
       const container = document.getElementById("province-container");
