@@ -1,0 +1,239 @@
+{
+  "total_wards": 11,
+  "wards": [
+    {
+      "ward_number": 1,
+      "results": {
+        "Ward President": [
+          {
+            "name": "राम बहादुर थापा",
+            "party": "Nepali Congress",
+            "votes": 1345,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+
+          },
+          {
+            "name": "शिव प्रसाद भण्डारी",
+            "party": "CPN-UML",
+            "votes": 1123,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+
+
+          }
+        ],
+        "Female Member": [
+          {
+            "name": "सीता कँडेल",
+            "party": "Nepali Congress",
+            "votes": 1267,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "राधा सुनार",
+            "party": "CPN (Unified Socialist)",
+            "votes": 956,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Dalit Female Member": [
+          {
+            "name": "गोमा विक",
+            "party": "CPN-UML",
+            "votes": 1101,
+            "elected": true,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "तारा नेपाली",
+            "party": "Rastriya Prajatantra Party",
+            "votes": 845,
+            "elected": false,
+            "symbol": "cow",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Member": [
+          {
+            "name": "श्रीकृष्ण खनाल",
+            "party": "Nepali Congress",
+            "votes": 1299,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "हरिशरण चौधरी",
+            "party": "CPN-UML",
+            "votes": 1170,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ]
+      }
+    },
+    {
+      "ward_number": 2,
+      "results": {
+        "Ward President": [
+          {
+            "name": "दुर्गा बानिया",
+            "party": "CPN (Unified Socialist)",
+            "votes": 1456,
+            "elected": true,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "मनोज पाण्डे",
+            "party": "Nepali Congress",
+            "votes": 1301,
+            "elected": false,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Female Member": [
+          {
+            "name": "माया थापा",
+            "party": "Nepali Congress",
+            "votes": 1377,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "सुनिता राई",
+            "party": "CPN-UML",
+            "votes": 1266,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Dalit Female Member": [
+          {
+            "name": "कमला सुनार",
+            "party": "Nepali Congress",
+            "votes": 1400,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "बिमला नेपाली",
+            "party": "CPN-UML",
+            "votes": 1199,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Member": [
+          {
+            "name": "बुद्धि महर्जन",
+            "party": "CPN-UML",
+            "votes": 1500,
+            "elected": true,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "कृष्ण बुढाथोकी",
+            "party": "Rastriya Prajatantra Party",
+            "votes": 1115,
+            "elected": false,
+            "symbol": "cow",
+            "icon": "/static/icons/nc.png"
+          }
+        ]
+      }
+    },
+    {
+      "ward_number": 3,
+      "results": {
+        "Ward President": [
+          {
+            "name": "रमेश थापा",
+            "party": "Nepali Congress",
+            "votes": 1200,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "गोविन्द कार्की",
+            "party": "CPN-UML",
+            "votes": 1185,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Female Member": [
+          {
+            "name": "सरस्वती भण्डारी",
+            "party": "CPN-UML",
+            "votes": 1350,
+            "elected": true,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "लक्ष्मी खड्का",
+            "party": "Nepali Congress",
+            "votes": 1304,
+            "elected": false,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Dalit Female Member": [
+          {
+            "name": "मन्जु परियार",
+            "party": "Nepali Congress",
+            "votes": 1280,
+            "elected": true,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "गिता सुनार",
+            "party": "CPN (Unified Socialist)",
+            "votes": 1143,
+            "elected": false,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          }
+        ],
+        "Member": [
+          {
+            "name": "सन्तोष श्रेष्ठ",
+            "party": "CPN-UML",
+            "votes": 1399,
+            "elected": true,
+            "symbol": "sun",
+            "icon": "/static/icons/nc.png"
+          },
+          {
+            "name": "शिवराम थापा",
+            "party": "Nepali Congress",
+            "votes": 1201,
+            "elected": false,
+            "symbol": "tree",
+            "icon": "/static/icons/nc.png"
+          }
+        ]
+      }
+    }
+  ]
+}
