@@ -1,90 +1,144 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-   
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <h1>Election Results 2081</h1>
-        <div class="search-box">
-            <input type="text" placeholder="Search Candidate...">
-        </div>
-    </div>
 
-    <!-- Main Layout -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Parties</h2>
-            <ul class="party-list">
-                <li>Party A</li>
-                <li>Party B</li>
-                <li>Party C</li>
-                <li>Party D</li>
-            </ul>
+{% block content %}
+<div class="page-wrapper">
+    <div class="content-wrapper">
+        <!-- Map Section -->
+        <div class="mapbox">
+            <div id="map"></div>
         </div>
+<hr class="section-divider">
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Filters -->
-            <div class="filters">
-                <select>
-                    <option selected>Province</option>
-                    <option>Province 1</option>
-                    <option>Province 2</option>
-                    <option>Province 3</option>
-                </select>
-                <select>
-                    <option selected>District</option>
-                    <option>District A</option>
-                    <option>District B</option>
-                </select>
-                <select>
-                    <option selected>Municipality</option>
-                    <option>Municipality X</option>
-                    <option>Municipality Y</option>
-                </select>
+        <!-- Layout Section -->
+        <div class="metrobox">
+            <div class="big">
+                <h3>Local Election 2079</h3>
+                <div class="card-container">
+                    <!-- Mayor / Chairperson Card -->
+                    <div class="card">
+                      <h2>Mayor / Chairperson</h2>
+                      <hr>
+                      <div class="table-header">
+                        <span>Party</span>
+                        <span>Win</span>
+                        <span>Lead</span>
+                      </div>
+                      {% for party, data in mayor_party_count.items %}
+                      <div class="party-row">
+                        <img src="{{data.logo}}" alt="party">
+                        <div class="party-info">
+                          <span>{{party}}</span>
+                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
+                        </div>
+                        <span>{{data.count}}</span>
+                        <span>0</span>
+                      </div>
+                      {% endfor %}
+                      <!-- Add other parties the same way -->
+                    </div>
+                
+                    <!-- Deputy Mayor / Vice-Chairperson Card -->
+                    <div class="card">
+                      <h2>Deputy Mayor / Vice-Chairperson</h2>
+                      <hr>
+                      <div class="table-header">
+                        <span>Party</span>
+                        <span>Win</span>
+                        <span>Lead</span>
+                      </div>
+                      {% for party, data in Dmayor_party_count.items %}
+                      <div class="party-row">
+                        <img src="{{data.logo}}" alt="NC">
+                        <div class="party-info">
+                          <span>{{party}}</span>
+                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
+                        </div>
+                        <span>{{data.count}}</span>
+                        <span>0</span>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+            </div>
+        
+<hr class="section-divider">
+
+        <div class="metrobox">
+            <!-- Metropolitan -->
+            <div class="big-B">
+                <div><h3>Metropolitan</h3></div>
+                <div class="small-S">
+                    <a href="#" class="toggle-position active active-position" data-type="mayor">Mayor</a>
+                    <a href="#" class="toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
+                </div>
+            </div>
+        
+            <div class="flexbox" id="metro-flexbox">
+                {% include 'mayor_Dmayor.html' with data=top2_metro_mayor %}
             </div>
 
-            <!-- Results Table -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Candidate</th>
-                        <th>Party</th>
-                        <th>Votes</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ram Bahadur</td>
-                        <td>Party A</td>
-                        <td>12000</td>
-                        <td>Leading</td>
-                    </tr>
-                    <tr>
-                        <td>Sita Kumari</td>
-                        <td>Party B</td>
-                        <td>11000</td>
-                        <td>Trailing</td>
-                    </tr>
-                    <tr>
-                        <td>Hari Prasad</td>
-                        <td>Party C</td>
-                        <td>8000</td>
-                        <td>Trailing</td>
-                    </tr>
-                </tbody>
-            </table>
 
+            <hr class="section-divider">
+
+
+            <!-- Submetropolitan -->
+            <div class="big-B">
+                <h3>Submetropolitan</h3>
+                <div class="small-S">
+                    <a href="#" class="sub-toggle-position active active-position" data-type="mayor">Mayor</a>
+                    <a href="#" class="sub-toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
+                </div>
+            </div>
+        
+            <div class="flexbox" id="submetro-flexbox">
+                {% include 'mayor_Dmayor.html' with data=top2_submetro_mayor %}
+            </div>
         </div>
+        
+<hr class="section-divider">
+
+<div class="chartbox">
+    <div class="big">
+      <h3>Province Results</h3>
     </div>
-</body>
-</html>
+  
+    <div class="province-container" id="province-container">
+      <!-- Cards will be injected dynamically by JS -->
+    </div>
+  </div>
+    </div>
+</div>
+
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!--  custom JS -->
+<script src="{% static 'js/home.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+<!-- bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+    crossorigin="anonymous"></script>
+
+<!-- Chart.js JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
