@@ -1,10 +1,11 @@
 body {
     background: linear-gradient(to bottom, #dfeffa, #ffffff);
     font-family: "Segoe UI", sans-serif;
-    padding-top: 130px; /* to make the search bar appear lower than the title at the beginning */
-  }
-  
-    .header-bar {
+    padding-top: 130px; /* Adjust based on the fixed header */
+    transition: padding-top 0.3s ease; /* Smooth transition */
+}
+
+.header-bar {
     background: linear-gradient(90deg, #0d6efd, #1a73e8);
     height: 80px;
     position: fixed;
@@ -17,22 +18,20 @@ body {
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  
-  .form-box {
-    background-color: #ffffff;
-    border-radius: 12px; /* Slightly smaller for a cleaner look */
-      padding: 20px 30px 20px 200px; /* top right bottom left */
+}
 
+.form-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 30px 20px 200px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 10;
-    max-width: 1140px; /* Match content-wrapper */
-    width: 100%; /* Ensure full width */
-  
+    max-width: 1140px;
+    width: 100%;
 }
-  .navbar-bar {
+
+.navbar-bar {
     background-color: #1565c0;
     position: fixed;
     top: 80px;
@@ -46,22 +45,19 @@ body {
     padding: 0 10px;
     min-height: 50px;  
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .navbar-bar a {
+}
+
+.navbar-bar a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    flex: 1;
-    text-align: center;
-    padding: 0;
+    padding: 0 50px;
     line-height: 50px;
-    white-space: nowrap;
     position: relative;
-  }
-  
-  
-  .navbar-bar a:not(:last-child)::after {
+    
+}
+
+.navbar-bar a:not(:last-child)::after {
     content: "";
     position: absolute;
     right: 0;
@@ -69,45 +65,75 @@ body {
     height: 26px;
     width: 1px;
     background-color: rgba(255, 255, 255, 0.3);
-  }
-  
-  .navbar-bar a:hover {
+}
+
+.navbar-bar a:hover {
     text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+/* Hamburger icon */
+.hamburger {
+    display: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
     .navbar-bar {
-      flex-direction: column;
-      height: auto;
-      padding: 8px 0;
+        height: auto;
+        padding: 8px 0;
+        justify-content: flex-start;
     }
-  
+
     .navbar-bar a {
-      flex: none;
-      width: 100%;
-      line-height: 40px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        flex: none;
+        width: 100%;
+        text-align: center;
+        line-height: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-  
+
     .navbar-bar a:not(:last-child)::after {
-      display: none;
+        display: none;
     }
-  }
-  
-  @media (max-width: 768px) {
-    body {
-      padding-top: 400px; /* Adjust based on actual nav height */
+
+    /* Mobile menu hidden initially */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #1565c0;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        z-index: 998;
     }
-  }
-    .page-title {
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    body.nav-open {
+        padding-top: 400px; /* Adjust based on nav height */
+    }
+}
+
+.page-title {
     font-family: 'Poppins', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
     color: #ffffff;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     letter-spacing: 1px;
     text-transform: uppercase;
-  }
+}
 /* =============================
    Layout Content Wrapper
 ============================= */
