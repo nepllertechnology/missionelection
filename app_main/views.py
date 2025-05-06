@@ -3,11 +3,22 @@ from django.http import JsonResponse,HttpResponse
 from app_main.utils import metroAndsubmetro,partyResult
 from app_main.utils import metroAndsubmetro,partyResult,provinceResults
 from collections import Counter,defaultdict
-
+from django.db.models import Max
 from .models import *
 from collections import defaultdict
 from django.shortcuts import redirect
 
+
+PARTY_COLORS = {
+        "Nepali Congress": "#2e7d32",
+        "CPN-UML": "#b71c1c",
+        "Maoist Centre": "#e53935",
+        "CPN (Unified Socialist)": "#f57c00",
+        "Janata Samajwadi Party": "#ce93d8",
+        "Loktantrik Samajwadi Party": "#90caf9",
+        "Others": "#4dd0e1",
+        "Independent":"#4dd0e1"
+    }
 # Home view remains the same
 def home(request):
     context=metroAndsubmetro()
@@ -46,15 +57,7 @@ def submetro_get_top2_candidates(request):
 def province_Result(request):
     province_results = provinceResults()
     
-    PARTY_COLORS = {
-        "Nepali Congress": "#2e7d32",
-        "CPN-UML": "#b71c1c",
-        "Maoist Centre": "#e53935",
-        "CPN (Unified Socialist)": "#f57c00",
-        "Janata Samajwadi Party": "#ce93d8",
-        "Loktantrik Samajwadi Party": "#90caf9",
-        "Others": "#4dd0e1"
-    }
+    
 
     MAIN_PARTIES = set(PARTY_COLORS.keys()) - {"Others"}
 
@@ -148,26 +151,126 @@ def search_results(request):
     }
     return render(request, 'candidate.html', context)
 
-def candidate_list_ajax(request):
-    print("triggerr")
-    local_unit_name = request.GET.get('local_unit')
-    ward_number = request.GET.get('ward')
+
+
+def unit_results(request):
+    unit_name = request.GET.get('municipality')
+    print(unit_name)
 
     try:
-        local_unit = Local_unit.objects.get(name=local_unit_name)
+        local_unit = Local_unit.objects.get(name=unit_name)
     except Local_unit.DoesNotExist:
         return JsonResponse({'error': 'Local unit not found'}, status=404)
 
-    candidates = Candidate.objects.filter(local_unit=local_unit, ward=ward_number).order_by('-vote')
+    # Get all candidates related to this local unit
+    candidates = Candidate.objects.filter(local_unit=local_unit)
 
-    grouped_candidates = defaultdict(list)
+    result = {
+        "local_unit": local_unit.name,
+        "type": local_unit.type,
+        "mayor": [],
+        "deputy_mayor": [],
+        "chairperson": [],
+        "vice_chairperson": []
+    }
+
+    has_mayor_group = False
+    has_chairperson_group = False
+
     for candidate in candidates:
-        grouped_candidates[candidate.position].append({
-            'name': candidate.name,
-            'photo': candidate.photo.url,
-            'party': candidate.party.party_name,
-            'position': candidate.position,
-            'vote': candidate.vote,
-        })
+        candidate_data = {
+            "name": candidate.name,
+            "party": candidate.party.party_name,
+            "votes": candidate.vote,
+            "photo": candidate.photo.url if candidate.photo else '/static/icons/default.png',
+            "color": PARTY_COLORS.get(candidate.party.party_name, "#000000")
+        }
 
-    return JsonResponse({'grouped_candidates': grouped_candidates})
+        if candidate.position == "Mayor":
+            result["mayor"].append(candidate_data)
+            has_mayor_group = True
+        elif candidate.position == "Deputy Mayor":
+            result["deputy_mayor"].append(candidate_data)
+            has_mayor_group = True
+        elif candidate.position == "Chairperson":
+            result["chairperson"].append(candidate_data)
+            has_chairperson_group = True
+        elif candidate.position == "Vice Chairperson":
+            result["vice_chairperson"].append(candidate_data)
+            has_chairperson_group = True
+
+   
+    if has_mayor_group:
+        result.pop('chairperson', None)
+        result.pop('vice_chairperson', None)
+    if has_chairperson_group:
+        result.pop('mayor', None)
+        result.pop('deputy_mayor', None)
+
+    #print(result)
+
+    return JsonResponse({"results": [result]})
+
+
+from django.db.models import Max
+
+def ward_info(request):
+    unit_name = request.GET.get('municipality')
+    print('Fetching ward info for:', unit_name)
+
+    try:
+        local_unit = Local_unit.objects.get(name=unit_name)
+    except Local_unit.DoesNotExist:
+        return JsonResponse({'error': 'Local unit not found'}, status=404)
+
+    total_wards = local_unit.no_wards
+
+    # Get all candidates under this local unit
+    candidates = Candidate.objects.filter(local_unit=local_unit)
+
+    ward_results = []
+
+    # Loop over each ward number
+    for ward_number in range(1, total_wards + 1):
+        ward_data = {
+            "ward_number": ward_number,
+            "results": {
+                "Ward President": [],
+                "Female Member": [],
+                "Dalit Female Member": [],
+                "Member": []
+            }
+        }
+
+        # Filter candidates for this ward
+        ward_candidates = candidates.filter(ward=ward_number)
+
+        # Collect results by position
+        for position in ["Ward President", "Female Member", "Dalit Female Member", "Member"]:
+            position_candidates = ward_candidates.filter(position=position)
+
+            # Determine max vote to decide 'elected' status
+            max_votes = position_candidates.aggregate(Max('vote'))['vote__max']
+
+            # Sort candidates by vote count descending
+            sorted_candidates = position_candidates.order_by('-vote')
+
+            for candidate in sorted_candidates:
+                candidate_entry = {
+                    "name": candidate.name,
+                    "party": candidate.party.party_name,
+                    "votes": candidate.vote,
+                    "elected": candidate.vote == max_votes,
+                    "symbol": candidate.party.party_shortname,  # assuming shortname is used as symbol here
+                    "icon": candidate.party.logo.url if candidate.party.logo else "/static/icons/default.png"
+                }
+                ward_data["results"][position].append(candidate_entry)
+
+        ward_results.append(ward_data)
+
+    result = {
+        "total_wards": total_wards,
+        "wards": ward_results
+    }
+    print(result)
+    return JsonResponse(result)

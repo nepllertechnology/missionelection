@@ -61,31 +61,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 //for the selected municipalities mayor/deputy mayor results
 async function loadMayoralResults(unitName) {
+  
   try {
-    const response = await fetch("/static/data/mayoral_results_mock.json");
-    const data = await response.json();
+    const response = await fetch(`/api/unit_results/?municipality=${encodeURIComponent(unitName)}`);
+const data = await response.json();
+console.log(data);
 
-    const results = data.results;
-    const resultContainer = document.getElementById("mayoral-results-2079");
-    resultContainer.innerHTML = ""; // Clear previous results
+// FIXED HERE:
+const results = data.results;
+console.log(results);
 
-    const normalizedUnitName = unitName
-      .replace(
-        / (Metropolitan City|Sub-Metropolitan City|Municipality|Rural Municipality)$/i,
-        ""
-      )
-      .trim()
-      .toLowerCase();
+const resultContainer = document.getElementById("mayoral-results-2079");
+resultContainer.innerHTML = ""; // Clear previous results
 
-    const unitData = results.find(
-      (r) => r.local_unit.trim().toLowerCase() === normalizedUnitName
-    );
+const normalizedUnitName = unitName
+  .replace(/ (Metropolitan City|Sub-Metropolitan City|Municipality|Rural Municipality)$/i, "")
+  .trim()
+  .toLowerCase();
 
-    if (!unitData) {
-      resultContainer.innerHTML =
-        "<p>No mayoral data available for this unit.</p>";
-      return;
-    }
+// Since `results` is an array, you can `.find` over it:
+const unitData = results.find(
+  (r) => r.local_unit.trim().toLowerCase() === normalizedUnitName
+);
+
+if (!unitData) {
+  resultContainer.innerHTML = "<p>No mayoral data available for this unit.</p>";
+  return;
+}
 
     // Remove any previously inserted header
     const existingHeader = document.querySelector(".mayoral-header-box");
@@ -269,12 +271,14 @@ async function loadMayoralResults(unitName) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadMayoralResults("Kathmandu"); //for now, to fetch this data from mock json
+  const municipalitySelect = document.getElementById("municipality");
+  loadMayoralResults( municipalitySelect.value); //for now, to fetch this data from mock json
 });
 
 // Ward section
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/static/data/ward_results.json")
+  const unitName = document.getElementById("municipality").value;
+  fetch(`/api/ward_result/?municipality=${encodeURIComponent(unitName)}`)
     .then((response) => response.json())
     .then((data) => {
       const wardSelect = document.getElementById("ward-select");
@@ -369,6 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Change handler for dropdown
       wardSelect.addEventListener("change", (e) => {
+        console.log("Selected")
         renderWardResults(e.target.value);
       });
     });

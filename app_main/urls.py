@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/districts/', views.get_districts),  # Use province_name in URL
     path('api/municipalities/', views.get_municipalities),
     path('search/', views.search_results, name='search_results'),
-    path('candidate_list_ajax/', views.candidate_list_ajax, name='candidate_list_ajax'),
+    path('api/unit_results/', views.unit_results, name='unit_results'),
+    path('api/ward_result/', views.ward_info, name='war_info')
 ]
