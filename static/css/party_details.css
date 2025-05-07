@@ -1,0 +1,70 @@
+/* Main wrapper for the party details page
+.partydetail-wrapper {
+ background-color: white;
+ max-width: 1140px;
+ margin: 24px auto;
+ padding: 2rem;
+ border-radius: 12px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+} */
+
+/* Page title styling */
+.partydetail-title {
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin-bottom: 24px;
+ color: #333;
+ text-align: center;
+}
+
+/* Grid layout for party cards */
+.partydetail-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+ gap: 20px;
+}
+
+/* Individual card styling */
+.partydetail-card {
+ background-color: #ffffff;
+ border: 1px solid #ccc;
+ border-radius: 12px;
+ padding: 1.5rem;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ transition: transform 0.2s ease;
+}
+
+.partydetail-card:hover {
+ transform: translateY(-4px);
+}
+
+/* Party logo */
+.partydetail-logo {
+ width: 60px;
+ height: 60px;
+ object-fit: contain;
+ margin-bottom: 12px;
+}
+
+/* Party name */
+.partydetail-name {
+ font-size: 1.1rem;
+ font-weight: 600;
+ margin-bottom: 6px;
+ color: #1565c0;
+}
+
+/* Chairperson name */
+.partydetail-chair {
+ font-size: 0.95rem;
+ color: #666;
+ margin-bottom: 12px;
+}
+
+/* Vote count */
+.partydetail-votes {
+ font-size: 1.2rem;
+ font-weight: bold;
+ color: #2d3436;
+}

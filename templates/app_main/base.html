@@ -32,7 +32,7 @@
     <!-- Navbar links -->
     <div class="nav-links">
         <a href="{% url 'home' %}">गृह</a>
-        <a href="#">पार्टी विवरण</a>
+        <a href="{% url 'party_details' %}">पार्टी विवरण</a>
         <a href="#">घोसणा पत्र</a>
         <a href="#">जो चर्चामा छ</a>
         <a href="#">सबै उमेद्वार</a>
@@ -97,6 +97,13 @@
   {% endblock %}
   {% block extra_script %}
   {% endblock %}
+
+{% block party_details %}
+<!-- party details page -->
+{% endblock %}
+{% block party_script %}
+{% endblock %}
+
   <script src="static\js\search.js"></script>
   <script>
     const hamburger = document.querySelector('.hamburger');

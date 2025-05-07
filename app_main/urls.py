@@ -3,6 +3,7 @@ from django.urls import path
 from app_main import views
 urlpatterns = [
     path('', views.home, name='home'),
+    path('party-details/', views.party_details, name='party_details'), 
     path('api/provinces/', views.get_provinces),
     path('metro_get_top2_candidates/',views.metro_get_top2_candidates),
     path('submetro_get_top2_candidates/',views.submetro_get_top2_candidates),

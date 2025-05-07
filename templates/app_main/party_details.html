@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/party_details.css' %}">
+{% endblock %}
+
+{% block party_details %}
+<div class = "page-wrapper">
+<div class="content-wrapper">
+ <h2 class="partydetail-title">पार्टी विवरण</h2>
+ <div class="partydetail-grid" id="partydetail-grid">
+  <!-- Party cards will be rendered here via JS -->
+ </div>
+</div>
+</div>
+{% endblock %}
+
+{% block party_script %}
+<script src="{% static 'js/party_details.js' %}"></script>
+{% endblock %}

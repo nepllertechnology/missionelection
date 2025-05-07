@@ -390,6 +390,7 @@ button[type="submit"]:hover {
     width: 100%;
     height: 60vh;
     /* makes height responsive */
+    zoom: 1.3;
     max-height: 600px;
     min-height: 300px;
     border-radius: 8px;

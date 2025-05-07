@@ -274,3 +274,7 @@ def ward_info(request):
     }
     print(result)
     return JsonResponse(result)
+
+#to get to the party details page
+def party_details(request):
+    return render(request, 'party_details.html')
