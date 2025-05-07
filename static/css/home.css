@@ -275,14 +275,14 @@ button[type="submit"]:hover {
 /* =============================
    Election Cards
 ============================= */
+
 .flexbox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
     margin-left: 0;
     margin-bottom: 10px;
 }
-
 .election-card {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -377,16 +377,25 @@ button[type="submit"]:hover {
 /* =============================
    Map Section
 ============================= */
-#map {
+/* #map {
     zoom: 1.3;
     height: 50vh;
     width: 100%;
     margin: 30px auto;
     border: 0px solid #ccc;
     border-radius: 20px;
+    
+} */
+#map {
+    width: 100%;
+    height: 60vh;
+    /* makes height responsive */
+    max-height: 600px;
+    min-height: 300px;
+    border-radius: 8px;
+    margin: 0 auto;
     background-color: white;
 }
-
 .district-label {
     font-size: 7px;
     font-weight: bold;
@@ -418,22 +427,19 @@ button[type="submit"]:hover {
 /* =============================
    Summary Cards
 ============================= */
-.card-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+
+  .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
   }
-  
-  .card {
-    margin: 0px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 520px;
-    padding: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  
+ .card {
+     width: 100%;
+     max-width: 100%;
+     box-sizing: border-box;
+ }
+
   .card h2 {
     font-size: 18px;
     margin-bottom: 10px;
@@ -635,11 +641,7 @@ th {
 /* =============================
    Responsive Layout
 ============================= */
-@media (max-width: 992px) {
-    .election-card {
-        width: calc(50% - 20px);
-    }
-}
+
 
 @media (max-width: 768px) {
     .summary-card {
@@ -661,6 +663,15 @@ th {
     }
 }
 
+@media (max-width: 992px) {
+    .flexbox {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+        width: 100%;
+    }
+}
 
 /* =============================
    Section Divider
@@ -686,3 +697,10 @@ th {
     text-decoration: underline !important;
     font-weight: bold; /* Optional: Makes the text bold */
   }
+
+
+#metro-flexbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
