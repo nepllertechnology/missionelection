@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/static/data/party_details.json")
+  fetch("/api/party/")
     .then((res) => res.json())
     .then((parties) => {
       const grid = document.getElementById("partydetail-grid");

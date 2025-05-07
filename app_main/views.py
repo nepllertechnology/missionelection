@@ -278,3 +278,16 @@ def ward_info(request):
 #to get to the party details page
 def party_details(request):
     return render(request, 'party_details.html')
+
+def party_api(request):
+    parties = Party.objects.all().order_by('-votes')  # descending order of votes
+    data = [
+        {
+            "name": p.party_name,
+            "chairperson": p.chairmen,
+            "votes": p.votes,
+            "logo": p.logo.url
+        }
+        for p in parties
+    ]
+    return JsonResponse(data, safe=False)

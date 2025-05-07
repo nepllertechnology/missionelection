@@ -13,5 +13,7 @@ urlpatterns = [
     path('api/municipalities/', views.get_municipalities),
     path('search/', views.search_results, name='search_results'),
     path('api/unit_results/', views.unit_results, name='unit_results'),
-    path('api/ward_result/', views.ward_info, name='war_info')
+    path('api/ward_result/', views.ward_info, name='war_info'),
+    path('api/party/', views.party_api, name='party_api'),
+    
 ]
