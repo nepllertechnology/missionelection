@@ -1,0 +1,148 @@
+{
+  "results": [
+    {
+      "local_unit": "Kathmandu",
+      "type": "Metropolitan City",
+      "mayor": [
+        {
+          "name": "Balen Shah",
+          "party": "Independent",
+          "votes": 185000,
+          "photo": "/static/icons/default.png",
+          "color": "#FFD000"
+        },
+        {
+          "name": "Keshav Sthapit",
+          "party": "CPN-UML",
+          "votes": 120000,
+          "photo": "/static/icons/default.png",
+          "color": "#E60000"
+        }
+      ],
+      "deputy_mayor": [
+        {
+          "name": "Sunita Dangol",
+          "party": "CPN-UML",
+          "votes": 170000,
+          "photo": "/static/icons/default.png",
+          "color": "#E60000"
+        },
+        {
+          "name": "Ranju Darshana",
+          "party": "Bibeksheel Sajha",
+          "votes": 130000,
+          "photo": "/static/icons/default.png",
+          "color": "#4CAF50"
+        }
+      ]
+    },
+    {
+      "local_unit": "Lalitpur",
+      "type": "Sub-Metropolitan City",
+      "mayor": [
+        {
+          "name": "Chiri Babu Maharjan",
+          "party": "Nepali Congress",
+          "votes": 160000,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        },
+        {
+          "name": "Prem Lal Maharjan",
+          "party": "CPN-UML",
+          "votes": 95000,
+          "photo": "/static/icons/default.png",
+          "color": "#E60000"
+        }
+      ],
+      "deputy_mayor": [
+        {
+          "name": "Shobha Shrestha",
+          "party": "Nepali Congress",
+          "votes": 125000,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        },
+        {
+          "name": "Deepak Maharjan",
+          "party": "CPN (Unified Socialist)",
+          "votes": 80000,
+          "photo": "/static/icons/default.png",
+          "color": "#B71C1C"
+        }
+      ]
+    },
+    {
+      "local_unit": "Tarakeshwor",
+      "type": "Municipality",
+      "mayor": [
+        {
+          "name": "Ramesh Basnet",
+          "party": "CPN-UML",
+          "votes": 75000,
+          "photo": "/static/icons/default.png",
+          "color": "#E60000"
+        },
+        {
+          "name": "Anju Shrestha",
+          "party": "Nepali Congress",
+          "votes": 67000,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        }
+      ],
+      "deputy_mayor": [
+        {
+          "name": "Sunita Lama",
+          "party": "Rastriya Swatantra Party",
+          "votes": 69000,
+          "photo": "/static/icons/default.png",
+          "color": "#FFD700"
+        },
+        {
+          "name": "Rina Maharjan",
+          "party": "Nepali Congress",
+          "votes": 65000,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        }
+      ]
+    },
+    {
+      "local_unit": "Bethanchowk",
+      "type": "Rural Municipality",
+      "chairperson": [
+        {
+          "name": "Krishna Bahadur Ghising",
+          "party": "CPN-UML",
+          "votes": 12500,
+          "photo": "/static/icons/default.png",
+          "color": "#E60000"
+        },
+        {
+          "name": "Anita Tamang",
+          "party": "Nepali Congress",
+          "votes": 8800,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        }
+      ],
+      "vice_chairperson": [
+        {
+          "name": "Sita Maya Lama",
+          "party": "CPN (Unified Socialist)",
+          "votes": 11000,
+          "photo": "/static/icons/default.png",
+          "color": "#B71C1C"
+        },
+        {
+          "name": "Mani Kumari Shrestha",
+          "party": "Nepali Congress",
+          "votes": 7500,
+          "photo": "/static/icons/default.png",
+          "color": "#003893"
+        }
+      ]
+    }
+  ]
+}

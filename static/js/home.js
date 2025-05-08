@@ -10,7 +10,7 @@ var map = L.map("map", {
   keyboard: false,
   attributionControl: false,
 });
-map.setView([28.3949, 84.1240], 7.2);
+map.setView([28.3949, 84.124], 7.2);
 
 // Color palette for provinces
 var provinceColors = {
@@ -82,10 +82,14 @@ fetch("/static/geojson/nepal_states.geojson")
       });
   });
 
+  //to help Leaflet handle resizes better 
+window.addEventListener("resize", () => {
+  map.invalidateSize();
+});
 
 //for provincial results
-function loadProvinceResults() {
-  fetch('/pichart')
+function loadProvinceResults(jsonPath) {
+  fetch("/pichart")
     .then((res) => res.json())
     .then((provinces) => {
       const container = document.getElementById("province-container");
@@ -175,15 +179,13 @@ function createPieChart(id, labels, data, colors) {
   });
 }
 
-
-
 // js for dynamic mayor and deputy mayor
 
 document.addEventListener("DOMContentLoaded", function () {
   function setupPositionToggles(selector, targetContainerId, endpointBaseUrl) {
     const targetContainer = document.getElementById(targetContainerId);
 
-    document.querySelectorAll(selector).forEach(link => {
+    document.querySelectorAll(selector).forEach((link) => {
       link.addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -191,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Link clicked:", this);
 
         // Remove the active state from all links
-        document.querySelectorAll(selector).forEach(l => {
+        document.querySelectorAll(selector).forEach((l) => {
           l.classList.remove("active", "active-position"); // Remove previous active states
         });
 
@@ -201,11 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const position = this.getAttribute("data-type");
 
         fetch(`${endpointBaseUrl}?position=${position}`)
-          .then(response => response.text())
-          .then(html => {
+          .then((response) => response.text())
+          .then((html) => {
             targetContainer.innerHTML = html;
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error fetching data:", error);
           });
       });

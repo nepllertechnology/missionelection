@@ -1,0 +1,30 @@
+[
+  {
+  
+    "name": "Nepali Congress",
+    "chairperson": "Sher Bahadur Deuba",
+    "votes": 2705225,
+    "logo": "/static/icons/nc.png"
+  },
+  {
+    
+    "name": "CPN-UML",
+    "chairperson": "KP Sharma Oli",
+    "votes": 2655468,
+    "logo": "/static/icons/uml.png"
+  },
+  {
+    
+    "name": "Maoist Centre",
+    "chairperson": "Pushpa Kamal Dahal",
+    "votes": 1915645,
+    "logo": "/static/icons/maoist.png"
+  },
+  {
+    
+    "name": "Rastriya Swatantra Party",
+    "chairperson": "Rabi Lamichhane",
+    "votes": 1234567,
+    "logo": "/static/icons/jsp.png"
+  }
+]

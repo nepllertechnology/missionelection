@@ -5,50 +5,97 @@
 {% endblock %}
 
 {% block content %}
-<section>
+<div class="content-wrapper">
+
     {% if results %}
-    <h2>Search Results:</h2>
 
     {% if result_type == 'district' %}
         {% for district in results %}
-            <div class="district-card">
-                <h3>{{ district.district_name }}</h3>
-                <p>Province: {{ district.province.province_name }}</p>
-                <p>Total Population: {{ district.total_population }}</p>
-                <p>Male Population: {{ district.male_population }}</p>
-                <p>Female Population: {{ district.female_population }}</p>
-                <p>Local Units: {{ district.no_localunits }}</p>
-                <p>Metropolitan: {{ district.no_metropolitan }}</p>
-                <p>Municipalities: {{ district.no_municipalities }}</p>
-                <p>Village Councils: {{ district.no_villageCouncil }}</p>
+        <h3>{{ district.district_name }}</h3>
+        <div class="muni-section-flex">
+            <!-- Map Placeholder - can be styled in CSS -->
+            <div class="muni-map-placeholder">
+                <!-- You can embed map dynamically here later -->
             </div>
-        {% endfor %}
-    {% elif result_type == 'local_unit' %}
-        {% for unit in results %}
+        
             <div class="local-unit-card">
-                <h3>{{ unit.name }} {{ unit.type }}</h3>
-                <p>District: {{ unit.district.district_name }}</p>
-                <p>Number of Wards: {{ unit.no_wards }}</p>
-                <p>Election Centers: {{ unit.no_electionCenter }}</p>
-                <p>Total Population: {{ unit.total_population }}</p>
-                <p>Male Voters: {{ unit.no_maleVoters }}</p>
-                <p>Female Voters: {{ unit.no_femaleVoters }}</p>
-                <p>Other Voters: {{ unit.no_otherVoters }}</p>
-                <p>Total Eligible Voters: {{ unit.total_eligibleVoters }}</p>
+                <p><span class="label">Province:</span> <span class="value">{{ district.province.province_name }}</span></p>
+                <p><span class="label">Total Population:</span> <span class="value">{{ district.total_population }}</span></p>
+                <p><span class="label">Male Population:</span> <span class="value">{{ district.male_population }}</span></p>
+                <p><span class="label">Female Population:</span> <span class="value">{{ district.female_population }}</span></p>
+                <p><span class="label">Local Units:</span> <span class="value">{{ district.no_localunits }}</span></p>
+                <p><span class="label">Metropolitan:</span> <span class="value">{{ district.no_metropolitan }}</span></p>
+                <p><span class="label">Municipalities:</span> <span class="value">{{ district.no_municipalities }}</span></p>
+                <p><span class="label">Village Councils:</span> <span class="value">{{ district.no_villageCouncil }}</span></p>
             </div>
-            <form method="GET" id="ward-form-{{ unit.id }}">
-                <!-- Send the local unit ID -->
-                <input type="hidden" name="local_unit" value="{{ unit.name }}">
-                
-                <label for="ward-{{ unit.id }}">Select Ward:</label>
-                <select name="ward" id="ward-{{ unit.id }}" onchange="loadCandidates('{{ unit.id }}')" required>
-                    <option selected disabled>Choose Ward</option>
-                    {% for i in ""|center:unit.no_wards %}
-                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                    {% endfor %}
-                </select>
-            </form>
+        </div>
         {% endfor %}
+
+    {% elif result_type == 'local_unit' %}
+    <section>
+        <div class="mayoral-results-wrapper">
+            <div id="mayoral-results-2079" class="mayoral-cards-wrapper">
+                <!-- Dynamic content injected via JS -->
+            </div>
+            <div id="mayoral-summary-text" class="mayoral-results-summary mt-4"></div>
+    
+        </div>
+    </section>
+    <section id="ward-results-section">
+        <h3>Ward Election Results 2079</h3>
+        <div class="ward-select-row">
+            <div class="select-ward-group">
+                <label for="ward-select">Select Ward</label>
+                <select id="ward-select" class="form-select"></select>
+            </div>
+            <div id="total-wards" class="total-wards-text"></div>
+        </div>
+        <div id="ward-results-container">
+            <div class="ward-results-row">
+                <div class="ward-result-card" id="ward-president-card">
+                    <h5>Ward President</h5>
+                    <!-- JS will inject candidates here -->
+                </div>
+                <div class="ward-result-card" id="female-member-card">
+                    <h5>Female Member</h5>
+                                        <!-- JS will inject candidates here -->
+
+                </div>
+                <div class="ward-result-card" id="dalit-female-member-card">
+                    <h5>Dalit Female Member</h5>
+                                        <!-- JS will inject candidates here -->
+
+                </div>
+                <div class="ward-result-card" id="member-card">
+                    <h5>Member</h5>
+                                        <!-- JS will inject candidates here -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {% for unit in results %}
+        <h3>{{ unit.name }} {{ unit.type }}</h3>
+        <div class="muni-section-flex">
+            <!-- Placeholder for map (can be empty for now) -->
+            <div class="muni-map-placeholder">
+
+            </div>
+
+            <div class="local-unit-card">
+                <p><span class="label">District:</span> <span class="value">{{ unit.district.district_name }}</span></p>
+                <p><span class="label">Number of Wards:</span> <span class="value">{{ unit.no_wards }}</span></p>
+                <p><span class="label">Election Centers:</span> <span class="value">{{ unit.no_electionCenter }}</span></p>
+                <p><span class="label">Total Population:</span> <span class="value">{{ unit.total_population }}</span></p>
+                <p><span class="label">Male Voters:</span> <span class="value">{{ unit.no_maleVoters }}</span></p>
+                <p><span class="label">Female Voters:</span> <span class="value">{{ unit.no_femaleVoters }}</span></p>
+                <p><span class="label">Other Voters:</span> <span class="value">{{ unit.no_otherVoters }}</span></p>
+                <p><span class="label">Total Eligible Voters:</span> <span class="value">{{ unit.total_eligibleVoters }}</span></p>
+            </div>
+        </div>
+        {% endfor %}
+
     {% elif result_type == 'province' %}
         {% for province in results %}
             <div class="province-card">
@@ -57,11 +104,14 @@
             </div>
         {% endfor %}
     {% endif %}
- 
+
 {% endif %}
 <div id="candidate-results-{{ unit.id }}" class="candidate-results"></div>
 </section> 
+</div>
+
 {% block extra_script %}
 <script src="{% static 'js/search.js' %}"></script>
 {% endblock %} 
+
 {% endblock %}

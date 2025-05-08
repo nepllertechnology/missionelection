@@ -41,7 +41,9 @@ class Local_unit(models.Model):
 class Party(models.Model):
     party_name=models.CharField(max_length=100,primary_key=True)
     party_shortname=models.CharField(max_length=50)
+    chairmen=models.CharField(max_length=30, null=True, blank=True)
     logo=models.ImageField(upload_to='images/logo/')
+    votes=models.IntegerField()
     
     def __str__(self):
         return self.party_name
