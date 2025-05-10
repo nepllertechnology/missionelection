@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/all_candidate_details.css' %}">
+{% endblock %}
+
+{% block all_candidate_details %}
+<div class="content-wrapper">
+ <h2 class="candetail-title">उम्मेदवारहरू</h2>
+ <div id="candetail-container" class="candetail-grid">
+  <!-- Cards will be dynamically inserted here -->
+ </div>
+</div>
+{% endblock %}
+
+{% block all_candidate_script %}
+<script src="{% static 'js/all_candidate_details.js' %}"></script>
+{% endblock %}

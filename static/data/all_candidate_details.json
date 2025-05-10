@@ -1,0 +1,102 @@
+[
+  {
+    "constituency": "रूपन्देही - १",
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 1,
+        "name": "छबिलाल विश्वकर्मा",
+        "party": "नेपाली कांग्रेस",
+        "party_icon": "/static/icons/nc.png",
+        "photo": "/static/icons/default.png",
+        "votes": 28482,
+        "is_winner": true
+      },
+      {
+        "id": 2,
+        "name": "धनश्याम भुसाल",
+        "party": "राप्रपा",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 23335,
+        "is_winner": false
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही - २",
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 3,
+        "name": "विष्णुप्रसाद पौडेल",
+        "party": "नेकपा एमाले",
+        "party_icon": "/static/icons/uml.png",
+        "photo": "/static/icons/default.png",
+        "votes": 27484,
+        "is_winner": true
+      },
+      {
+        "id": 4,
+        "name": "गणेश पौडेल",
+        "party": "राष्ट्रिय स्वतन्त्र पार्टी",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 25652,
+        "is_winner": false
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही - १",
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 1,
+        "name": "छबिलाल विश्वकर्मा",
+        "party": "नेपाली कांग्रेस",
+        "party_icon": "/static/icons/nc.png",
+        "photo": "/static/icons/default.png",
+        "votes": 28482,
+        "is_winner": true
+      },
+      {
+        "id": 2,
+        "name": "धनश्याम भुसाल",
+        "party": "राप्रपा",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 23335,
+        "is_winner": false
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही - १",
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 1,
+        "name": "छबिलाल विश्वकर्मा",
+        "party": "नेपाली कांग्रेस",
+        "party_icon": "/static/icons/nc.png",
+        "photo": "/static/icons/default.png",
+        "votes": 28482,
+        "is_winner": true
+      },
+      {
+        "id": 2,
+        "name": "धनश्याम भुसाल",
+        "party": "राप्रपा",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 23335,
+        "is_winner": false
+      }
+    ]
+  }
+]

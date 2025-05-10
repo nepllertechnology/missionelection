@@ -291,3 +291,7 @@ def party_api(request):
         for p in parties
     ]
     return JsonResponse(data, safe=False)
+
+#to get to the all candidate details page
+def all_candidate_details(request):
+    return render(request, 'all_candidate_details.html')

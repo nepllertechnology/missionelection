@@ -1,0 +1,147 @@
+/* =============================
+   Title
+============================= */
+/* .candetail-wrapper {
+ max-width: 1140px;
+ margin: 24px auto;
+ padding: 2rem;
+ background-color: white;
+ border-radius: 12px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+} */
+
+.candetail-title {
+ font-size: 1.8rem;
+ font-weight: 700;
+ text-align: center;
+ margin-bottom: 32px;
+ color: #2c3e50;
+}
+
+/* =============================
+   Constituency Card
+============================= */
+.candetail-constituency-card {
+ background-color: #f9fbff;
+ border: 1px solid #cfd8dc;
+ border-radius: 10px;
+ padding: 1.5rem;
+ margin-bottom: 24px;
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.candetail-constituency-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 1rem;
+ font-weight: bold;
+ font-size: 1.2rem;
+ color: #1565c0;
+}
+
+/* =============================
+   Candidate Row
+============================= */
+.candetail-candidate {
+ display: flex;
+ align-items: center;
+ padding: 0.75rem;
+ margin-bottom: 10px;
+ background-color: white;
+ border-radius: 8px;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+ transition: transform 0.2s ease;
+}
+
+.candetail-candidate:hover {
+ transform: translateY(-2px);
+}
+
+/* Candidate Photo */
+.candetail-photo {
+ width: 48px;
+ height: 48px;
+ object-fit: cover;
+ border-radius: 50%;
+ margin-right: 12px;
+ border: 2px solid #ddd;
+}
+
+/* Candidate Info */
+.candetail-info {
+ flex: 1;
+}
+
+.candetail-name {
+ font-weight: 600;
+ font-size: 1rem;
+ color: #333;
+}
+
+.candetail-party {
+ font-size: 0.9rem;
+ color: #666;
+ display: flex;
+ align-items: center;
+ gap: 6px;
+}
+
+/* Party icon */
+.candetail-party-icon {
+ width: 18px;
+ height: 18px;
+ object-fit: contain;
+}
+
+/* Vote count */
+.candetail-votes {
+ font-weight: bold;
+ font-size: 1rem;
+ color: #2d3436;
+}
+
+/* Winner badge */
+.candetail-winner {
+ background-color: #ff6b6b;
+ color: white;
+ padding: 2px 8px;
+ font-size: 0.75rem;
+ border-radius: 4px;
+ font-weight: 600;
+ margin-left: 10px;
+}
+
+/* Full details button */
+.candetail-details-btn {
+ margin-top: 12px;
+ display: inline-block;
+ font-size: 0.85rem;
+ background-color: #e3f2fd;
+ color: #0d47a1;
+ padding: 6px 12px;
+ border-radius: 6px;
+ text-align: center;
+ font-weight: 600;
+ cursor: pointer;
+ border: none;
+}
+
+.candetail-details-btn:hover {
+ background-color: #bbdefb;
+}
+
+/* Wrap multiple constituency cards into a grid */
+.candetail-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 20px;
+}
+
+/* Fix size of each card */
+.candetail-constituency-card {
+ width: 100%;
+ max-width: 100%;
+ height: 100%;
+ box-sizing: border-box;
+}

@@ -1,0 +1,30 @@
+[
+ {
+  "id": 1,
+  "name": "छबिलाल विश्वकर्मा",
+  "photo": "/static/icons/default.png",
+  "party": "नेपाली कांग्रेस",
+  "party_icon": "/static/icons/nc.png",
+  "votes": 28482,
+  "constituency": "रूपन्देही - १",
+  "is_winner": true,
+  "education": "स्नातकोत्तर",
+  "age": 52,
+  "gender": "पुरुष",
+  "address": "बुटवल उपमहानगरपालिका, रूपन्देही"
+},
+{
+  "id": 2,
+  "name": "गणेश पौडेल",
+  "photo": "/static/icons/default.png",
+  "party": "राष्ट्रिय स्वतन्त्र पार्टी",
+  "party_icon": "/static/icons/other.png",
+  "votes": 25652,
+  "constituency": "रूपन्देही - २",
+  "is_winner": false,
+  "education": "स्नातक",
+  "age": 41,
+  "gender": "पुरुष",
+  "address": "सैनामैना नगरपालिका, रूपन्देही"
+}
+]

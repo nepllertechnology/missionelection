@@ -35,7 +35,7 @@
         <a href="{% url 'party_details' %}">पार्टी विवरण</a>
         <a href="#">घोसणा पत्र</a>
         <a href="#">जो चर्चामा छ</a>
-        <a href="#">सबै उमेद्वार</a>
+        <a href="{% url 'all_candidate_details' %}">सबै उमेद्वार</a>
         <a href="#">निर्वाचन समाचार</a>
         <a href="#">निर्वाचन सिक्षा</a>
     </div>
@@ -104,6 +104,11 @@
 {% block party_script %}
 {% endblock %}
 
+{% block all_candidate_details %}
+<!-- all candidate details page -->
+{% endblock %}
+{% block all_candidate_script %}
+{% endblock %}
   <script src="static\js\search.js"></script>
   <script>
     const hamburger = document.querySelector('.hamburger');
