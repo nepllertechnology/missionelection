@@ -27,11 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <img class="candetail-photo" src="${cand.photo}" alt="${cand.name}">
             <div class="candetail-info">
               <div class="candetail-name">${cand.name}
-                ${
-                  cand.is_winner
-                    ? '<span class="candetail-winner">विजयी</span>'
-                    : ""
-                }
+                
               </div>
               <div class="candetail-party">
                 <img class="candetail-party-icon" src="${
@@ -39,6 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }" alt="${cand.party}">
                 <span>${cand.party}</span>
               </div>
+               ${
+                 cand.is_winner
+                   ? '<span class="candetail-winner">विजयी</span>'
+                   : ""
+               }
             </div>
             <div class="candetail-votes">${cand.votes.toLocaleString()}</div>
           `;
