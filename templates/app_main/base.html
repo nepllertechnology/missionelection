@@ -92,6 +92,7 @@
 </form>
 </div>
 </div>
+
  {% block content %}
   <!-- Landing page -->
   {% endblock %}
@@ -109,6 +110,14 @@
 {% endblock %}
 {% block all_candidate_script %}
 {% endblock %}
+
+{% block candidate_profile %}
+<!-- specific candidate profile page -->
+{% endblock %}
+{% block candidate_profile_script %}
+{% endblock %}
+
+
   <script src="static\js\search.js"></script>
   <script>
     const hamburger = document.querySelector('.hamburger');

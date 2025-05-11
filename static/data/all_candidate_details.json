@@ -17,7 +17,7 @@
         "id": 2,
         "name": "धनश्याम भुसाल",
         "party": "राप्रपा",
-        "party_icon": "/static/icons/other.png",
+        "party_icon": "/static/icons/rsp.png",
         "photo": "/static/icons/default.png",
         "votes": 23335,
         "is_winner": false
@@ -42,7 +42,7 @@
         "id": 4,
         "name": "गणेश पौडेल",
         "party": "राष्ट्रिय स्वतन्त्र पार्टी",
-        "party_icon": "/static/icons/other.png",
+        "party_icon": "/static/icons/rsp.png",
         "photo": "/static/icons/default.png",
         "votes": 25652,
         "is_winner": false
@@ -50,51 +50,51 @@
     ]
   },
   {
-    "constituency": "रूपन्देही - १",
+    "constituency": "रूपन्देही - ३",
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [
       {
-        "id": 1,
-        "name": "छबिलाल विश्वकर्मा",
+        "id": 5,
+        "name": "बलकृष्ण खाँण",
         "party": "नेपाली कांग्रेस",
         "party_icon": "/static/icons/nc.png",
         "photo": "/static/icons/default.png",
-        "votes": 28482,
-        "is_winner": true
+        "votes": 34036,
+        "is_winner": false
       },
       {
-        "id": 2,
-        "name": "धनश्याम भुसाल",
-        "party": "राप्रपा",
+        "id": 6,
+        "name": "दीपक बोहरा",
+        "party": "राष्ट्रिय प्रजातन्त्र पार्टी",
         "party_icon": "/static/icons/other.png",
         "photo": "/static/icons/default.png",
-        "votes": 23335,
-        "is_winner": false
+        "votes": 36517,
+        "is_winner": true
       }
     ]
   },
   {
-    "constituency": "रूपन्देही - १",
+    "constituency": "रूपन्देही - ४",
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [
       {
-        "id": 1,
-        "name": "छबिलाल विश्वकर्मा",
-        "party": "नेपाली कांग्रेस",
-        "party_icon": "/static/icons/nc.png",
+        "id": 7,
+        "name": "सरोज कुमार यादव",
+        "party": "जनता समाजवादी पार्टी",
+        "party_icon": "/static/icons/jsp.png",
         "photo": "/static/icons/default.png",
-        "votes": 28482,
+        "votes": 29500,
         "is_winner": true
       },
       {
-        "id": 2,
-        "name": "धनश्याम भुसाल",
-        "party": "राप्रपा",
+        "id": 8,
+        "name": "रमेश चौधरी",
+        "party": "स्वतन्त्र",
         "party_icon": "/static/icons/other.png",
         "photo": "/static/icons/default.png",
-        "votes": 23335,
+        "votes": 26789,
         "is_winner": false
       }
     ]

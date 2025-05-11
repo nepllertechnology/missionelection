@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('party-details/', views.party_details, name='party_details'), 
     path('all-candidate-details/', views.all_candidate_details, name='all_candidate_details'), 
+     path('candidate-profile/', views.candidate_profile, name='candidate_profile'),
     path('api/provinces/', views.get_provinces),
     path('metro_get_top2_candidates/',views.metro_get_top2_candidates),
     path('submetro_get_top2_candidates/',views.submetro_get_top2_candidates),

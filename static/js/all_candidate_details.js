@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
           row.innerHTML = `
             <img class="candetail-photo" src="${cand.photo}" alt="${cand.name}">
             <div class="candetail-info">
-              <div class="candetail-name">${cand.name}
-                
+              <div class="candetail-name">
+              <a href="/candidate-profile/?id=${cand.id}" class="candetail-link">${cand.name}</a> 
               </div>
               <div class="candetail-party">
                 <img class="candetail-party-icon" src="${

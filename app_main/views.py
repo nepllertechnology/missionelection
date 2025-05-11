@@ -295,3 +295,8 @@ def party_api(request):
 #to get to the all candidate details page
 def all_candidate_details(request):
     return render(request, 'all_candidate_details.html')
+
+#to get to the specific candidate profile page
+def candidate_profile(request):
+    return render(request, 'candidate_profile.html')
+
