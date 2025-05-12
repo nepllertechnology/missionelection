@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Example</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #dfeffa, #ffffff);
+      font-family: "Segoe UI", sans-serif;
+      padding-top: 130px;
+      margin: 0;
+    }
+
+    .header-bar {
+      background: linear-gradient(90deg, #0d6efd, #1a73e8);
+      height: 80px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-bar {
+      background-color: #1565c0;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      min-height: 50px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0 10px;
+      line-height: 50px;
+      position: relative;
+    }
+
+    .nav-links a:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 12px;
+      height: 26px;
+      width: 1px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #1565c0;
+        position: absolute;
+        top: 50px;
+        left: 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-links a:not(:last-child)::after {
+        display: none;
+      }
+
+      body {
+        padding-top: 200px;
+      }
+    }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <div class="page-title">My Site</div>
+  </div>
+
+  <div class="navbar-bar">
+    <div class="nav-links">
+      <a href="#">गृह</a>
+      <a href="#">पार्टी विवरण</a>
+      <a href="#">घोसणा पत्र</a>
+      <a href="#">जो चर्चामा छ</a>
+      <a href="#">सबै उमेद्वार</a>
+      <a href="#">निर्वाचन समाचार</a>
+      <a href="#">निर्वाचन सिक्षा</a>
+    </div>
+    <div class="hamburger" onclick="toggleNavbar()">☰</div>
+  </div>
+
+  <div style="padding: 20px;">
+    <p>Content goes here...</p>
+  </div>
+
+  <script>
+    function toggleNavbar() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

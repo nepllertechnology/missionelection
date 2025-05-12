@@ -1,6 +1,7 @@
 [
   {
-    "constituency": "रूपन्देही - १",
+    "constituency": "रूपन्देही",
+    "ward":1,
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [
@@ -25,7 +26,8 @@
     ]
   },
   {
-    "constituency": "रूपन्देही - २",
+    "constituency": "रूपन्देही ",
+    "ward":2,
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [
@@ -50,7 +52,8 @@
     ]
   },
   {
-    "constituency": "रूपन्देही - ३",
+    "constituency": "रूपन्देही",
+    "ward":3,
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [
@@ -75,7 +78,8 @@
     ]
   },
   {
-    "constituency": "रूपन्देही - ४",
+    "constituency": "रूपन्देही ",
+    "ward":4,
     "district": "रूपन्देही",
     "province": "लुम्बिनी",
     "candidates": [

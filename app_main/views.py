@@ -260,7 +260,7 @@ def ward_info(request):
                     "name": candidate.name,
                     "party": candidate.party.party_name,
                     "votes": candidate.vote,
-                    "elected": candidate.vote == max_votes,
+                    "elected": candidate.Is_elected,
                     "symbol": candidate.party.party_shortname,  # assuming shortname is used as symbol here
                     "icon": candidate.party.logo.url if candidate.party.logo else "/static/icons/default.png"
                 }
@@ -296,7 +296,63 @@ def party_api(request):
 def all_candidate_details(request):
     return render(request, 'all_candidate_details.html')
 
+def candidate_all(request):
+    grouped_data = defaultdict(lambda: {
+        "constituency": "",
+        "ward": 0,
+        "district": "",
+        "province": "",
+        "candidates": []
+    })
+
+    candidates = Candidate.objects.select_related('party', 'local_unit').all()
+
+    for cand in candidates:
+        key = (cand.local_unit.name, cand.ward)
+        group = grouped_data[key]
+
+        # Fill in constituency info only once
+        group["constituency"] = cand.local_unit.name
+        group["ward"] = cand.ward
+        group["district"] = cand.local_unit.district.district_name
+        group["province"] = cand.local_unit.district.province.province_name
+
+        group["candidates"].append({
+            "id": cand.id,
+            "name": cand.name,
+            "party": cand.party.party_name,
+            "party_icon": cand.party.logo.url if cand.party.logo.url else "/static/icons/default.png",
+            "photo": cand.photo.url if cand.photo else "/static/icons/default.png",
+            "votes": cand.vote,
+            "is_winner": cand.Is_elected
+        })
+
+    # Convert defaultdict to list
+    response_data = list(grouped_data.values())
+    print(response_data)
+
+    return JsonResponse(response_data, safe=False, json_dumps_params={'ensure_ascii': False})
+ 
 #to get to the specific candidate profile page
 def candidate_profile(request):
     return render(request, 'candidate_profile.html')
 
+def candidate_api(request, id):
+    try:
+        cand = Candidate.objects.get(id=id)
+        return JsonResponse({
+            "id": cand.id,
+            "name": cand.name,
+            "photo": cand.photo.url if cand.photo else "",
+            "party": cand.party.party_name,
+            "party_icon": cand.party.logo.url if cand.party.logo else "",
+            "votes": cand.vote,
+            "age": cand.age,
+            "gender": cand.gender,
+            "address": cand.address,
+            "education": cand.education_level,
+            "is_winner": cand.Is_elected,
+            "constituency": cand.local_unit.name,
+        })
+    except Candidate.DoesNotExist:
+        return JsonResponse({"error": "Candidate not found."}, status=404)

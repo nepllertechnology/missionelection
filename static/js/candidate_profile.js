@@ -11,18 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("/static/data/candidate_profile.json") // JSON array of all candidates
-    .then((res) => res.json())
-    .then((candidates) => {
-      const candidate = candidates.find((c) => String(c.id) === candidateId);
-      if (!candidate) {
-        alert("Candidate not found.");
-        return;
+  fetch(`/api/candidate/${candidateId}/`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Candidate not found.");
       }
-
-      // Populate the HTML with the candidate data
-      document.querySelector(".candprofile-party-icon").src =
-        candidate.party_icon;
+      return res.json();
+    })
+    .then((candidate) => {
+      // Populate HTML with candidate data
+      document.querySelector(".candprofile-party-icon").src = candidate.party_icon;
       document.querySelector(".candprofile-party-icon").alt = candidate.party;
 
       document.querySelector(".candprofile-name").textContent = candidate.name;
@@ -36,12 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       if (candidate.is_winner) {
-        document
-          .querySelector(".candprofile-right")
-          .insertAdjacentHTML(
-            "afterbegin",
-            '<div class="candetail-winner">विजयी</div>'
-          );
+        document.querySelector(".candprofile-right").insertAdjacentHTML(
+          "afterbegin",
+          '<div class="candetail-winner">विजयी</div>'
+        );
       }
 
       document.querySelector(".candprofile-meta").innerHTML = `
@@ -53,5 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => {
       console.error("Error loading candidate profile:", err);
+      alert("Error loading candidate profile.");
     });
 });

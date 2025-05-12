@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/static/data/all_candidate_details.json")
+  fetch("/api/candidate_all/")
     .then((res) => res.json())
     .then((data) => {
       const container = document.getElementById("candetail-container");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = document.createElement("div");
         header.className = "candetail-constituency-header";
         header.innerHTML = `
-          <span>${group.constituency}</span>
+          <span>${group.constituency}-${group.ward}</span>
           <span>${group.district}</span>
         `;
         card.appendChild(header);
