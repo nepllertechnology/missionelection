@@ -1,0 +1,98 @@
+/* =============================
+   Wrapper and Card Container
+============================= */
+/* .candprofile-wrapper {
+ max-width: 900px;
+ margin: 32px auto;
+ padding: 1rem;
+} */
+
+.candprofile-card {
+ background-color: #ffffff;
+ border-radius: 12px;
+ padding: 2rem;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ display: flex;
+ flex-direction: column;
+ gap: 24px;
+}
+
+/* =============================
+   Header Row: Icon + Name
+============================= */
+.candprofile-header {
+ display: flex;
+ align-items: center;
+ gap: 12px;
+}
+
+.candprofile-party-icon {
+ width: 32px;
+ height: 32px;
+ object-fit: contain;
+}
+
+.candprofile-name {
+ font-size: 1.5rem;
+ font-weight: 700;
+ color: #1565c0;
+ margin: 0;
+}
+
+/* =============================
+   Main Section: Two-Column Layout
+============================= */
+.candprofile-main {
+ display: flex;
+ gap: 2rem;
+ flex-wrap: wrap;
+}
+
+/* Left column */
+.candprofile-left {
+ flex: 1;
+ min-width: 220px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
+}
+
+.candprofile-photo {
+ width: 120px;
+ height: 120px;
+ border-radius: 50%;
+ object-fit: cover;
+ border: 2px solid #ccc;
+ margin-bottom: 12px;
+}
+
+.candprofile-personal p {
+ font-size: 0.95rem;
+ color: #444;
+ margin: 4px 0;
+}
+
+/* Right column */
+.candprofile-right {
+ flex: 2;
+ min-width: 260px;
+}
+
+.candprofile-meta p {
+ font-size: 1rem;
+ color: #333;
+ margin: 8px 0;
+}
+
+/* Reuse existing winner badge style */
+.candetail-winner {
+ background-color: #ff6b6b;
+ color: white;
+ display: inline-block;
+ padding: 4px 10px;
+ font-size: 0.85rem;
+ font-weight: 600;
+ border-radius: 6px;
+ margin-bottom: 12px;
+}

@@ -16,16 +16,16 @@
         <!-- Local Elections 2079 Section -->
         <div class="metrobox">
             <div class="big">
-                <h3>Local Election 2079</h3>
+                <h3>स्थानीय तह निर्वाचन २०७९</h3>
                 <div class="card-container">
                     <!-- Mayor / Chairperson Card -->
                     <div class="card">
-                      <h2>Mayor / Chairperson</h2>
+                      <h2>प्रमुख / अध्यक्ष</h2>
                       <hr>
                       <div class="table-header">
-                        <span>Party</span>
-                        <span>Win</span>
-                        <span>Lead</span>
+                        <span>पार्टीको नाम</span>
+                        <span>विजयी</span>
+                        <span>अगाडि</span>
                       </div>
                       {% for party, data in mayor_party_count.items %}
                       <div class="party-row">
@@ -43,12 +43,12 @@
                 
                     <!-- Deputy Mayor / Vice-Chairperson Card -->
                     <div class="card">
-                      <h2>Deputy Mayor / Vice-Chairperson</h2>
+                      <h2>उपप्रमुख / उपाध्यक्ष</h2>
                       <hr>
                       <div class="table-header">
-                        <span>Party</span>
-                        <span>Win</span>
-                        <span>Lead</span>
+                        <span>पार्टीको नाम</span>
+                        <span>विजयी</span>
+                        <span>अगाडि</span>
                       </div>
                       {% for party, data in Dmayor_party_count.items %}
                       <div class="party-row">
@@ -72,10 +72,10 @@
         <div class="metrobox">
             <!-- Metropolitan -->
             <div class="big-B">
-                <div><h3>Metropolitan</h3></div>
+                <div><h3>महानगरपालिका</h3></div>
                 <div class="small-S">
-                    <a href="#" class="toggle-position active active-position" data-type="mayor">Mayor</a>
-                    <a href="#" class="toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
+                    <a href="#" class="toggle-position active active-position" data-type="mayor">प्रमुख</a>
+                    <a href="#" class="toggle-position" data-type="dmayor"><p>उपप्रमुख</p></a>
                 </div>
             </div>
         
@@ -89,10 +89,10 @@
 
             <!-- Submetropolitan -->
             <div class="big-B">
-                <h3>Submetropolitan</h3>
+                <h3>उपमहानगरपालिका</h3>
                 <div class="small-S">
-                    <a href="#" class="sub-toggle-position active active-position" data-type="mayor">Mayor</a>
-                    <a href="#" class="sub-toggle-position" data-type="dmayor"><p>Deputy Mayor</p></a>
+                    <a href="#" class="sub-toggle-position active active-position" data-type="mayor">प्रमुख</a>
+                    <a href="#" class="sub-toggle-position" data-type="dmayor"><p>उपप्रमुख</p></a>
                 </div>
             </div>
         
@@ -106,7 +106,7 @@
         <!-- Provincial Results Section -->
         <div class="chartbox">
     <div class="big">
-      <h3>Province Results</h3>
+      <h3>प्रदेशअनुसार परिणाम</h3>
     </div>
     <div class="province-container" id="province-container">
       <!-- Cards will be injected dynamically by JS -->

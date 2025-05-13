@@ -1,0 +1,106 @@
+[
+  {
+    "constituency": "रूपन्देही",
+    "ward":1,
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 1,
+        "name": "छबिलाल विश्वकर्मा",
+        "party": "नेपाली कांग्रेस",
+        "party_icon": "/static/icons/nc.png",
+        "photo": "/static/icons/default.png",
+        "votes": 28482,
+        "is_winner": true
+      },
+      {
+        "id": 2,
+        "name": "धनश्याम भुसाल",
+        "party": "राप्रपा",
+        "party_icon": "/static/icons/rsp.png",
+        "photo": "/static/icons/default.png",
+        "votes": 23335,
+        "is_winner": false
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही ",
+    "ward":2,
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 3,
+        "name": "विष्णुप्रसाद पौडेल",
+        "party": "नेकपा एमाले",
+        "party_icon": "/static/icons/uml.png",
+        "photo": "/static/icons/default.png",
+        "votes": 27484,
+        "is_winner": true
+      },
+      {
+        "id": 4,
+        "name": "गणेश पौडेल",
+        "party": "राष्ट्रिय स्वतन्त्र पार्टी",
+        "party_icon": "/static/icons/rsp.png",
+        "photo": "/static/icons/default.png",
+        "votes": 25652,
+        "is_winner": false
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही",
+    "ward":3,
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 5,
+        "name": "बलकृष्ण खाँण",
+        "party": "नेपाली कांग्रेस",
+        "party_icon": "/static/icons/nc.png",
+        "photo": "/static/icons/default.png",
+        "votes": 34036,
+        "is_winner": false
+      },
+      {
+        "id": 6,
+        "name": "दीपक बोहरा",
+        "party": "राष्ट्रिय प्रजातन्त्र पार्टी",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 36517,
+        "is_winner": true
+      }
+    ]
+  },
+  {
+    "constituency": "रूपन्देही ",
+    "ward":4,
+    "district": "रूपन्देही",
+    "province": "लुम्बिनी",
+    "candidates": [
+      {
+        "id": 7,
+        "name": "सरोज कुमार यादव",
+        "party": "जनता समाजवादी पार्टी",
+        "party_icon": "/static/icons/jsp.png",
+        "photo": "/static/icons/default.png",
+        "votes": 29500,
+        "is_winner": true
+      },
+      {
+        "id": 8,
+        "name": "रमेश चौधरी",
+        "party": "स्वतन्त्र",
+        "party_icon": "/static/icons/other.png",
+        "photo": "/static/icons/default.png",
+        "votes": 26789,
+        "is_winner": false
+      }
+    ]
+  }
+]

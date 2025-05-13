@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
+{% endblock %}
+
+{% block candidate_profile %}
+<div class="page-wrapper">
+<div class="content-wrapper">
+ <div class="candprofile-card">
+
+  <!-- Top Header: Party Icon + Name -->
+  <div class="candprofile-header">
+   <img src="" alt="party icon" class="candprofile-party-icon">
+   <h2 class="candprofile-name">Loading...</h2>
+  </div>
+
+  <!-- Two-Column Main Section -->
+  <div class="candprofile-main">
+
+   <!-- Left Column: Image + Personal Details -->
+   <div class="candprofile-left">
+    <img src="" alt="candidate photo" class="candprofile-photo">
+    <div class="candprofile-personal">
+     <!-- Filled by JS -->
+    </div>
+   </div>
+
+   <!-- Right Column: Result + Meta Info -->
+   <div class="candprofile-right">
+    <!-- Winner badge injected here -->
+    <div class="candprofile-meta">
+     <!-- Filled by JS -->
+    </div>
+   </div>
+
+  </div>
+ </div>
+</div>
+</div>
+{% endblock %}
+
+{% block candidate_profile_script %}
+<script src="{% static 'js/candidate_profile.js' %}"></script>
+{% endblock %}
+{% block extra_script %}
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

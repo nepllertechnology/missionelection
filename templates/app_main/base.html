@@ -35,9 +35,9 @@
         <a href="{% url 'party_details' %}">पार्टी विवरण</a>
         <a href="#">घोसणा पत्र</a>
         <a href="#">जो चर्चामा छ</a>
-        <a href="#">सबै उमेद्वार</a>
+        <a href="{% url 'all_candidate_details' %}">सबै उमेद्वार</a>
         <a href="#">निर्वाचन समाचार</a>
-        <a href="#">निर्वाचन सिक्षा</a>
+        <a href="#">निर्वाचन शिक्षा</a>
     </div>
 
     <!-- Hamburger icon for mobile -->
@@ -92,6 +92,7 @@
 </form>
 </div>
 </div>
+
  {% block content %}
   <!-- Landing page -->
   {% endblock %}
@@ -103,6 +104,19 @@
 {% endblock %}
 {% block party_script %}
 {% endblock %}
+
+{% block all_candidate_details %}
+<!-- all candidate details page -->
+{% endblock %}
+{% block all_candidate_script %}
+{% endblock %}
+
+{% block candidate_profile %}
+<!-- specific candidate profile page -->
+{% endblock %}
+{% block candidate_profile_script %}
+{% endblock %}
+
 
   <script src="static\js\search.js"></script>
   <script>
