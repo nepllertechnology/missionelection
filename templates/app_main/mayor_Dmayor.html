@@ -6,7 +6,8 @@
     <div class="candidate {% if forloop.first %}leading{% endif %}">
         <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" class="candidate-img">
         <div class="candidate-info">
-            <strong>{{ candidate.name }}</strong>
+            <!-- <strong>{{ candidate.name }}</strong> -->
+            <strong><a href="/candidate-profile/?id={{candidate.id}}" class="candetail-link">{{candidate.name}}</a> </strong>
             <p>{{ candidate.party}}</p>
             <div class="progress-bar">
                 <div class="progress {% if forloop.first %}blue{% else %}green{% endif %}" style="width:{% widthratio candidate.vote candidate.local_unit__total_eligibleVoters 100 %}%;">
