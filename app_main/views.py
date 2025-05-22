@@ -299,6 +299,10 @@ def all_candidate_details(request):
 
 def candidate_all(request):
     response_data = cache.get('all_candidates')
+    if response_data:
+        print("[CACHE] Using cached data.")
+    else:
+        print("[CACHE] Cache miss. Fetching fresh data...")
 
     if not response_data:
         grouped_data = defaultdict(lambda: {
