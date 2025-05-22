@@ -7,6 +7,7 @@ from django.db.models import Max
 from .models import *
 from collections import defaultdict
 from django.shortcuts import redirect
+from django.core.cache import cache
 
 
 PARTY_COLORS = {
@@ -297,39 +298,42 @@ def all_candidate_details(request):
     return render(request, 'all_candidate_details.html')
 
 def candidate_all(request):
-    grouped_data = defaultdict(lambda: {
-        "constituency": "",
-        "ward": 0,
-        "district": "",
-        "province": "",
-        "candidates": []
-    })
+    response_data = cache.get('all_candidates')
 
-    candidates = Candidate.objects.select_related('party', 'local_unit').all()
-
-    for cand in candidates:
-        key = (cand.local_unit.name, cand.ward)
-        group = grouped_data[key]
-
-        # Fill in constituency info only once
-        group["constituency"] = cand.local_unit.name
-        group["ward"] = cand.ward
-        group["district"] = cand.local_unit.district.district_name
-        group["province"] = cand.local_unit.district.province.province_name
-
-        group["candidates"].append({
-            "id": cand.id,
-            "name": cand.name,
-            "party": cand.party.party_name,
-            "party_icon": cand.party.logo.url if cand.party.logo.url else "/static/icons/default.png",
-            "photo": cand.photo.url if cand.photo else "/static/icons/default.png",
-            "votes": cand.vote,
-            "is_winner": cand.Is_elected
+    if not response_data:
+        grouped_data = defaultdict(lambda: {
+            "constituency": "",
+            "ward": 0,
+            "district": "",
+            "province": "",
+            "candidates": []
         })
 
-    # Convert defaultdict to list
-    response_data = list(grouped_data.values())
-    print(response_data)
+        candidates = Candidate.objects.select_related(
+            'party', 'local_unit__district__province'
+        ).all()
+
+        for cand in candidates:
+            key = (cand.local_unit.name, cand.ward)
+            group = grouped_data[key]
+
+            group["constituency"] = cand.local_unit.name
+            group["ward"] = cand.ward
+            group["district"] = cand.local_unit.district.district_name
+            group["province"] = cand.local_unit.district.province.province_name
+
+            group["candidates"].append({
+                "id": cand.id,
+                "name": cand.name,
+                "party": cand.party.party_name,
+                "party_icon": cand.party.logo.url if cand.party.logo else "/static/icons/default.png",
+                "photo": cand.photo.url if cand.photo else "/static/icons/default.png",
+                "votes": cand.vote,
+                "is_winner": cand.Is_elected
+            })
+
+        response_data = list(grouped_data.values())
+        cache.set('all_candidates', response_data, timeout=60 * 5)  # cache for 5 minutes
 
     return JsonResponse(response_data, safe=False, json_dumps_params={'ensure_ascii': False})
  
