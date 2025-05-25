@@ -461,6 +461,17 @@ button[type="submit"]:hover {
     border: 1px solid #ccc;
   }
 
+.info-box {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  font-size: 14px;
+}
+
 
 /* =============================
    Summary Cards

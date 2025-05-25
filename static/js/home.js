@@ -23,19 +23,19 @@ var provinceColors = {
   7: "#ff99cc",
 };
 
-let districtElectionData = {};  // Empty object to fill later
+let districtElectionData = {}; // Empty object to fill later
 
-fetch("/static/data/district_result.json")  // Load JSON from static
-  .then(response => response.json())
-  .then(data => {
-    districtElectionData = data;
+fetch("/static/data/district_result.json")
+  .then((response) => response.json())
+  .then((data) => {
+    Object.keys(data).forEach((key) => {
+      districtElectionData[key.toLowerCase()] = data[key];
+    });
   });
-
 
 //  Create a floating info box
 const infoBox = L.DomUtil.create("div", "district-info-box");
 document.body.appendChild(infoBox);
-
 
 // Load Provinces First
 fetch("/static/geojson/nepal_states.geojson")
@@ -70,6 +70,7 @@ fetch("/static/geojson/nepal_states.geojson")
             fillOpacity: 0, // Transparent so province color is visible
           },
           onEachFeature: function (feature, layer) {
+            console.log("Loaded district:", feature.properties.DIST_EN);
             layer.bindTooltip(feature.properties.DIST_EN, {
               permanent: true,
               direction: "center",
@@ -77,51 +78,58 @@ fetch("/static/geojson/nepal_states.geojson")
             });
 
             // Interactivity
+            // Interactivity
             layer.on({
               mouseover: function (e) {
                 const districtName = feature.properties.DIST_EN;
-                const data = districtElectionData[districtName];
+                const data = districtElectionData[districtName.toLowerCase()];
+                const infoBox = document.getElementById("infoBox");
 
                 if (data) {
                   const htmlContent = `
-                    <strong>${districtName}</strong>
-                    <table>
-                      <thead>
-                        <tr><th>Mayor / Chairperson</th><th>Win / Lead</th></tr>
-                      </thead>
-                      <tbody>
-                        ${Object.entries(data).map(([party, result]) => `
-                          <tr>
-                            <td>
-                              <img src="/static/icons/${party.toLowerCase().replace(/\s+/g, "-")}.png" class="party-icon" />
-                              ${party}
-                            </td>
-                            <td>${result.win} / ${result.lead}</td>
-                          </tr>
-                        `).join("")}
-                      </tbody>
-                    </table>
-                  `;
+        <strong>${districtName}</strong>
+        <table>
+          <thead>
+            <tr><th>Mayor / Chairperson</th><th>Win / Lead</th></tr>
+          </thead>
+          <tbody>
+            ${Object.entries(data)
+              .map(
+                ([party, result]) => `
+                  <tr>
+                    <td>
+                      <img src="/static/icons/${party
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}.png"
+                      class="party-icon"
+                      onerror="this.onerror=null; this.src='/static/icons/default.png';" />
+                      ${party}
+                    </td>
+                    <td>${result.win} / ${result.lead}</td>
+                  </tr>
+                `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      `;
                   infoBox.innerHTML = htmlContent;
                   infoBox.style.display = "block";
+                } else {
+                  infoBox.innerHTML = "";
+                  infoBox.style.display = "none";
                 }
+              },
 
-                e.target.setStyle({
-                  weight: 2,
-                  color: "#FF5733",
-                  fillOpacity: 0.1,
-                });
-              },
               mousemove: function (e) {
+                const infoBox = document.getElementById("infoBox");
                 infoBox.style.left = e.originalEvent.pageX + 15 + "px";
-                infoBox.style.top = e.originalEvent.pageY - 10 + "px";
+                infoBox.style.top = e.originalEvent.pageY + 15 + "px";
               },
-              mouseout: function (e) {
-                districtLayer.resetStyle(e.target);
+
+              mouseout: function () {
+                const infoBox = document.getElementById("infoBox");
                 infoBox.style.display = "none";
-              },
-              click: function (e) {
-                alert("District: " + feature.properties.DIST_EN);
               },
             });
           },
@@ -129,13 +137,13 @@ fetch("/static/geojson/nepal_states.geojson")
       });
   });
 
-  //to help Leaflet handle resizes better 
+//to help Leaflet handle resizes better
 window.addEventListener("resize", () => {
   map.invalidateSize();
 });
 
 ////////////////////////////////////////
-// for minimap 
+// for minimap
 ///////////////////////////////////////
 
 // This function generates a color based on the hash of the name
@@ -148,10 +156,9 @@ function getRandomColorFromName(name) {
   return `hsl(${hue}, 60%, 70%)`; // pastel-like HSL colors
 }
 
-
 // Create the municipality map for one district (Bhaktapur)
 var muniMap = L.map("muni-map", {
-  center: [27.67, 85.43],       // Approx center of Bhaktapur
+  center: [27.67, 85.43], // Approx center of Bhaktapur
   zoom: 12,
   zoomControl: false,
   dragging: false,
@@ -159,15 +166,15 @@ var muniMap = L.map("muni-map", {
   doubleClickZoom: false,
   boxZoom: false,
   keyboard: false,
-  attributionControl: false
+  attributionControl: false,
 });
 
 // Load municipalities GeoJSON and filter for Kathmandu district
 fetch("/static/geojson/nepal_municipalities.geojson")
-  .then(response => response.json())
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     const kathmanduFeatures = data.features.filter(
-      f => f.properties.DISTRICT === "Kathmandu"
+      (f) => f.properties.DISTRICT === "Kathmandu"
     );
 
     const muniLayer = L.geoJson(kathmanduFeatures, {
@@ -201,14 +208,11 @@ fetch("/static/geojson/nepal_municipalities.geojson")
             alert("You clicked on: " + feature.properties.NAME);
           },
         });
-      }
+      },
     }).addTo(muniMap);
     // Auto-zoom to the Kathmandu municipalities
     muniMap.fitBounds(muniLayer.getBounds());
   });
-
-
-
 
 //for provincial results
 function loadProvinceResults(jsonPath) {
@@ -216,6 +220,10 @@ function loadProvinceResults(jsonPath) {
     .then((res) => res.json())
     .then((provinces) => {
       const container = document.getElementById("province-container");
+      if (!container) {
+        console.error("Province container not found!");
+        return;
+      }
       container.innerHTML = "";
 
       provinces.forEach(({ province, chartId, results }) => {
@@ -307,7 +315,10 @@ function createPieChart(id, labels, data, colors) {
 document.addEventListener("DOMContentLoaded", function () {
   function setupPositionToggles(selector, targetContainerId, endpointBaseUrl) {
     const targetContainer = document.getElementById(targetContainerId);
-
+    if (!targetContainer) {
+      console.error(`Target container ${targetContainerId} not found!`);
+      return;
+    }
     document.querySelectorAll(selector).forEach((link) => {
       link.addEventListener("click", function (e) {
         e.preventDefault();

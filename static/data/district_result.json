@@ -7,7 +7,7 @@
       "CPN-UML": { "win": 3, "lead": 1 },
       "Nepali Congress": { "win": 2, "lead": 0 }
     },
-    "Kathmandu": {
+    "kathmandu": {
       "CPN-UML": { "win": 3, "lead": 1 },
       "Nepali Congress": { "win": 2, "lead": 0 }
     }
@@ -17,6 +17,47 @@
       "Nepali Congress": { "win": 2, "lead": 0 }
     },
     "Dang": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    }
+    ,
+    "Makwanpur": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Bhaktapur": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Sindhupalchowk": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Kavre": {
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Humla":{
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Mugu":{
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Jumla":{
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Darchula":{
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    },
+    "Doti":{
+      "CPN-UML": { "win": 3, "lead": 1 },
+      "Nepali Congress": { "win": 2, "lead": 0 }
+    }, 
+    "Kanchanpur":{
       "CPN-UML": { "win": 3, "lead": 1 },
       "Nepali Congress": { "win": 2, "lead": 0 }
     }
