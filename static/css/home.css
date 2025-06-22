@@ -476,8 +476,8 @@ button[type="submit"]:hover {
   }
   
   .party-row img {
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     border-radius: 50%;
     border: 1px solid #ccc;
