@@ -118,7 +118,8 @@
 {% endblock %}
 
 
-  <script src="static\js\search.js"></script>
+  <script src="{% static 'js/search.js' %}"></script>
+
   <script>
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');

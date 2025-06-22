@@ -145,8 +145,7 @@ def search_results(request):
 
     context = {
         'results': results,
-        'result_type': result_type,  
-        'provinces': provinces,
+        'result_type': result_type,
         'districts': districts,
         'municipalities': municipalities,
     }
