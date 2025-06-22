@@ -3,118 +3,124 @@
 
 {% block content %}
 <div class="page-wrapper">
-    <div class="content-wrapper">
-      <h3>निर्वाचन विवरण</h3>
-        <!-- Map Section -->
-        <div class="mapbox">
-            <div id="map"></div>
-          <a href="{% url 'home2' %}">पार्टीगत विवरण</a>
-        </div>
-
-<hr class="section-divider">
-
-        <!-- Layout Section -->
-
-        <!-- Local Elections 2079 Section -->
-        <div class="metrobox">
-            <div class="big">
-                <h3>स्थानीय तह निर्वाचन २०७९</h3>
-                <div class="card-container">
-                    <!-- Mayor / Chairperson Card -->
-                    <div class="card">
-                      <h2>प्रमुख / अध्यक्ष</h2>
-                      <hr>
-                      <div class="table-header">
-                        <span>पार्टीको नाम</span>
-                        <span>विजयी</span>
-                        <span>अगाडि</span>
-                      </div>
-                      {% for party, data in mayor_party_count.items %}
-                      <div class="party-row">
-                        <img src="{{data.logo}}" alt="party">
-                        <div class="party-info">
-                          <span>{{party}}</span>
-                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
-                        </div>
-                        <span>{{data.count}}</span>
-                        <span>0</span>
-                      </div>
-                      {% endfor %}
-                      <!-- Add other parties the same way -->
-                    </div>
-                
-                    <!-- Deputy Mayor / Vice-Chairperson Card -->
-                    <div class="card">
-                      <h2>उपप्रमुख / उपाध्यक्ष</h2>
-                      <hr>
-                      <div class="table-header">
-                        <span>पार्टीको नाम</span>
-                        <span>विजयी</span>
-                        <span>अगाडि</span>
-                      </div>
-                      {% for party, data in Dmayor_party_count.items %}
-                      <div class="party-row">
-                        <img src="{{data.logo}}" alt="NC">
-                        <div class="party-info">
-                          <span>{{party}}</span>
-                          <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
-                        </div>
-                        <span>{{data.count}}</span>
-                        <span>0</span>
-                      </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-            </div>
-        </div>
-
-<hr class="section-divider">
-
-        <!-- Metro/Sub Metro Section -->
-        <div class="metrobox">
-            <!-- Metropolitan -->
-            <div class="big-B">
-                <div><h3>महानगरपालिका</h3></div>
-                <div class="small-S">
-                    <a href="#" class="toggle-position active active-position" data-type="mayor">प्रमुख</a>
-                    <a href="#" class="toggle-position" data-type="dmayor"><p>उपप्रमुख</p></a>
-                </div>
-            </div>
-        
-            <div class="flexbox" id="metro-flexbox">
-                {% include 'mayor_Dmayor.html' with data=top2_metro_mayor %}
-            </div>
-
-
-            <hr class="section-divider">
-
-
-            <!-- Submetropolitan -->
-            <div class="big-B">
-                <h3>उपमहानगरपालिका</h3>
-                <div class="small-S">
-                    <a href="#" class="sub-toggle-position active active-position" data-type="mayor">प्रमुख</a>
-                    <a href="#" class="sub-toggle-position" data-type="dmayor"><p>उपप्रमुख</p></a>
-                </div>
-            </div>
-        
-            <div class="flexbox" id="submetro-flexbox">
-                {% include 'mayor_Dmayor.html' with data=top2_submetro_mayor %}
-            </div>
-        </div>
-        
-<hr class="section-divider">
-
-        <!-- Provincial Results Section -->
-        <div class="chartbox">
-    <div class="big">
-      <h3>प्रदेशअनुसार परिणाम</h3>
+  <div class="content-wrapper">
+    <h3>निर्वाचन विवरण</h3>
+    <!-- Map Section -->
+    <div class="mapbox">
+      <div id="map"></div>
+      <!-- <a href="{% url 'home2' %}">पार्टीगत विवरण</a> -->
     </div>
-    <div class="province-container" id="province-container">
-      <!-- Cards will be injected dynamically by JS -->
-    </div>
+
+    <hr class="section-divider">
+
+    <!-- Layout Section -->
+
+    <!-- Local Elections 2079 Section -->
+    <div class="metrobox">
+      <div class="big">
+        <h3>स्थानीय तह निर्वाचन २०७९</h3>
+        <div class="card-container">
+          <!-- Mayor / Chairperson Card -->
+          <div class="card">
+            <h2>प्रमुख / अध्यक्ष</h2>
+            <hr>
+            <div class="table-header">
+              <span>पार्टीको नाम</span>
+              <span>विजयी</span>
+              <span>अगाडि</span>
+            </div>
+            {% for party, data in mayor_party_count.items %}
+            <div class="party-row">
+              <img src="{{data.logo}}" alt="party">
+              <div class="party-info">
+                <span>{{party}}</span>
+                <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
+              </div>
+              <span>{{data.count}}</span>
+              <span>0</span>
+            </div>
+            {% endfor %}
+            <!-- Add other parties the same way -->
+          </div>
+
+          <!-- Deputy Mayor / Vice-Chairperson Card -->
+          <div class="card">
+            <h2>उपप्रमुख / उपाध्यक्ष</h2>
+            <hr>
+            <div class="table-header">
+              <span>पार्टीको नाम</span>
+              <span>विजयी</span>
+              <span>अगाडि</span>
+            </div>
+            {% for party, data in Dmayor_party_count.items %}
+            <div class="party-row">
+              <img src="{{data.logo}}" alt="NC">
+              <div class="party-info">
+                <span>{{party}}</span>
+                <div class="bar green" style="width:{% widthratio data.count total_units_count 100 %}%;"></div>
+              </div>
+              <span>{{data.count}}</span>
+              <span>0</span>
+            </div>
+            {% endfor %}
+          </div>
         </div>
+      </div>
     </div>
+
+    <hr class="section-divider">
+
+    <!-- Metro/Sub Metro Section -->
+    <div class="metrobox">
+      <!-- Metropolitan -->
+      <div class="big-B">
+        <div>
+          <h3>महानगरपालिका</h3>
+        </div>
+        <div class="small-S">
+          <a href="#" class="toggle-position active active-position" data-type="mayor">प्रमुख</a>
+          <a href="#" class="toggle-position" data-type="dmayor">
+            <p>उपप्रमुख</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="flexbox" id="metro-flexbox">
+        {% include 'mayor_Dmayor.html' with data=top2_metro_mayor %}
+      </div>
+
+
+      <hr class="section-divider">
+
+
+      <!-- Submetropolitan -->
+      <div class="big-B">
+        <h3>उपमहानगरपालिका</h3>
+        <div class="small-S">
+          <a href="#" class="sub-toggle-position active active-position" data-type="mayor">प्रमुख</a>
+          <a href="#" class="sub-toggle-position" data-type="dmayor">
+            <p>उपप्रमुख</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="flexbox" id="submetro-flexbox">
+        {% include 'mayor_Dmayor.html' with data=top2_submetro_mayor %}
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Provincial Results Section -->
+    <div class="chartbox">
+      <div class="big">
+        <h3>प्रदेशअनुसार परिणाम</h3>
+      </div>
+      <div class="province-container" id="province-container">
+        <!-- Cards will be injected dynamically by JS -->
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -124,13 +130,11 @@
 <!--  custom JS -->
 <script src="{% static 'js/home.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
 <!-- bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-    crossorigin="anonymous"></script>
+  integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 
 <!-- Chart.js JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
