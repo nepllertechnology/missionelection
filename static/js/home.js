@@ -228,3 +228,76 @@ document.addEventListener("DOMContentLoaded", function () {
     "/submetro_get_top2_candidates/"
   );
 });
+
+////////////////////////////////////////
+// for minimap 
+///////////////////////////////////////
+
+// This function generates a color based on the hash of the name
+function getRandomColorFromName(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = hash % 360;
+  return `hsl(${hue}, 60%, 70%)`; // pastel-like HSL colors
+}
+
+
+// Create the municipality map for one district (Bhaktapur)
+var muniMap = L.map("muni-map", {
+  center: [27.67, 85.43],       // Approx center of Bhaktapur
+  zoom: 7,
+  zoomControl: false,
+  dragging: false,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false,
+  keyboard: false,
+  attributionControl: false
+});
+muniMap.setView([28.3949, 84.124], 7.2);
+// Load municipalities GeoJSON and filter for Kathmandu district
+fetch("/static/geojson/nepal_municipalities.geojson")
+  .then(response => response.json())
+  .then(data => {
+    const kathmanduFeatures = data.features.filter(
+      f => f.properties.DISTRICT === "Kathmandu"
+    );
+
+    const muniLayer = L.geoJson(kathmanduFeatures, {
+      style: function (feature) {
+        const name = feature.properties.NAME;
+        return {
+          color: "#333",
+          weight: 1,
+          fillOpacity: 0.6,
+          fillColor: getRandomColorFromName(name),
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindTooltip(feature.properties.NAME, {
+          permanent: true,
+          direction: "center",
+          className: "district-label",
+        });
+        layer.on({
+          mouseover: function (e) {
+            e.target.setStyle({
+              weight: 2,
+              color: "#FF5733",
+              fillOpacity: 0.9,
+            });
+          },
+          mouseout: function (e) {
+            muniLayer.resetStyle(e.target);
+          },
+          click: function (e) {
+            alert("You clicked on: " + feature.properties.NAME);
+          },
+        });
+      }
+    }).addTo(muniMap);
+    // Auto-zoom to the Kathmandu municipalities
+    muniMap.fitBounds(muniLayer.getBounds());
+  });

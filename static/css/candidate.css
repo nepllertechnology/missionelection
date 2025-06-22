@@ -770,6 +770,8 @@ padding: 1rem;
 
 /* for the map and muni /district info layout*/
 
+
+
 .muni-section-flex {
    display: flex;
    gap: 2rem;
@@ -801,6 +803,7 @@ padding: 1rem;
    padding: 2rem;
    padding-right: 2rem;
    font-size: 0.95rem;
+   height: 525px;        /* or adjust as needed */
 }
 
 .local-unit-card p {

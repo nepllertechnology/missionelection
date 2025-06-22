@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<div id="map" style="display: none;"></div>
+
 <div class="content-wrapper">
 
     {% if results %}
@@ -16,6 +18,7 @@
         <!-- Map Placeholder - can be styled in CSS -->
         <div class="muni-map-placeholder">
             <!-- You can embed map dynamically here later -->
+            <div id="muni-map"></div>
         </div>
 
         <div class="local-unit-card">
@@ -79,12 +82,14 @@
         </div>
     </section>
 
+    <hr class="section-divider">
+
     {% for unit in results %}
     <h3>{{ unit.name }} {{ unit.type }}</h3>
     <div class="muni-section-flex">
         <!-- Placeholder for map (can be empty for now) -->
-        <div id="muni-map" class="muni-map-placeholder">
-            <!-- Placeholder for map (can be empty for now) -->
+        <div class="muni-map-placeholder">
+            <div id="muni-map"></div>
         </div>
 
         <div class="local-unit-card">
@@ -95,8 +100,7 @@
             <p><span class="label">Male Voters:</span> <span class="value">{{ unit.no_maleVoters }}</span></p>
             <p><span class="label">Female Voters:</span> <span class="value">{{ unit.no_femaleVoters }}</span></p>
             <p><span class="label">Other Voters:</span> <span class="value">{{ unit.no_otherVoters }}</span></p>
-            <p><span class="label">Total Eligible Voters:</span> <span class="value">{{ unit.total_eligibleVoters
-                    }}</span></p>
+            <p><span class="label">Total Eligible Voters:</span> <span class="value">{{unit.total_eligibleVoters}}</span></p>
         </div>
     </div>
     {% endfor %}
@@ -114,7 +118,6 @@
     <div id="candidate-results-{{ unit.id }}" class="candidate-results"></div>
     </section>
 </div>
-
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -128,8 +131,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
     integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
     crossorigin="anonymous"></script>
-
-<!-- Chart.js JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 {% endblock %}
