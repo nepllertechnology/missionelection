@@ -10,26 +10,30 @@
     {% if results %}
 
     {% if result_type == 'district' %}
-        {% for district in results %}
-        <h3>{{ district.district_name }}</h3>
-        <div class="muni-section-flex">
-            <!-- Map Placeholder - can be styled in CSS -->
-            <div class="muni-map-placeholder">
-                <!-- You can embed map dynamically here later -->
-            </div>
-        
-            <div class="local-unit-card">
-                <p><span class="label">Province:</span> <span class="value">{{ district.province.province_name }}</span></p>
-                <p><span class="label">Total Population:</span> <span class="value">{{ district.total_population }}</span></p>
-                <p><span class="label">Male Population:</span> <span class="value">{{ district.male_population }}</span></p>
-                <p><span class="label">Female Population:</span> <span class="value">{{ district.female_population }}</span></p>
-                <p><span class="label">Local Units:</span> <span class="value">{{ district.no_localunits }}</span></p>
-                <p><span class="label">Metropolitan:</span> <span class="value">{{ district.no_metropolitan }}</span></p>
-                <p><span class="label">Municipalities:</span> <span class="value">{{ district.no_municipalities }}</span></p>
-                <p><span class="label">Village Councils:</span> <span class="value">{{ district.no_villageCouncil }}</span></p>
-            </div>
+    {% for district in results %}
+    <h3>{{ district.district_name }}</h3>
+    <div class="muni-section-flex">
+        <!-- Map Placeholder - can be styled in CSS -->
+        <div class="muni-map-placeholder">
+            <!-- You can embed map dynamically here later -->
         </div>
-        {% endfor %}
+
+        <div class="local-unit-card">
+            <p><span class="label">Province:</span> <span class="value">{{ district.province.province_name }}</span></p>
+            <p><span class="label">Total Population:</span> <span class="value">{{ district.total_population }}</span>
+            </p>
+            <p><span class="label">Male Population:</span> <span class="value">{{ district.male_population }}</span></p>
+            <p><span class="label">Female Population:</span> <span class="value">{{ district.female_population }}</span>
+            </p>
+            <p><span class="label">Local Units:</span> <span class="value">{{ district.no_localunits }}</span></p>
+            <p><span class="label">Metropolitan:</span> <span class="value">{{ district.no_metropolitan }}</span></p>
+            <p><span class="label">Municipalities:</span> <span class="value">{{ district.no_municipalities }}</span>
+            </p>
+            <p><span class="label">Village Councils:</span> <span class="value">{{ district.no_villageCouncil }}</span>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
 
     {% elif result_type == 'local_unit' %}
     <section>
@@ -38,7 +42,7 @@
                 <!-- Dynamic content injected via JS -->
             </div>
             <div id="mayoral-summary-text" class="mayoral-results-summary mt-4"></div>
-    
+
         </div>
     </section>
     <section id="ward-results-section">
@@ -58,55 +62,74 @@
                 </div>
                 <div class="ward-result-card" id="female-member-card">
                     <h5>Female Member</h5>
-                                        <!-- JS will inject candidates here -->
+                    <!-- JS will inject candidates here -->
 
                 </div>
                 <div class="ward-result-card" id="dalit-female-member-card">
                     <h5>Dalit Female Member</h5>
-                                        <!-- JS will inject candidates here -->
+                    <!-- JS will inject candidates here -->
 
                 </div>
                 <div class="ward-result-card" id="member-card">
                     <h5>Member</h5>
-                                        <!-- JS will inject candidates here -->
+                    <!-- JS will inject candidates here -->
 
                 </div>
             </div>
         </div>
     </section>
 
-        {% for unit in results %}
-        <h3>{{ unit.name }} {{ unit.type }}</h3>
-        <div class="muni-section-flex">
+    {% for unit in results %}
+    <h3>{{ unit.name }} {{ unit.type }}</h3>
+    <div class="muni-section-flex">
+        <!-- Placeholder for map (can be empty for now) -->
+        <div id="muni-map" class="muni-map-placeholder">
             <!-- Placeholder for map (can be empty for now) -->
-            <div class="muni-map-placeholder">
-
-            </div>
-
-            <div class="local-unit-card">
-                <p><span class="label">District:</span> <span class="value">{{ unit.district.district_name }}</span></p>
-                <p><span class="label">Number of Wards:</span> <span class="value">{{ unit.no_wards }}</span></p>
-                <p><span class="label">Election Centers:</span> <span class="value">{{ unit.no_electionCenter }}</span></p>
-                <p><span class="label">Total Population:</span> <span class="value">{{ unit.total_population }}</span></p>
-                <p><span class="label">Male Voters:</span> <span class="value">{{ unit.no_maleVoters }}</span></p>
-                <p><span class="label">Female Voters:</span> <span class="value">{{ unit.no_femaleVoters }}</span></p>
-                <p><span class="label">Other Voters:</span> <span class="value">{{ unit.no_otherVoters }}</span></p>
-                <p><span class="label">Total Eligible Voters:</span> <span class="value">{{ unit.total_eligibleVoters }}</span></p>
-            </div>
         </div>
-        {% endfor %}
+
+        <div class="local-unit-card">
+            <p><span class="label">District:</span> <span class="value">{{ unit.district.district_name }}</span></p>
+            <p><span class="label">Number of Wards:</span> <span class="value">{{ unit.no_wards }}</span></p>
+            <p><span class="label">Election Centers:</span> <span class="value">{{ unit.no_electionCenter }}</span></p>
+            <p><span class="label">Total Population:</span> <span class="value">{{ unit.total_population }}</span></p>
+            <p><span class="label">Male Voters:</span> <span class="value">{{ unit.no_maleVoters }}</span></p>
+            <p><span class="label">Female Voters:</span> <span class="value">{{ unit.no_femaleVoters }}</span></p>
+            <p><span class="label">Other Voters:</span> <span class="value">{{ unit.no_otherVoters }}</span></p>
+            <p><span class="label">Total Eligible Voters:</span> <span class="value">{{ unit.total_eligibleVoters
+                    }}</span></p>
+        </div>
+    </div>
+    {% endfor %}
 
     {% elif result_type == 'province' %}
-        {% for province in results %}
-            <div class="province-card">
-                <h3>{{ province.province_name }}</h3>
-                <p>Headquarter: {{ province.province_headquarter }}</p>
-            </div>
-        {% endfor %}
+    {% for province in results %}
+    <div class="province-card">
+        <h3>{{ province.province_name }}</h3>
+        <p>Headquarter: {{ province.province_headquarter }}</p>
+    </div>
+    {% endfor %}
     {% endif %}
 
-{% endif %}
-<div id="candidate-results-{{ unit.id }}" class="candidate-results"></div>
-</section> 
+    {% endif %}
+    <div id="candidate-results-{{ unit.id }}" class="candidate-results"></div>
+    </section>
 </div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!--  custom JS -->
+<script src="{% static 'js/home.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+<!-- bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+    crossorigin="anonymous"></script>
+
+<!-- Chart.js JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 {% endblock %}
