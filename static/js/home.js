@@ -258,11 +258,13 @@ var muniMap = L.map("muni-map", {
 });
 muniMap.setView([28.3949, 84.124], 7.2);
 // Load municipalities GeoJSON and filter for Kathmandu district
+const districtName = document.querySelector(".muni-map-placeholder").dataset.district;
+
 fetch("/static/geojson/nepal_municipalities.geojson")
   .then(response => response.json())
   .then(data => {
     const kathmanduFeatures = data.features.filter(
-      f => f.properties.DISTRICT === "Kathmandu"
+      f => f.properties.DISTRICT === districtName
     );
 
     const muniLayer = L.geoJson(kathmanduFeatures, {

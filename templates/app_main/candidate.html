@@ -16,7 +16,7 @@
     <h3>{{ district.district_name }}</h3>
     <div class="muni-section-flex">
         <!-- Map Placeholder - can be styled in CSS -->
-        <div class="muni-map-placeholder">
+        <div class="muni-map-placeholder" data-district="{{ district.district_name }}">
             <!-- You can embed map dynamically here later -->
             <div id="muni-map"></div>
         </div>
@@ -88,7 +88,7 @@
     <h3>{{ unit.name }} {{ unit.type }}</h3>
     <div class="muni-section-flex">
         <!-- Placeholder for map (can be empty for now) -->
-        <div class="muni-map-placeholder">
+        <div class="muni-map-placeholder" data-district="{{ unit.district.district_name }}">
             <div id="muni-map"></div>
         </div>
 

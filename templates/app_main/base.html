@@ -50,7 +50,7 @@
         <div class="form-box row justify-content-start align-items-center mt-3" >
   <form id="searchForm" method="GET" action="{% url 'search_results' %}" >
     <!-- Province Dropdown -->
-    <select name="province" id="province" onchange="loadDistricts()">
+    <select name="province" id="province" onchange="loadDistricts()" data-selected="{{ request.GET.province }}">
         <option disabled {% if not request.GET.province %}selected{% endif %}>Choose Province</option>
         {% for province in provinces %}
             <option value="{{ province.pk }}"

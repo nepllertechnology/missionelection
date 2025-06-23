@@ -48,16 +48,27 @@ async function loadMunicipalities() {
 // You can also load provinces on page load
 document.addEventListener("DOMContentLoaded", async () => {
   const provinceSelect = document.getElementById("province");
+  const selectedProvince = provinceSelect.getAttribute("data-selected");  // NEW
+
   const response = await fetch("/api/provinces/");
   const provinces = await response.json();
+
+  // Clear existing options
+  provinceSelect.innerHTML = '<option disabled selected>Choose Province</option>';
 
   provinces.forEach((province) => {
     const option = document.createElement("option");
     option.value = province.province_name;
     option.textContent = province.province_name;
+
+    if (selectedProvince && selectedProvince === province.province_name) {
+      option.selected = true;
+    }
+
     provinceSelect.appendChild(option);
   });
 });
+
 
 //for the selected municipalities mayor/deputy mayor results
 async function loadMayoralResults(unitName) {
